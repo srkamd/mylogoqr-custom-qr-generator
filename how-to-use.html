@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://github.com https://pagead2.googlesyndication.com; connect-src 'self'; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none';">
+  
+  <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://mylogoqr.com/how-to-use">
+  <title>How to Use MyLogoQR | Step-by-Step Styling & Integration Guide</title>
+  <meta name="description" content="Read our complete guide on generating custom QR codes with logo overlays. Learn how to format vCards, Wi-Fi networks, text, and WhatsApp links securely.">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            indigo: {
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <script>
+    if (localStorage.getItem('theme') === 'light' || 
+        (!localStorage.getItem('theme') && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="min-h-screen pb-12 transition-colors duration-300">
+
+  <!-- Background Blurs -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1] opacity-40 dark:opacity-20">
+    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500 blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-cyan-500 blur-[120px]"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6 gap-4">
+      <a href="/" class="flex items-center gap-3 group brand-logo-link">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+          <i data-lucide="qr-code" class="text-white h-6 w-6"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">My<span class="bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">LogoQR</span></span>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Custom Logo QR Generator</p>
+        </div>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="flex items-center flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link-item">Generator</a>
+        <a href="how-to-use" class="nav-link-item active text-indigo-500">How to Use</a>
+        <a href="about" class="nav-link-item">About Us</a>
+        <a href="contact" class="nav-link-item">Contact Us</a>
+        <a href="privacy" class="nav-link-item">Privacy Policy</a>
+        <a href="terms" class="nav-link-item">Terms of Service</a>
+      </nav>
+      
+      <!-- Theme Toggle -->
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <button id="theme-toggle" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors" aria-label="Toggle Theme">
+          <i data-lucide="sun" id="theme-icon-light" class="h-5 w-5 hidden"></i>
+          <i data-lucide="moon" id="theme-icon-dark" class="h-5 w-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    
+    <!-- Top Ad Slot -->
+    <div class="ads-container mb-6 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+    <article class="space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+          How to Generate Custom QR Codes with Logos: The Ultimate Guide
+        </h1>
+        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+          Welcome to the comprehensive user documentation and SEO guide for <strong>MyLogoQR</strong>. QR codes (Quick Response codes) have transformed how we link digital assets to physical prints. Learn how to design a high-converting, professional QR code featuring color styling, custom logos, and custom call-to-action (CTA) frames.
+        </p>
+      </div>
+
+      <hr class="border-slate-200 dark:border-slate-800">
+
+      <!-- Section 1: Custom Logo QR Codes -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="sparkles" class="text-indigo-500 h-6 w-6"></i>
+          1. Creating a Custom QR Code Logo Free
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          To build trust, your clients shouldn't scan plain, generic black-and-white barcodes. By establishing a **custom qr code logo** scheme, you ensure your target audience immediately recognizes your branding.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Using our **qr code logo free** generator, you can upload any custom brand logo (like your corporate initials or social icons) to be overlaid directly in the center of the barcode. For website redirection campaigns, simply choose the URL tab, insert your destination address, and create a high-quality **link to qr code with logo** that is optimized for printing on brochures, business cards, and banners.
+        </p>
+      </section>
+
+      <!-- Section 2: WiFi QR Codes -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="wifi" class="text-indigo-500 h-6 w-6"></i>
+          2. Wi-Fi QR Code Generator with Logo Setup
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Sharing guest Wi-Fi connection details shouldn't require guests to manually select hidden networks or type long passwords. We provide a tailored **wifi qr code generator with logo** utility that maps local credentials securely.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Even if you run a **password protected qr code generator** scan layout, modern smartphone cameras will read the encrypted password data string locally and log the user onto the network in 1 tap. Because this generation takes place client-side, your WiFi passwords are never transmitted or stored on our servers.
+        </p>
+      </section>
+
+      <!-- Section 3: Contact vCards -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="user" class="text-indigo-500 h-6 w-6"></i>
+          3. Generating a Custom vCard QR Code for Contact Sharing
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          For networkers and professionals, carrying a paper business card is classic, but transferring details to a recipient's phone book is a manual chore. A **custom vcard** QR code encodes all your key credentials:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+            <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+              <i data-lucide="smartphone" class="h-4 w-4 text-indigo-500"></i> QR Code Contact Info
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Quickly share mobile numbers, corporate emails, portfolios, and company credentials. Scanners will see an instant contact profile.
+            </p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+            <h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+              <i data-lucide="mail" class="h-4 w-4 text-indigo-500"></i> Contact Us QR Code
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Insert a direct **qr code contact information** sheet into the footer of your website or your physical signage to let customers query support.
+            </p>
+          </div>
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          When people scan a **qr code generator contact** card created on MyLogoQR, they are prompted to add you directly to their phone's contacts database, bypassing any manual entry errors.
+        </p>
+      </section>
+
+      <!-- Section 4: Design Rules & Print Guidelines -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="printer" class="text-indigo-500 h-6 w-6"></i>
+          4. Printing & Design Best Practices
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          To ensure maximum scannability and professional presentation, always observe these three core design principles when compiling your QR codes:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+          <li><strong>Contrast is Key</strong>: Always keep the foreground dots color significantly darker than the background canvas. Light gray dots on white backgrounds will fail to scan on budget phone cameras.</li>
+          <li><strong>Logo Scale</strong>: Keep the logo size slider between 15% and 30%. QR codes have built-in error correction, but if a logo is too large, it will cover vital data blocks and break the scan.</li>
+          <li><strong>Print Formats</strong>: For print designs, download the vector **SVG** format. SVG files do not lose quality or pixelate when stretched, making them perfect for large banner printing. Use **PNG** for digital portfolios and web pages.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5: Troubleshooting -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="alert-circle" class="text-indigo-500 h-6 w-6"></i>
+          5. FAQ & Troubleshooting Guide
+        </h2>
+        <div class="space-y-4">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+            <h4 class="font-bold text-slate-900 dark:text-white">Why isn't my QR code scanning?</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+              Check if the colors have enough contrast. If you uploaded a custom logo, try lowering the logo scale slider to 20% to free up blocked data modules.
+            </p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80">
+            <h4 class="font-bold text-slate-900 dark:text-white">Can I change my static QR details later?</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+              Static QR codes encode the data directly inside the pattern. To change the details, you must generate a new QR code (which is always 100% free and takes 5 seconds on our homepage).
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- Bottom Ad Slot -->
+    <div class="ads-container my-8 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 MyLogoQR. Built entirely for Client-Side execution. Created by Shahrukh Ahmad (SRK AMD).</p>
+      <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
+        <a href="/" class="hover:text-indigo-500 transition-colors">Generator</a>
+        <a href="about" class="hover:text-indigo-500 transition-colors">About Us</a>
+        <a href="contact" class="hover:text-indigo-500 transition-colors">Contact Us</a>
+        <a href="privacy" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
+        <a href="terms" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const lightIcon = document.getElementById('theme-icon-light');
+      const darkIcon = document.getElementById('theme-icon-dark');
+      
+      function updateIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          lightIcon.classList.add('hidden');
+          darkIcon.classList.remove('hidden');
+        } else {
+          lightIcon.classList.remove('hidden');
+          darkIcon.classList.add('hidden');
+        }
+      }
+      updateIcons();
+      
+      themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+        updateIcons();
+      });
+      
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

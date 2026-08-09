@@ -13,6 +13,7 @@ const filesToCheck = [
   'contact.html',
   'privacy.html',
   'terms.html',
+  'how-to-use.html',
   'styles.css',
   'app.js',
   '.htaccess',
@@ -126,10 +127,10 @@ const sitemapPath = path.join(dirPath, 'sitemap.xml');
 if (fs.existsSync(sitemapPath)) {
   const sitemapText = fs.readFileSync(sitemapPath, 'utf8');
   const countUrls = (sitemapText.match(/<loc>/g) || []).length;
-  if (countUrls === 9) {
+  if (countUrls === 10) {
     console.log(`[PASS] sitemap.xml maps exactly ${countUrls} clean URL routes.`);
   } else {
-    console.error(`[FAIL] sitemap.xml has ${countUrls} mapped URLs, expected 9!`);
+    console.error(`[FAIL] sitemap.xml has ${countUrls} mapped URLs, expected 10!`);
     failed = true;
   }
 }
