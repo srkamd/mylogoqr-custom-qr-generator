@@ -1,0 +1,31 @@
+RewriteEngine On
+RewriteBase /
+
+# Force HTTPS (SSL) Redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect url-qr-code-generator to root (/) for SEO preservation
+RewriteRule ^url-qr-code-generator$ / [R=301,L,NC]
+
+# Redirect external requests from /page.html to /page
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Redirect external requests from /index to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index [NC]
+RewriteRule ^index$ / [R=301,L]
+
+# Internal rewrite to map /page back to /page.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Security Headers Configuration
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

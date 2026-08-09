@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://github.com https://pagead2.googlesyndication.com; connect-src 'self'; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none';">
+  <link rel="canonical" href="https://mylogoqr.com/contact">
+  <title>Contact Us | MyLogoQR Custom QR Code Generator</title>
+  <meta name="description" content="Get in touch with the lead developer of MyLogoQR for questions, support, or custom software development enquiries.">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            indigo: {
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  
+  <script>
+    if (localStorage.getItem('theme') === 'light' || 
+        (!localStorage.getItem('theme') && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="min-h-screen pb-12 transition-colors duration-300">
+
+  <!-- Background Decorative Blurs -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1] opacity-40 dark:opacity-20">
+    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500 blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-cyan-500 blur-[120px]"></div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6 gap-4">
+      <a href="/" class="flex items-center gap-3 group brand-logo-link">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+          <i data-lucide="qr-code" class="text-white h-6 w-6"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">My<span class="bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">LogoQR</span></span>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Custom Logo QR Generator</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link-item">Generator</a>
+        <a href="about" class="nav-link-item">About Us</a>
+        <a href="contact" class="nav-link-item active text-indigo-500">Contact Us</a>
+        <a href="privacy" class="nav-link-item">Privacy Policy</a>
+        <a href="terms" class="nav-link-item">Terms of Service</a>
+      </nav>
+      
+      <!-- Theme Toggle -->
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <button id="theme-toggle" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors" aria-label="Toggle Theme">
+          <i data-lucide="sun" id="theme-icon-light" class="h-5 w-5 hidden"></i>
+          <i data-lucide="moon" id="theme-icon-dark" class="h-5 w-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Top Ad Banner -->
+    <div class="ads-container mb-6 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+      
+      <!-- Left Contact Info Card -->
+      <section class="md:col-span-2 flex flex-col gap-6" aria-label="Contact Information">
+        <article class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+          <h2 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <i data-lucide="info" class="text-indigo-500 h-5 w-5"></i> Get in Touch
+          </h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            Have questions about MyLogoQR? Need help with high-resolution printing or custom app feature integrations? Fill out the form or write directly to our developer team.
+          </p>
+          <hr class="border-slate-200 dark:border-slate-800">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-start gap-3">
+              <i data-lucide="mail" class="text-indigo-500 h-4 w-4 mt-1"></i>
+              <div>
+                <span class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase">Support Email</span>
+                <a href="mailto:support@mylogoqr.com" class="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-500 transition-colors">support@mylogoqr.com</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Right Contact Form Card -->
+      <section class="md:col-span-3" aria-label="Contact Form">
+        <form id="contact-form" class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+          <h2 class="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+            <i data-lucide="send" class="text-indigo-500 h-5 w-5"></i> Send a Message
+          </h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Name</label>
+              <input type="text" id="contact-name" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="John Doe" required>
+            </div>
+            <div>
+              <label for="contact-email" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
+              <input type="email" id="contact-email" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="john@work.com" required>
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-subject" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Subject</label>
+            <input type="text" id="contact-subject" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Feature request / Support query" required>
+          </div>
+
+          <div>
+            <label for="contact-msg" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Message</label>
+            <textarea id="contact-msg" rows="4" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Describe your query in detail..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-premium py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 shadow-md mt-2">
+            <i data-lucide="send" class="h-4 w-4"></i> Send Message
+          </button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  
+  <!-- Footer Ad Banner -->
+  <div class="ads-container my-8 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+  <!-- Footer -->
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 MyLogoQR. Built entirely for Client-Side execution. Created by Shahrukh Ahmad (SRK AMD).</p>
+      <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
+        <a href="/" class="hover:text-indigo-500 transition-colors">Generator</a>
+        <a href="about" class="hover:text-indigo-500 transition-colors">About Us</a>
+        <a href="privacy" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
+        <a href="terms" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const lightIcon = document.getElementById('theme-icon-light');
+      const darkIcon = document.getElementById('theme-icon-dark');
+      
+      function updateIcons() {
+        if (document.documentElement.classList.contains('dark')) {
+          lightIcon.classList.add('hidden');
+          darkIcon.classList.remove('hidden');
+        } else {
+          lightIcon.classList.remove('hidden');
+          darkIcon.classList.add('hidden');
+        }
+      }
+      updateIcons();
+      
+      themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+        updateIcons();
+      });
+
+      // Handle Client Mail Form Composition
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const subject = document.getElementById('contact-subject').value.trim();
+        const msg = document.getElementById('contact-msg').value.trim();
+        
+        const bodyText = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`;
+        const mailtoUrl = `mailto:support@mylogoqr.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+        
+        window.location.href = mailtoUrl;
+      });
+      
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

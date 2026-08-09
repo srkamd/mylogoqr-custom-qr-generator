@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagservices.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://github.com https://pagead2.googlesyndication.com; connect-src 'self'; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://www.google.com; object-src 'none';">
+  
+  <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://mylogoqr.com/wifi-qr-code-generator">
+  <title>Secure Wi-Fi Scanner QR Code Generator | Custom Logo | MyLogoQR</title>
+  <meta name="description" content="Generate secure Wi-Fi QR codes with SSID, passwords, and custom designs instantly. Scan to join networks without typing credentials. 100% private.">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Secure Wi-Fi Scanner QR Code Generator | MyLogoQR">
+  <meta property="og:description" content="Create scanner QR codes for instant home and office network access with logos and custom frames.">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            indigo: {
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- CDNs for QR, PDF and Icons -->
+  <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Structured Schema Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MyLogoQR Secure Wi-Fi QR Code Generator",
+    "url": "https://mylogoqr.com/wifi-qr-code-generator",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Generate scan-to-join Wi-Fi QR codes with security settings and custom styling."
+  }
+  </script>
+</head>
+<body class="min-h-screen pb-12 transition-colors duration-300">
+
+  <!-- Background Decorative Blurs -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1] opacity-40 dark:opacity-20">
+    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500 blur-[120px]"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-cyan-500 blur-[120px]"></div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6 gap-4">
+      <a href="/" class="flex items-center gap-3 group brand-logo-link">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+          <i data-lucide="qr-code" class="text-white h-6 w-6"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">My<span class="bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">LogoQR</span></span>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Custom Logo QR Generator</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="flex items-center flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link-item active text-indigo-500">Generator</a>
+        <a href="about" class="nav-link-item">About Us</a>
+        <a href="contact" class="nav-link-item">Contact Us</a>
+        <a href="privacy" class="nav-link-item">Privacy Policy</a>
+        <a href="terms" class="nav-link-item">Terms of Service</a>
+      </nav>
+      
+      <!-- Theme Toggle & Help -->
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <button id="theme-toggle" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors" aria-label="Toggle Theme">
+          <i data-lucide="sun" id="theme-icon-light" class="h-5 w-5 hidden"></i>
+          <i data-lucide="moon" id="theme-icon-dark" class="h-5 w-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Top Ad Banner -->
+    <div class="ads-container mb-6 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
+    <!-- Hero H1 Section for SEO -->
+    <div class="mb-8 text-center lg:text-left">
+      <h1 id="hero-title" class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+        Secure Wi-Fi QR Code Generator
+      </h1>
+      <p id="hero-subtitle" class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+        Create scanner QR codes for instant home and office network access. Scan to join without typing passwords.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 main-grid">
+      
+      <!-- Left Panel: Control Center (Form Inputs & Styles) -->
+      <section class="lg:col-span-7 xl:col-span-8 flex flex-col gap-6" aria-label="Generator Controls">
+        
+        <!-- Data Inputs Panel (Card) -->
+        <article class="glass-panel rounded-2xl p-6">
+          <h2 class="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200 flex items-center gap-2">
+            <i data-lucide="database" class="h-5 w-5 text-indigo-500"></i>
+            1. Select Data Type & Enter Content
+          </h2>
+          
+          <!-- Tabs Switcher -->
+          <div class="flex border-b border-slate-200 dark:border-slate-800 mb-6 overflow-x-auto" id="data-tabs">
+            <button class="tab-btn px-4 py-2.5 font-medium text-sm flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 whitespace-nowrap" data-tab="url">
+              <i data-lucide="link" class="h-4 w-4"></i> URL / Link
+            </button>
+            <button class="tab-btn px-4 py-2.5 font-medium text-sm flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 whitespace-nowrap" data-tab="whatsapp">
+              <i data-lucide="message-square" class="h-4 w-4"></i> WhatsApp
+            </button>
+            <button class="tab-btn active text-indigo-500 px-4 py-2.5 font-medium text-sm flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 whitespace-nowrap" data-tab="wifi">
+              <i data-lucide="wifi" class="h-4 w-4"></i> Wi-Fi
+            </button>
+            <button class="tab-btn px-4 py-2.5 font-medium text-sm flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 whitespace-nowrap" data-tab="text">
+              <i data-lucide="file-text" class="h-4 w-4"></i> Plain Text
+            </button>
+            <button class="tab-btn px-4 py-2.5 font-medium text-sm flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-500 whitespace-nowrap" data-tab="vcard">
+              <i data-lucide="contact" class="h-4 w-4"></i> Contact (vCard)
+            </button>
+          </div>
+
+          <!-- Tab Content Form Containers -->
+          <div id="tab-contents">
+            
+            <!-- URL Tab -->
+            <div id="tab-url" class="tab-pane hidden flex flex-col gap-4">
+              <div>
+                <label for="url-input" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Target URL</label>
+                <input type="url" id="url-input" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="https://example.com" value="https://google.com">
+              </div>
+            </div>
+
+            <!-- WhatsApp Tab -->
+            <div id="tab-whatsapp" class="tab-pane hidden flex flex-col gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="wa-phone" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Phone Number (with Country Code)</label>
+                  <input type="tel" id="wa-phone" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="+1234567890">
+                </div>
+                <div>
+                  <label for="wa-message" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Optional Welcome Message</label>
+                  <textarea id="wa-message" rows="1" class="glass-input w-full px-4 py-3 rounded-xl text-sm resize-none" placeholder="Hello! I would like to get in touch."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wi-Fi Tab -->
+            <div id="tab-wifi" class="tab-pane flex flex-col gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label for="wifi-ssid" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">SSID / Network Name</label>
+                  <input type="text" id="wifi-ssid" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="My Home Network">
+                </div>
+                <div class="relative">
+                  <label for="wifi-pass" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Password</label>
+                  <input type="password" id="wifi-pass" class="glass-input w-full px-4 py-3 rounded-xl text-sm pr-10" placeholder="••••••••">
+                  <button type="button" id="wifi-toggle-pass" class="absolute right-3 top-9 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <i data-lucide="eye" class="h-4 w-4"></i>
+                  </button>
+                </div>
+                <div>
+                  <label for="wifi-enc" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Network Security</label>
+                  <select id="wifi-enc" class="glass-input w-full px-4 py-3 rounded-xl text-sm bg-transparent cursor-pointer">
+                    <option value="WPA" selected class="dark:bg-slate-900">WPA/WPA2</option>
+                    <option value="WEP" class="dark:bg-slate-900">WEP</option>
+                    <option value="nopass" class="dark:bg-slate-900">Unsecured (None)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plain Text Tab -->
+            <div id="tab-text" class="tab-pane hidden flex flex-col gap-4">
+              <div>
+                <label for="text-input" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Text Content</label>
+                <textarea id="text-input" rows="3" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Type or paste plain text here..."></textarea>
+              </div>
+            </div>
+
+            <!-- vCard Tab -->
+            <div id="tab-vcard" class="tab-pane hidden flex flex-col gap-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="vc-first" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">First Name</label>
+                  <input type="text" id="vc-first" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="John">
+                </div>
+                <div>
+                  <label for="vc-last" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Last Name</label>
+                  <input type="text" id="vc-last" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Doe">
+                </div>
+                <div>
+                  <label for="vc-phone" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Phone</label>
+                  <input type="tel" id="vc-phone" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="+1 234 567 8900">
+                </div>
+                <div>
+                  <label for="vc-email" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Email</label>
+                  <input type="email" id="vc-email" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="john.doe@work.com">
+                </div>
+                <div>
+                  <label for="vc-org" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Company / Org</label>
+                  <input type="text" id="vc-org" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Acme Corp">
+                </div>
+                <div>
+                  <label for="vc-title" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Job Title</label>
+                  <input type="text" id="vc-title" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Product Manager">
+                </div>
+                <div>
+                  <label for="vc-url" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Website URL</label>
+                  <input type="url" id="vc-url" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="https://acme.corp">
+                </div>
+                <div>
+                  <label for="vc-adr" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Address</label>
+                  <input type="text" id="vc-adr" class="glass-input w-full px-4 py-2.5 rounded-xl text-sm" placeholder="123 Corporate Blvd, Silicon Valley">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Customization Accordions -->
+        <section class="flex flex-col gap-4" aria-label="Style Customizations">
+          
+          <!-- Accordion 1: Design & Colors -->
+          <article class="glass-panel rounded-2xl overflow-hidden">
+            <button class="accordion-trigger w-full px-6 py-4 flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors" data-target="acc-colors">
+              <span class="flex items-center gap-3">
+                <i data-lucide="palette" class="h-5 w-5 text-indigo-500"></i>
+                2. Design & Colors
+              </span>
+              <i data-lucide="chevron-down" class="accordion-chevron h-5 w-5"></i>
+            </button>
+            <div id="acc-colors" class="accordion-content">
+              <div class="p-6 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-6">
+                
+                <!-- Foreground options -->
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">QR Code Foreground</label>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label for="fg-type" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">Fill Type</label>
+                      <select id="fg-type" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm bg-transparent cursor-pointer">
+                        <option value="solid" class="dark:bg-slate-900">Solid Color</option>
+                        <option value="linear" class="dark:bg-slate-900">Linear Gradient</option>
+                        <option value="radial" class="dark:bg-slate-900">Radial Gradient</option>
+                      </select>
+                    </div>
+                    <div id="fg-solid-container">
+                      <label for="fg-color" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">Select Color</label>
+                      <div class="flex items-center gap-3">
+                        <input type="color" id="fg-color" value="#4f46e5">
+                        <input type="text" id="fg-color-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#4f46e5">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gradient Parameters (Hidden by default) -->
+                  <div id="fg-gradient-container" class="hidden flex flex-col gap-4 border-l-2 border-indigo-500/30 pl-4 mt-2">
+                    <div class="grid grid-cols-2 gap-4">
+                      <div>
+                        <label for="gradient-color-1" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">Start Color</label>
+                        <div class="flex items-center gap-2">
+                          <input type="color" id="gradient-color-1" value="#6366f1">
+                          <input type="text" id="gradient-text-1" class="glass-input px-2.5 py-1.5 rounded-lg text-xs w-full font-mono" value="#6366f1">
+                        </div>
+                      </div>
+                      <div>
+                        <label for="gradient-color-2" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">End Color</label>
+                        <div class="flex items-center gap-2">
+                          <input type="color" id="gradient-color-2" value="#06b6d4">
+                          <input type="text" id="gradient-text-2" class="glass-input px-2.5 py-1.5 rounded-lg text-xs w-full font-mono" value="#06b6d4">
+                        </div>
+                      </div>
+                    </div>
+                    <div id="gradient-angle-container">
+                      <div class="flex justify-between text-xs text-slate-400 dark:text-slate-500 mb-1">
+                        <label for="gradient-angle">Gradient Angle</label>
+                        <span id="gradient-angle-val">0°</span>
+                      </div>
+                      <input type="range" id="gradient-angle" min="0" max="360" value="0">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Background Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label for="bg-color" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">QR Background Color</label>
+                    <div class="flex items-center gap-3">
+                      <input type="color" id="bg-color" value="#ffffff">
+                      <input type="text" id="bg-color-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#ffffff">
+                    </div>
+                  </div>
+                  <div class="flex items-end pb-2">
+                    <label class="flex items-center gap-3 cursor-pointer select-none">
+                      <input type="checkbox" id="bg-transparent" class="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:bg-slate-900 dark:border-slate-800">
+                      <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Transparent Background</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Corners/Eye Colors -->
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Custom Eye Colors (Optional)</label>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label for="eye-square-color" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">Eye Frame (Outer Box)</label>
+                      <div class="flex items-center gap-3">
+                        <input type="color" id="eye-square-color" value="#4f46e5">
+                        <input type="text" id="eye-square-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#4f46e5">
+                      </div>
+                    </div>
+                    <div>
+                      <label for="eye-dot-color" class="block text-xs text-slate-400 dark:text-slate-500 mb-1">Eye Ball (Inner Dot)</label>
+                      <div class="flex items-center gap-3">
+                        <input type="color" id="eye-dot-color" value="#4f46e5">
+                        <input type="text" id="eye-dot-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#4f46e5">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- Accordion 2: Shapes & Patterns -->
+          <article class="glass-panel rounded-2xl overflow-hidden">
+            <button class="accordion-trigger w-full px-6 py-4 flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors" data-target="acc-shapes">
+              <span class="flex items-center gap-3">
+                <i data-lucide="shapes" class="h-5 w-5 text-indigo-500"></i>
+                3. Shapes & Patterns
+              </span>
+              <i data-lucide="chevron-down" class="accordion-chevron h-5 w-5"></i>
+            </button>
+            <div id="acc-shapes" class="accordion-content">
+              <div class="p-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label for="dots-style" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">QR Dot Pattern</label>
+                  <select id="dots-style" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm bg-transparent cursor-pointer">
+                    <option value="square" selected class="dark:bg-slate-900">Square</option>
+                    <option value="dots" class="dark:bg-slate-900">Dots</option>
+                    <option value="rounded" class="dark:bg-slate-900">Rounded</option>
+                    <option value="extra-rounded" class="dark:bg-slate-900">Extra Rounded</option>
+                    <option value="classy" class="dark:bg-slate-900">Classy (Wedge)</option>
+                    <option value="classy-rounded" class="dark:bg-slate-900">Classy Rounded</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="corners-square-style" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Corner Frame Shape</label>
+                  <select id="corners-square-style" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm bg-transparent cursor-pointer">
+                    <option value="square" selected class="dark:bg-slate-900">Square</option>
+                    <option value="dot" class="dark:bg-slate-900">Circle / Dot</option>
+                    <option value="extra-rounded" class="dark:bg-slate-900">Rounded Square</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="corners-dot-style" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Corner Dot Shape</label>
+                  <select id="corners-dot-style" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm bg-transparent cursor-pointer">
+                    <option value="square" selected class="dark:bg-slate-900">Square</option>
+                    <option value="dot" class="dark:bg-slate-900">Circle / Dot</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Accordion 3: Logo Customization -->
+          <article class="glass-panel rounded-2xl overflow-hidden">
+            <button class="accordion-trigger w-full px-6 py-4 flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors" data-target="acc-logo">
+              <span class="flex items-center gap-3">
+                <i data-lucide="image" class="h-5 w-5 text-indigo-500"></i>
+                4. Logo Customization
+              </span>
+              <i data-lucide="chevron-down" class="accordion-chevron h-5 w-5"></i>
+            </button>
+            <div id="acc-logo" class="accordion-content">
+              <div class="p-6 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-6">
+                
+                <!-- Logo Type Selectors (Upload vs Preset) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Upload Custom Logo</label>
+                    <div class="relative group">
+                      <input type="file" id="logo-upload" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                      <div class="glass-input p-4 rounded-xl flex flex-col items-center justify-center border-dashed border-2 hover:border-indigo-500 transition-colors duration-200">
+                        <i data-lucide="upload-cloud" class="h-8 w-8 text-slate-400 group-hover:text-indigo-500 mb-2 transition-colors"></i>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium" id="upload-label">PNG, JPG, SVG up to 5MB</span>
+                      </div>
+                    </div>
+                    <button type="button" id="logo-remove-btn" class="mt-2 text-xs font-semibold text-rose-500 hover:text-rose-600 flex items-center gap-1 hidden">
+                      <i data-lucide="trash-2" class="h-3 w-3"></i> Remove logo
+                    </button>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Or Choose Preset Logo</label>
+                    <div class="grid grid-cols-3 gap-3" id="preset-container">
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="whatsapp">
+                        <span class="h-6 w-6 text-[#25D366] flex items-center justify-center"><i data-lucide="message-square" class="h-5 w-5 fill-[#25D366]/20"></i></span>
+                        <span>WhatsApp</span>
+                      </button>
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="instagram">
+                        <span class="h-6 w-6 text-[#E1306C] flex items-center justify-center"><i data-lucide="instagram" class="h-5 w-5"></i></span>
+                        <span>Instagram</span>
+                      </button>
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="wifi">
+                        <span class="h-6 w-6 text-[#3b82f6] flex items-center justify-center"><i data-lucide="wifi" class="h-5 w-5"></i></span>
+                        <span>Wi-Fi</span>
+                      </button>
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="phone">
+                        <span class="h-6 w-6 text-[#10b981] flex items-center justify-center"><i data-lucide="phone" class="h-5 w-5 fill-[#10b981]/20"></i></span>
+                        <span>Phone</span>
+                      </button>
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="email">
+                        <span class="h-6 w-6 text-[#ef4444] flex items-center justify-center"><i data-lucide="mail" class="h-5 w-5"></i></span>
+                        <span>Email</span>
+                      </button>
+                      <button class="preset-badge p-2 bg-slate-100 dark:bg-slate-900 rounded-xl flex flex-col items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300" data-preset="globe">
+                        <span class="h-6 w-6 text-[#6366f1] flex items-center justify-center"><i data-lucide="globe" class="h-5 w-5"></i></span>
+                        <span>Website</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Logo Size and Margins Sliders -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <div class="flex justify-between text-xs text-slate-400 dark:text-slate-500 mb-1">
+                      <label for="logo-size-slider">Logo Size Scale</label>
+                      <span id="logo-size-val">20%</span>
+                    </div>
+                    <input type="range" id="logo-size-slider" min="10" max="40" value="20">
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs text-slate-400 dark:text-slate-500 mb-1">
+                      <label for="logo-margin-slider">Logo Clear Area Margin</label>
+                      <span id="logo-margin-val">5px</span>
+                    </div>
+                    <input type="range" id="logo-margin-slider" min="0" max="25" value="5">
+                  </div>
+                </div>
+
+                <!-- Hide Center Dots -->
+                <div class="flex items-center gap-3">
+                  <label class="flex items-center gap-3 cursor-pointer select-none">
+                    <input type="checkbox" id="logo-hide-dots" checked class="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:bg-slate-900 dark:border-slate-800">
+                    <span class="text-sm font-medium text-slate-600 dark:text-slate-300">Clear QR dots behind the logo (Recommended)</span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- Accordion 4: CTA Frame Overlay -->
+          <article class="glass-panel rounded-2xl overflow-hidden">
+            <button class="accordion-trigger w-full px-6 py-4 flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors" data-target="acc-frame">
+              <span class="flex items-center gap-3">
+                <i data-lucide="layout" class="h-5 w-5 text-indigo-500"></i>
+                5. Custom CTA Frame Overlay
+              </span>
+              <i data-lucide="chevron-down" class="accordion-chevron h-5 w-5"></i>
+            </button>
+            <div id="acc-frame" class="accordion-content">
+              <div class="p-6 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-6">
+                
+                <!-- Frame Select -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label for="frame-style" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Frame Layout</label>
+                    <select id="frame-style" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm bg-transparent cursor-pointer">
+                      <option value="none" selected class="dark:bg-slate-900">No Frame</option>
+                      <option value="classic" class="dark:bg-slate-900">Classic Badge (Footer banner)</option>
+                      <option value="header" class="dark:bg-slate-900">Bubble Header (Header banner)</option>
+                      <option value="pill" class="dark:bg-slate-900">Minimalist Pill (Bottom capsule)</option>
+                      <option value="border" class="dark:bg-slate-900">Modern Border (Outlined text)</option>
+                    </select>
+                  </div>
+                  <div class="md:col-span-2">
+                    <label for="frame-text" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Call to Action (CTA) Text</label>
+                    <input type="text" id="frame-text" class="glass-input w-full px-4 py-2.5 rounded-lg text-sm" placeholder="SCAN ME" value="SCAN ME">
+                  </div>
+                </div>
+
+                <!-- Frame Colors & Font -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="frame-options-container">
+                  <div>
+                    <label for="frame-font" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Font Style</label>
+                    <select id="frame-font" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-transparent cursor-pointer">
+                      <option value="Outfit" selected class="dark:bg-slate-900">Outfit (Sans)</option>
+                      <option value="Plus Jakarta Sans" class="dark:bg-slate-900">Jakarta (Modern)</option>
+                      <option value="Georgia" class="dark:bg-slate-900">Georgia (Serif)</option>
+                      <option value="Impact" class="dark:bg-slate-900">Impact (Bold)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="frame-color" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Frame/Border Color</label>
+                    <div class="flex items-center gap-3">
+                      <input type="color" id="frame-color" value="#4f46e5">
+                      <input type="text" id="frame-color-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#4f46e5">
+                    </div>
+                  </div>
+                  <div>
+                    <label for="frame-text-color" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Text Color</label>
+                    <div class="flex items-center gap-3">
+                      <input type="color" id="frame-text-color" value="#ffffff">
+                      <input type="text" id="frame-text-color-text" class="glass-input px-3 py-2 rounded-lg text-sm w-full font-mono" value="#ffffff">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+        </section>
+      </section>
+
+      <!-- Right Panel: Live Preview & Export Card -->
+      <section class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-8 self-start flex flex-col gap-6" aria-label="QR Code Output">
+        
+        <!-- Live Preview Box -->
+        <article class="glass-panel rounded-2xl p-6 flex flex-col items-center">
+          <h2 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4 self-start">Live Preview</h2>
+          
+          <!-- Interactive Preview Container -->
+          <div class="qr-preview-wrapper qr-glow w-full aspect-square rounded-2xl flex items-center justify-center p-4 bg-white dark:bg-slate-950 mb-6 transition-all duration-300">
+            <!-- Offscreen rendering container for qr-code-styling -->
+            <div id="hidden-qr-render" class="hidden"></div>
+            <!-- Canvas displaying the final frame composition -->
+            <canvas id="qr-composition-canvas" class="max-w-full max-h-full object-contain rounded-xl"></canvas>
+          </div>
+          
+          <!-- Client-Side Privacy Badge -->
+          <div class="flex items-center gap-2 bg-indigo-500/10 dark:bg-indigo-500/5 border border-indigo-500/20 px-3.5 py-2 rounded-full mb-6">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-xs font-medium text-indigo-700 dark:text-indigo-400">100% Secure & Private: Generated on your device</span>
+          </div>
+
+          <!-- Divider -->
+          <hr class="w-full border-slate-200 dark:border-slate-800 mb-6">
+          
+          <!-- Export Section -->
+          <div class="w-full flex flex-col gap-4">
+            
+            <!-- Resolution Slider -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+                <span>Output Resolution</span>
+                <span id="export-size-val" class="font-mono text-indigo-500">1000 x 1000 px</span>
+              </div>
+              <input type="range" id="export-size-slider" min="500" max="2000" step="100" value="1000" class="w-full">
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="grid grid-cols-3 gap-2 mt-2">
+              <button id="btn-download-png" class="btn-premium py-3 px-2 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 shadow-md">
+                <i data-lucide="download" class="h-4 w-4"></i> PNG
+              </button>
+              <button id="btn-download-svg" class="btn-outline py-3 px-2 rounded-xl text-xs font-semibold flex flex-col items-center gap-1">
+                <i data-lucide="file-code" class="h-4 w-4"></i> SVG
+              </button>
+              <button id="btn-download-pdf" class="btn-outline py-3 px-2 rounded-xl text-xs font-semibold flex flex-col items-center gap-1">
+                <i data-lucide="file-text" class="h-4 w-4"></i> PDF
+              </button>
+            </div>
+            
+            <!-- Copy to Clipboard Button -->
+            <button id="btn-copy-clipboard" class="btn-outline w-full py-3 px-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all">
+              <i data-lucide="copy" class="h-4 w-4" id="copy-icon"></i>
+              <span id="copy-text">Copy Image to Clipboard</span>
+            </button>
+
+          </div>
+        </article>
+          <!-- Sidebar Ad Banner -->
+          <div class="ads-container mt-6 overflow-hidden min-h-[250px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+          </div>
+
+      </section>
+    </div>
+
+    <!-- SEO Content Section -->
+    <section class="mt-16 max-w-7xl mx-auto space-y-16 border-t border-slate-200 dark:border-slate-800/80 pt-16" aria-label="Detailed Information and FAQS">
+      
+      <!-- Intro Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-7 space-y-6">
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Secure and Hassle-Free Guest Wi-Fi Access via QR Codes</h2>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base">Typing complex wireless passwords is prone to typos and frustration. A custom Wi-Fi access QR code enables restaurant guests, hotel visitors, or office clients to connect to your local network securely with a single scan, keeping credentials safe.</p>
+          
+          <!-- Key Features Badge list -->
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5"><i data-lucide="shield-check" class="h-4 w-4"></i> 100% Secure Client-Side</span>
+            <span class="px-3 py-1.5 rounded-lg bg-indigo-500/10 text-xs font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5"><i data-lucide="svg" class="h-4 w-4"></i> Vector SVG Exports</span>
+            <span class="px-3 py-1.5 rounded-lg bg-cyan-500/10 text-xs font-semibold text-cyan-600 dark:text-cyan-400 flex items-center gap-1.5"><i data-lucide="sparkles" class="h-4 w-4"></i> Unlimited Free Scans</span>
+            <span class="px-3 py-1.5 rounded-lg bg-purple-500/10 text-xs font-semibold text-purple-600 dark:text-purple-400 flex items-center gap-1.5"><i data-lucide="user-minus" class="h-4 w-4"></i> No Signup Required</span>
+          </div>
+        </div>
+        
+        <!-- Steps Column -->
+        <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-slate-100 dark:border-slate-800/80 space-y-6">
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2"><i data-lucide="help-circle" class="h-5 w-5 text-indigo-500"></i> How to Generate</h2>
+          <div class="space-y-4">
+            
+          <div class="flex items-start gap-4">
+            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/10 text-xs font-bold text-indigo-600 dark:text-indigo-400">1</span>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Enter your wireless network name (SSID) exactly as it appears in network lists.</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/10 text-xs font-bold text-indigo-600 dark:text-indigo-400">2</span>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Input the Wi-Fi password and select the encryption type (WPA/WPA2, WEP, or No Password).</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/10 text-xs font-bold text-indigo-600 dark:text-indigo-400">3</span>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Personalize the QR design using your corporate colors or upload your company logo.</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/10 text-xs font-bold text-indigo-600 dark:text-indigo-400">4</span>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Add an eye-catching outer frame (e.g. "CONNECT WIFI") for visible signage.</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-500/10 text-xs font-bold text-indigo-600 dark:text-indigo-400">5</span>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-0.5">Print the exported PDF or high-resolution PNG layout and place it in guest reception grids.</p>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-8">
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Everything you need to know about MyLogoQR</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+        <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Is my Wi-Fi password secure? Does it leave my browser?</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">No. MyLogoQR is a privacy-first, client-side application. The compiled QR data string (e.g. "WIFI:S:NetworkName;T:WPA;P:Password;;") is compiled entirely in your local browser. No network requests are sent, protecting your local security.</p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Does this work on both iOS and Android devices?</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes. Modern iPhone (iOS 11+) and Android cameras automatically parse Wi-Fi QR strings natively. Scanners are prompted with a popup asking to join the network in one click.</p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Can I generate a QR code for a hidden network SSID?</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Yes. While basic scanners can read it, ensure you instruct guests to select your Wi-Fi name if their device does not support hidden auto-joining.</p>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!-- End SEO Content Section -->
+  </main>
+
+  
+  <!-- Footer Ad Banner -->
+  <div class="ads-container my-8 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+  </div>
+  <!-- Footer -->
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>&copy; 2026 MyLogoQR. Built entirely for Client-Side execution. No data ever leaves your browser.</p>
+      <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
+        <a href="about" class="hover:text-indigo-500 transition-colors">About Us</a>
+        <a href="contact" class="hover:text-indigo-500 transition-colors">Contact Us</a>
+        <a href="privacy" class="hover:text-indigo-500 transition-colors">Privacy Policy</a>
+        <a href="terms" class="hover:text-indigo-500 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Logic -->
+  <script src="app.js?v=1.1"></script>
+</body>
+</html>
