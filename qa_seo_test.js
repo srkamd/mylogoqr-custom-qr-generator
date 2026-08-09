@@ -19,7 +19,10 @@ const filesToCheck = [
   '.htaccess',
   'sitemap.xml',
   'robots.txt',
-  'ads.txt'
+  'ads.txt',
+  'manifest.json',
+  'service-worker.js',
+  'app_icon.jpg'
 ];
 
 let failed = false;
@@ -105,6 +108,14 @@ htmlFiles.forEach(file => {
     console.log(`  [PASS] No raw .html file references found in links (Clean URLs enforced).`);
   } else {
     console.error(`  [FAIL] Found raw .html extension in links: ${htmlLinks.join(', ')}`);
+    failed = true;
+  }
+
+  // PWA manifest link tag check
+  if (content.includes('rel="manifest"') && content.includes('href="/manifest.json"')) {
+    console.log(`  [PASS] PWA Manifest link found.`);
+  } else {
+    console.error(`  [FAIL] PWA Manifest link is missing!`);
     failed = true;
   }
 });

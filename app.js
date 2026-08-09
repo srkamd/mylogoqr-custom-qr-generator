@@ -1,3 +1,12 @@
+// Register PWA Service Worker for offline capabilities
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((reg) => console.log('[Service Worker] Registered successfully:', reg.scope))
+      .catch((err) => console.error('[Service Worker] Registration failed:', err));
+  });
+}
+
 // Preset Logo Badges (Custom SVG vectors wrapped in white borders)
 const PRESET_LOGOS = {
   whatsapp: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64"><circle cx="12" cy="12" r="11" fill="white" stroke="#e2e8f0" stroke-width="0.75"/><circle cx="12" cy="12" r="9.5" fill="#25D366"/><path d="M12 6.5c-2.76 0-5 2.24-5 5 0 .96.27 1.85.74 2.62l-.78 2.87 2.94-.77c.74.4 1.57.62 2.45.62 2.76 0 5-2.24 5-5s-2.24-5-5-5zm2.84 6.94c-.12.34-.69.66-1 .69-.27.02-.63.13-1.8-.35-1.5-.62-2.45-2.14-2.52-2.24-.07-.1-.6-1-.6-1.92 0-.91.48-1.36.65-1.53.17-.17.38-.21.5-.21.13 0 .25 0 .36.01.12.01.27-.04.42.32.16.38.53 1.29.58 1.39.05.1.08.22.02.35-.06.13-.1.22-.2.34-.1.12-.2.27-.29.36-.1.1-.21.21-.09.42.12.21.52.85 1.11 1.38.76.68 1.4.89 1.6.99.2.1.32.08.44-.06.12-.14.53-.62.68-.83.15-.21.3-.17.5-.1.2.07 1.28.6 1.5.71.22.11.37.17.42.27.05.1.05.58-.07.92z" fill="white"/></svg>`,
