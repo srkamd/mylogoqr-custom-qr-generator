@@ -7,8 +7,8 @@
   
   <!-- SEO Meta Tags -->
   <link rel="canonical" href="https://mylogoqr.com/how-to-use">
-  <title>How to Use MyLogoQR | Step-by-Step Styling & Integration Guide</title>
-  <meta name="description" content="Read our complete guide on generating custom QR codes with logo overlays. Learn how to format vCards, Wi-Fi networks, text, and WhatsApp links securely.">
+  <title>How to Use MyLogoQR | Comprehensive Client-Side QR Generator Guide</title>
+  <meta name="description" content="Read our ultimate guide on generating custom QR codes with logo overlays. Learn how to format vCards, Wi-Fi networks, text, and WhatsApp links securely.">
   
   <!-- Tailwind CSS Play CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -100,152 +100,234 @@
     </div>
 
     <article class="space-y-12">
+      <!-- Page Title -->
       <div class="space-y-4">
         <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
-          How to Use MyLogoQR: Step-by-Step Tool Guide
+          How to Use MyLogoQR: The Complete Guide & Philosophy
         </h1>
         <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-          Welcome to the comprehensive user documentation for <strong>MyLogoQR</strong>. Our tools operate 100% client-side inside your browser, ensuring your data is completely secure. Follow this guide to see how each tool works, check the UI previews, and redirect directly to the generators to start creating.
+          Welcome to the ultimate semantic SEO documentation for <strong>MyLogoQR</strong>. In this guide, we detail why this project was built, how the public can benefit from it completely free of charge, how we support this work, and step-by-step instructions on compiling custom branded barcodes.
         </p>
       </div>
 
       <hr class="border-slate-200 dark:border-slate-800">
 
-      <!-- Tool 1: URL QR Code Generator -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
-        <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
-          <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-            🔗 <a href="/" class="text-indigo-500 hover:text-indigo-400 transition-colors hover:underline">URL Link QR Code Generator</a>
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
-            Generate high-converting barcodes for websites, portfolios, and marketing landing pages. By setting up a <strong class="text-slate-900 dark:text-white">link to qr code with logo</strong>, users will scan with complete trust.
-          </p>
-          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Best for marketing flyers & social profiles.
-            </p>
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Built-in brand icons (Facebook, YouTube, Google).
+      <!-- Section 1: The Origin and Why We Built This Website -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="info" class="text-indigo-500 h-6 w-6"></i>
+          Why Was MyLogoQR Created?
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          The internet is filled with QR code generators, but a closer look reveals a worrying trend: **subscription traps** and **privacy violations**. Most commercial generators claim to offer "free" codes, only to deactivate them after a few scans or lock them behind a monthly paywall. They do this by forcing your QR code to link to their redirection servers (dynamic QR codes), giving them total control over your traffic.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Furthermore, server-side generators process your confidential details (such as Wi-Fi passwords, contact phone numbers, and private text notes) on external database machines. This opens doors to server leaks and data logging.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed font-semibold text-slate-800 dark:text-slate-200">
+          We built MyLogoQR to provide a 100% free, client-side alternative.
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          By utilizing local JavaScript processing in your browser, **MyLogoQR compiles your barcodes entirely on your own device**. No form data is ever transmitted to a database. The result is a static, raw data QR code that is permanently yours, will never expire, has no scan limits, and is completely free of charge.
+        </p>
+      </section>
+
+      <!-- Section 2: Creator Benefit / Monetization -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="coins" class="text-indigo-500 h-6 w-6"></i>
+          How Do We Benefit from Running This Free Site?
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          A common question is: <em>"If the service is completely free and runs client-side, what does the creator get?"</em>
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          Our business model is built on transparency. By keeping server resource consumption near zero (since your browser does the heavy lifting of rendering codes), we can run this global platform with minimal overhead. We monetize this tool through:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+          <li><strong>Display Advertisements (Google AdSense)</strong>: We place manually integrated ad slots on our headers, footers, and sidebars to generate ad impressions from high-intent B2B search traffic.</li>
+          <li><strong>B2B Sponsorships</strong>: In the future, we plan to allow corporate branding partners to sponsor specific generator layouts or default preset logos.</li>
+          <li><strong>Developer Portfolios</strong>: This platform serves as a production-grade showcase of our development capabilities, helping us acquire enterprise software projects.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3: Public Utility -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="globe" class="text-indigo-500 h-6 w-6"></i>
+          How the Public Benefits from MyLogoQR
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          MyLogoQR serves as a vital utility for various public sectors:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white">🏬 Small Businesses & Cafes</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Cafes and retail shops can print high-resolution Wi-Fi placards and digital menu links without paying monthly subscription fees to QR brokers.
             </p>
           </div>
-          <a href="/" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
-            Go to URL Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </a>
-        </div>
-        <div class="lg:col-span-6 order-1 lg:order-2">
-          <img src="url_preview.jpg" alt="URL Link QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white">🎨 Designers & Agencies</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Creative professionals can export scalable vector SVGs to integrate into premium brochure designs, vector boards, and billboards without pixelation.
+            </p>
+          </div>
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-slate-900 dark:text-white">🔒 Privacy Enthusiasts</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Corporate entities can generate network QR codes or contact cards knowing their secure credentials never leave their local office networks.
+            </p>
+          </div>
         </div>
       </section>
 
       <hr class="border-slate-200 dark:border-slate-800">
 
-      <!-- Tool 2: WhatsApp QR Code Generator -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
-        <div class="lg:col-span-6">
-          <img src="whatsapp_preview.jpg" alt="WhatsApp Chat QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
-        </div>
-        <div class="lg:col-span-6 space-y-4">
-          <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-            💬 <a href="/whatsapp-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 transition-colors hover:underline">WhatsApp Chat QR Code Generator</a>
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
-            Make it easy for clients to initiate customer support chats. Encode your phone number and prefilled messages so scanners can contextually message you without saving your contact details first.
-          </p>
-          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Direct chat initiation via wa.me API codes.
+      <!-- Section 4: Deep Features Guide (All 5 Tools) -->
+      <section class="space-y-12">
+        <h2 class="text-3xl font-black text-slate-900 dark:text-white text-center">
+          Comprehensive Tool Documentation & Interface Previews
+        </h2>
+
+        <!-- Tool 1: URL QR Code Generator -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+          <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              🔗 <a href="/" class="text-indigo-500 hover:text-indigo-400 hover:underline">URL Link QR Code Generator</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              Our URL generator compiles any website address, digital portfolio, or social media link into a customized code. By creating a <strong class="text-slate-900 dark:text-white">link to qr code with logo</strong>, you build trust and increase the likelihood of users scanning.
             </p>
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Seamlessly add WhatsApp green theme layouts.
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              We provide built-in presets for major brands (Facebook, YouTube, Google, Instagram) or support custom PNG/JPG file uploads. You can select custom dual-tone gradients, choose square or circular dots, and configure custom CTA framing layers (such as "SCAN ME").
             </p>
+            <a href="/" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+              Launch URL Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
           </div>
-          <a href="/whatsapp-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
-            Go to WhatsApp Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </a>
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <img src="url_preview.jpg" alt="URL Link QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Tool 2: WhatsApp QR Code Generator -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+          <div class="lg:col-span-6">
+            <img src="whatsapp_preview.jpg" alt="WhatsApp Chat QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          </div>
+          <div class="lg:col-span-6 space-y-4">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              💬 <a href="/whatsapp-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 hover:underline">WhatsApp Chat QR Code Generator</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              WhatsApp QR codes allow customers to initiate direct chat support. By mapping your phone number and prefilled message payloads, you configure structured templates that open automatically in WhatsApp when scanned.
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              The scanner app opens a secure wa.me API link, meaning **scanners do not need to save your contact card to start messaging**. This is ideal for sales desks, real estate agents, and local support teams.
+            </p>
+            <a href="/whatsapp-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+              Launch WhatsApp Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Tool 3: Wi-Fi QR Code Generator -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+          <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              📶 <a href="/wifi-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 hover:underline">Wi-Fi Scanner QR Code Generator</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              Logging onto Wi-Fi networks in hotels or restaurants is often tedious. Our <strong class="text-slate-900 dark:text-white">wifi qr code generator with logo</strong> creates barcodes containing your SSID wireless keys and encryption standards (WPA/WPA2 or WEP).
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              It acts as a secure <strong class="text-slate-900 dark:text-white">password protected qr code generator</strong>. Modern iOS and Android cameras read the barcode format natively, prompting the guest to connect in one tap. Your wireless password never leaves your browser.
+            </p>
+            <a href="/wifi-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+              Launch Wi-Fi Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <img src="wifi_preview.jpg" alt="Wi-Fi Scanner QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Tool 4: Plain Text QR Code Generator -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+          <div class="lg:col-span-6">
+            <img src="text_preview.jpg" alt="Plain Text QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          </div>
+          <div class="lg:col-span-6 space-y-4">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              📝 <a href="/text-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 hover:underline">Custom Plain Text QR Code Generator</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              Convert raw text strings, event instructions, serial codes, or school notes into customized barcodes. Because there are no web targets mapped, these plain text QR codes are read completely offline by the scanner app.
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              We support full UTF-8 character arrays, meaning emojis and non-English scripts are supported. Text QR codes are widely used for inventory labels, physical packaging serials, and offline classroom materials.
+            </p>
+            <a href="/text-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+              Launch Text Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Tool 5: vCard Contact QR Code Generator -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
+          <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
+            <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              📇 <a href="/vcard-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 hover:underline">vCard Contact QR Code Generator</a>
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              Print a custom vCard on your physical business cards. When scanned, it loads a complete contact card structure, allowing partners to save your details in one tap.
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+              Our tool creates standard <strong class="text-slate-900 dark:text-white">custom vcard</strong> formats, incorporating fields for name, job title, email, phone number, address, and websites. It maps the standard <strong class="text-slate-900 dark:text-white">qr code contact info</strong> file schema, keeping your professional details fully compatible.
+            </p>
+            <a href="/vcard-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
+              Launch vCard Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <img src="vcard_preview.jpg" alt="vCard Contact QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
+          </div>
         </div>
       </section>
 
       <hr class="border-slate-200 dark:border-slate-800">
 
-      <!-- Tool 3: Wi-Fi QR Code Generator -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
-        <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
-          <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-            📶 <a href="/wifi-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 transition-colors hover:underline">Wi-Fi Scanner QR Code Generator</a>
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
-            SSID credentials and password encryption mapped locally. Our <strong class="text-slate-900 dark:text-white">wifi qr code generator with logo</strong> handles WPA/WPA2 security variables. It acts as a <strong class="text-slate-900 dark:text-white">password protected qr code generator</strong> that guests can scan to join your local Wi-Fi network instantly.
-          </p>
-          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> No password typing needed for office networks or hotels.
-            </p>
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Completely offline compilation - 100% private.
-            </p>
-          </div>
-          <a href="/wifi-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
-            Go to Wi-Fi Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </a>
-        </div>
-        <div class="lg:col-span-6 order-1 lg:order-2">
-          <img src="wifi_preview.jpg" alt="Wi-Fi Scanner QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
-        </div>
-      </section>
-
-      <hr class="border-slate-200 dark:border-slate-800">
-
-      <!-- Tool 4: Plain Text QR Code Generator -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
-        <div class="lg:col-span-6">
-          <img src="text_preview.jpg" alt="Plain Text QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
-        </div>
-        <div class="lg:col-span-6 space-y-4">
-          <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-            📝 <a href="/text-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 transition-colors hover:underline">Custom Plain Text QR Code Generator</a>
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
-            Serialize plain text notes, offline codes, classroom assignments, or numeric keys. Because the data is saved directly in the barcode pattern, it can be scanned and read completely offline by anyone.
-          </p>
-          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Supports emojis, alphanumeric keys, and UTF-8 characters.
-            </p>
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> No external links or redirects required.
+      <!-- Section 5: Future Suggestions & Roadmap -->
+      <section class="space-y-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i data-lucide="git-pull-request" class="text-indigo-500 h-6 w-6"></i>
+          Future Feature Roadmap & Suggestions
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          MyLogoQR is built as an open-source, living project. We are continuously researching user requirements to expand our capabilities. Here are the suggestions we are currently developing:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-sm text-indigo-500">📊 Optional Analytics Bridge (Privacy Preserved)</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Creating a completely opt-in analytics tracker that records scan locations and device counts using anonymized logs, without cookies or database profiles.
             </p>
           </div>
-          <a href="/text-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
-            Go to Text Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </a>
-        </div>
-      </section>
-
-      <hr class="border-slate-200 dark:border-slate-800">
-
-      <!-- Tool 5: vCard Contact QR Code Generator -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-6">
-        <div class="lg:col-span-6 space-y-4 order-2 lg:order-1">
-          <h2 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-            📇 <a href="/vcard-qr-code-generator" class="text-indigo-500 hover:text-indigo-400 transition-colors hover:underline">vCard Contact QR Code Generator</a>
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
-            Create professional business card contact codes. When scanned, it shares a complete contact details sheet. Scanners can save your phone, email, and address info in one click.
-          </p>
-          <div class="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Direct <strong class="text-slate-900 dark:text-white">qr code contact info</strong> file generation.
-            </p>
-            <p class="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-              <i data-lucide="check-circle-2" class="h-4 w-4 text-emerald-500"></i> Supports custom logo cards and brand gradients.
+          <div class="glass-panel p-6 rounded-2xl border border-slate-100 dark:border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-sm text-indigo-500">🖨️ Multi-Print Card Templates</h4>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Exporting a printable sheet containing pre-arranged grid mockups of Wi-Fi table displays, restaurant table markers, and business card grids.
             </p>
           </div>
-          <a href="/vcard-qr-code-generator" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl text-xs font-bold transition-all shadow-md">
-            Go to vCard Generator <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </a>
-        </div>
-        <div class="lg:col-span-6 order-1 lg:order-2">
-          <img src="vcard_preview.jpg" alt="vCard Contact QR Code Generator Interface Mockup" class="rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-xl w-full">
         </div>
       </section>
 
