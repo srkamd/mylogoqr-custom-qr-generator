@@ -92,13 +92,15 @@ htmlFiles.forEach(file => {
     }
   }
 
-  // Ads banners check
-  const adsCount = (content.match(/class="adsbygoogle"/g) || []).length;
-  const expectedAds = isTool ? 3 : 2; // Generator files have Header, Sidebar, Footer. Secondary have Header, Footer.
-  if (adsCount >= expectedAds) {
-    console.log(`  [PASS] Found ${adsCount} AdSense slot placeholders (Expected >= ${expectedAds}).`);
+  // Ads banners check (Adsterra or AdSense)
+  const adsbygoogleCount = (content.match(/class="adsbygoogle"/g) || []).length;
+  const adsterraCount = (content.match(/profitableratecpmnetwork/g) || []).length;
+  const totalAds = adsbygoogleCount + (adsterraCount > 0 ? 1 : 0);
+  const expectedAds = isTool ? 3 : 2;
+  if (totalAds >= expectedAds) {
+    console.log(`  [PASS] Found ${totalAds} Active Ad Slots / Placeholders (Expected >= ${expectedAds}).`);
   } else {
-    console.error(`  [FAIL] Only found ${adsCount} AdSense slots! Expected at least ${expectedAds}.`);
+    console.error(`  [FAIL] Only found ${totalAds} ad slots! Expected at least ${expectedAds}.`);
     failed = true;
   }
 
