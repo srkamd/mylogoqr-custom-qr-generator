@@ -92,10 +92,11 @@ htmlFiles.forEach(file => {
     }
   }
 
-  // Ads banners check (Adsterra or AdSense)
+  // Ads banners check (Adsterra Native, 728x90, or AdSense)
   const adsbygoogleCount = (content.match(/class="adsbygoogle"/g) || []).length;
-  const adsterraCount = (content.match(/profitableratecpmnetwork/g) || []).length;
-  const totalAds = adsbygoogleCount + (adsterraCount > 0 ? 1 : 0);
+  const nativeBannerCount = (content.match(/profitableratecpmnetwork/g) || []).length > 0 ? 1 : 0;
+  const highRevenueCount = (content.match(/highrevenueformat/g) || []).length > 0 ? 1 : 0;
+  const totalAds = adsbygoogleCount + nativeBannerCount + highRevenueCount;
   const expectedAds = isTool ? 3 : 2;
   if (totalAds >= expectedAds) {
     console.log(`  [PASS] Found ${totalAds} Active Ad Slots / Placeholders (Expected >= ${expectedAds}).`);
@@ -140,8 +141,8 @@ const sitemapPath = path.join(dirPath, 'sitemap.xml');
 if (fs.existsSync(sitemapPath)) {
   const sitemapText = fs.readFileSync(sitemapPath, 'utf8');
   const countUrls = (sitemapText.match(/<loc>/g) || []).length;
-  if (countUrls === 10) {
-    console.log(`[PASS] sitemap.xml maps exactly ${countUrls} clean URL routes.`);
+  if (countUrls >= 26) {
+    console.log(`[PASS] sitemap.xml maps exactly ${countUrls} clean URL routes (10 tools & policies + 16 blog hub & articles).`);
   } else {
     console.error(`[FAIL] sitemap.xml has ${countUrls} mapped URLs, expected 10!`);
     failed = true;
