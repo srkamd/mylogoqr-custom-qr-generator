@@ -92,16 +92,13 @@ htmlFiles.forEach(file => {
     }
   }
 
-  // Ads banners check (Adsterra Native, 728x90, or AdSense)
-  const adsbygoogleCount = (content.match(/class="adsbygoogle"/g) || []).length;
-  const nativeBannerCount = (content.match(/profitableratecpmnetwork/g) || []).length > 0 ? 1 : 0;
-  const highRevenueCount = (content.match(/highrevenueformat/g) || []).length > 0 ? 1 : 0;
-  const totalAds = adsbygoogleCount + nativeBannerCount + highRevenueCount;
-  const expectedAds = isTool ? 3 : 2;
-  if (totalAds >= expectedAds) {
-    console.log(`  [PASS] Found ${totalAds} Active Ad Slots / Placeholders (Expected >= ${expectedAds}).`);
+  // Google AdSense Account Verification check
+  const hasAdSenseMeta = content.includes('ca-pub-9504324837751358');
+  const hasAdSenseScript = content.includes('pagead2.googlesyndication.com');
+  if (hasAdSenseMeta && hasAdSenseScript) {
+    console.log(`  [PASS] Verified Google AdSense Publisher Tag: ca-pub-9504324837751358`);
   } else {
-    console.error(`  [FAIL] Only found ${totalAds} ad slots! Expected at least ${expectedAds}.`);
+    console.error(`  [FAIL] Missing Google AdSense Publisher verification in <head>!`);
     failed = true;
   }
 

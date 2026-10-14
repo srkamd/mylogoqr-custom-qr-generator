@@ -71,16 +71,21 @@ function initTheme() {
   const lightIcon = document.getElementById('theme-icon-light');
   const darkIcon = document.getElementById('theme-icon-dark');
   
+  if (!themeToggle) {
+    document.documentElement.classList.remove('dark');
+    return;
+  }
+  
   // Set default theme from localStorage or system preference
   if (localStorage.getItem('theme') === 'light' || 
       (!localStorage.getItem('theme') && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.remove('dark');
-    lightIcon.classList.remove('hidden');
-    darkIcon.classList.add('hidden');
+    if (lightIcon) lightIcon.classList.remove('hidden');
+    if (darkIcon) darkIcon.classList.add('hidden');
   } else {
     document.documentElement.classList.add('dark');
-    lightIcon.classList.add('hidden');
-    darkIcon.classList.remove('hidden');
+    if (lightIcon) lightIcon.classList.add('hidden');
+    if (darkIcon) darkIcon.classList.remove('hidden');
   }
 
   themeToggle.addEventListener('click', () => {

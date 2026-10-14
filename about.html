@@ -1,262 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://*.profitableratecpmnetwork.com https://*.highrevenueformat.com https://www.highrevenueformat.com https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https:; font-src 'self' https://fonts.gstatic.com https: data:; img-src 'self' data: blob: https://github.com https:; connect-src 'self' https:; frame-src 'self' https:; object-src 'none';">
-  <link rel="canonical" href="https://mylogoqr.com/about">
-  <link rel="manifest" href="/manifest.json">
-  <title>About Us | MyLogoQR Custom QR Code Generator</title>
-  <meta name="description" content="Learn about MyLogoQR and its creator, Shahrukh Ahmad (SRK AMD). MyLogoQR is a 100% client-side, privacy-first QR Code generator.">
-  
-  <!-- Tailwind CSS Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Outfit', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'sans-serif'],
-          },
-          colors: {
-            indigo: {
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-  
-  <script>
-    if (localStorage.getItem('theme') === 'light' || 
-        (!localStorage.getItem('theme') && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About Us | MyLogoQR Custom QR Code Generator</title>
+<meta name="description" content="Learn about MyLogoQR and its creator, Shahrukh Ahmad (SRK AMD). MyLogoQR is a 100% client-side, privacy-first QR Code generator.">
+<link rel="canonical" href="https://mylogoqr.com/about">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#12163A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<!-- Google AdSense Account Verification -->
+<meta name="google-adsense-account" content="ca-pub-9504324837751358">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
 </head>
-<body class="min-h-screen pb-12 transition-colors duration-300">
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></i>MyLogoQR</a>
+ <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+ <nav id="nav" aria-label="Main"><ul>
+  <li><a href="/blog">Blog</a></li><li><a href="/how-to-use">How to Use</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li><a class="cta" href="/#generator">Create QR</a></li>
+ </ul></nav>
+</div></header>
 
-  <!-- Background Decorative Blurs -->
-  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-1] opacity-40 dark:opacity-20">
-    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500 blur-[120px]"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-cyan-500 blur-[120px]"></div>
+<main>
+<div class="hero"><div class="wrap">
+ <h1>About MyLogoQR & Engineering Philosophy</h1>
+ <p>Created by Shahrukh Ahmad (SRK AMD) to solve the commercial QR subscription trap with high-performance, private, client-side web technology.</p>
+ <ul class="chips"><li>Built by SRK AMD</li><li>Client-Side Architecture</li><li>Open Web Standards</li><li>Zero Subscriptions</li></ul>
+</div></div>
+
+<section style="background:#fff;border-bottom:1px solid var(--line)"><div class="wrap"><article class="prose">
+ <div class="by"><i>S</i><span>Written by Shahrukh Ahmad (SRK AMD), Creator & Lead Systems Architect</span></div>
+ <h2>The Vision: Free, Private Utilities for Everyone</h2>
+ <p>MyLogoQR was born out of frustration with online QR utilities that demand credit cards, limit scans to 50 clicks, or quietly redirect printed flyers to broken URLs once a 14-day trial concludes.</p>
+ <p>We believe basic digital utilities should be as reliable and permanent as physical paper. A QR code is an optical representation of text—there is no technical reason why generating one should require a remote database or a monthly subscription fee.</p>
+
+ <h2>Architecture & Privacy by Design</h2>
+ <p>Our entire application is built using modern client-side standards. When you enter a link, phone number, or Wi-Fi password, the browser canvas renders the vector matrix directly inside local memory. Your data never touches an external server, eliminating the possibility of data breaches, third-party selling, or tracking.</p>
+
+ <h2>About the Creator</h2>
+ <p>Shahrukh Ahmad (known online as <b>SRK AMD</b>) is a full-stack engineer and solutions architect passionate about high-efficiency web tools, client-side cryptography, and sustainable software systems. If you have questions, feedback, or custom software enquiries, reach out via our <a href="/contact">Contact page</a>.</p>
+</article></div></section>
+
+<div class="wrap" style="margin-top:60px"><div class="band">
+ <h2>Experience the client-side difference</h2>
+ <p>Create your custom logo QR code in seconds without creating an account.</p>
+ <a href="/#generator">Launch QR Generator</a>
+</div></div>
+</main>
+
+<footer><div class="wrap">
+ <div class="fgrid">
+  <div>
+   <h4>MyLogoQR</h4>
+   <p>Free, private QR code generator with custom logos, gradients and shapes.</p>
   </div>
-
-  <!-- Header Section -->
-  <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6 gap-4">
-      <a href="/" class="flex items-center gap-3 group brand-logo-link">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
-          <i data-lucide="qr-code" class="text-white h-6 w-6"></i>
-        </div>
-        <div>
-          <span class="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">My<span class="bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">LogoQR</span></span>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Custom Logo QR Generator</p>
-        </div>
-      </a>
-
-      <!-- Navigation Links -->
-      <nav class="flex items-center flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-slate-600 dark:text-slate-300">
-        <a href="/" class="nav-link-item">Generator</a>
-        <a href="/blog" class="nav-link-item hover:text-indigo-500 transition-colors">Blog</a>
-        <a href="/how-to-use" class="nav-link-item">How to Use</a>
-        <a href="/about" class="nav-link-item active text-indigo-500">About Us</a>
-        <a href="/contact" class="nav-link-item">Contact Us</a>
-        <a href="/privacy" class="nav-link-item">Privacy Policy</a>
-        <a href="/terms" class="nav-link-item">Terms of Service</a>
-      </nav>
-      
-      <!-- Theme Toggle -->
-      <div class="flex items-center gap-3 self-end md:self-auto">
-        <button id="theme-toggle" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 transition-colors" aria-label="Toggle Theme">
-          <i data-lucide="sun" id="theme-icon-light" class="h-5 w-5 hidden"></i>
-          <i data-lucide="moon" id="theme-icon-dark" class="h-5 w-5"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content Layout -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Top Ad Banner -->
-    <div class="ads-container hidden mb-6 overflow-hidden min-h-[90px] border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50/50 dark:bg-slate-900/50">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-           data-ad-slot="XXXXXXXXXX"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-    </div>
-    
-    <!-- Profile Developer Card -->
-    <article class="glass-panel rounded-3xl p-8 md:p-12 text-center flex flex-col items-center">
-      
-      <!-- Avatar Section -->
-      <div class="relative w-36 h-36 mb-6">
-        <img src="profile.jpg" alt="Shahrukh Ahmad (SRK AMD)" class="avatar-glow w-full h-full object-cover rounded-full">
-        <div class="absolute bottom-1 right-1 bg-emerald-500 text-white w-8 h-8 rounded-full border-4 border-white dark:border-slate-950 flex items-center justify-center text-xs" title="Verified Creator">
-          <i data-lucide="check" class="h-4 w-4 stroke-[3]"></i>
-        </div>
-      </div>
-      
-      <!-- Creator Title -->
-      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2">Shahrukh Ahmad (SRK AMD)</h2>
-      <p class="text-indigo-500 dark:text-indigo-400 font-semibold flex items-center gap-2 mb-4">
-        <i data-lucide="code" class="h-5 w-5"></i> Creator & Lead Software Engineer
-      </p>
-      
-      <!-- Contact Email -->
-      <div class="text-sm text-slate-500 dark:text-slate-400 mb-8">
-        Official Support Email: 
-        <a href="mailto:support@mylogoqr.com" class="text-indigo-500 hover:text-indigo-600 font-semibold underline underline-offset-4 ml-1">
-          support@mylogoqr.com
-        </a>
-      </div>
-
-      <!-- Bio / Description -->
-      <div class="max-w-2xl text-slate-600 dark:text-slate-300 leading-relaxed text-base space-y-4 mb-8 text-justify">
-        <p>
-          Welcome to <strong>MyLogoQR</strong>! MyLogoQR was conceptualized and engineered by full-stack developer <strong>Shahrukh Ahmad (SRK AMD)</strong>. Shahrukh noticed a growing need for a highly customizable, private, and developer-friendly QR code utility that respects user data.
-        </p>
-        <p>
-          Most QR code generators on the internet hide advanced features behind expensive monthly subscriptions, track user scans on external servers, or inject advertising redirects. MyLogoQR solves all of these problems by running <strong class="font-semibold text-slate-900 dark:text-white">100% client-side</strong> inside your web browser. No data ever leaves your device, ensuring maximum security and absolute privacy for your personal credentials, Wi-Fi networks, and contact vCards.
-        </p>
-        <p>
-          As a senior software engineer and QA practitioner, Shahrukh built MyLogoQR with high-resolution canvas layout composition, dual-tone custom gradients, preset vector logos, and customizable outer frame outlines suitable for print-ready downloads (PNG, vector SVG, and PDF layouts).
-        </p>
-      </div>
-
-      <!-- Social Links -->
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="https://github.com/srkamd" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-slate-900 hover:bg-slate-950 text-white border border-slate-800 transition-transform hover:-translate-y-0.5">
-          <i data-lucide="github" class="h-5 w-5"></i> GitHub
-        </a>
-        <a href="https://www.facebook.com/srkamdpk" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-[#1877f2]/15 hover:bg-[#1877f2]/25 text-[#60a5fa] border border-[#1877f2]/30 transition-transform hover:-translate-y-0.5">
-          <i data-lucide="facebook" class="h-5 w-5"></i> Facebook
-        </a>
-        <a href="https://www.instagram.com/srkamd/" target="_blank" class="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-[#ec4899]/15 hover:bg-[#ec4899]/25 text-[#f472b6] border border-[#ec4899]/30 transition-transform hover:-translate-y-0.5">
-          <i data-lucide="instagram" class="h-5 w-5"></i> Instagram
-        </a>
-      </div>
-
-    </article>
-  </main>
-
-  
-  <!-- Adsterra 728x90 Leaderboard Banner -->
-    <div class="my-8 flex justify-center w-full overflow-hidden min-h-[90px]">
-      <script>
-        atOptions = {
-          'key' : 'ef677e33ab747446cc629eefe997d0cc',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-      </script>
-      <script src="https://www.highrevenueformat.com/ef677e33ab747446cc629eefe997d0cc/invoke.js"></script>
-    </div>
-  <!-- Footer -->
-          <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-12 text-slate-400 text-sm mt-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-slate-900">
-          <!-- Column 1: Brand Info -->
-          <div class="space-y-4">
-            <div class="flex items-center gap-2.5">
-              <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-500 flex items-center justify-center p-1 shadow-md">
-                <i data-lucide="qr-code" class="text-white h-5 w-5"></i>
-              </div>
-              <span class="text-lg font-black text-slate-900 dark:text-white tracking-tight">MyLogo<span class="text-indigo-500">QR</span></span>
-            </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              Generate customizable, high-resolution QR codes with branding logos, custom frame texts, and premium gradient styles. 100% private and client-side processing.
-            </p>
-          </div>
-          
-          <!-- Column 2: Free QR Generators -->
-          <div class="space-y-4">
-            <h4 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Free Generators</h4>
-            <ul class="space-y-2.5 text-xs">
-              <li><a href="/" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">URL Link QR Code</a></li>
-              <li><a href="/whatsapp-qr-code-generator" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">WhatsApp Chat QR</a></li>
-              <li><a href="/wifi-qr-code-generator" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Wi-Fi Connection QR</a></li>
-              <li><a href="/text-qr-code-generator" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Static Plain Text QR</a></li>
-              <li><a href="/vcard-qr-code-generator" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Business Contact vCard</a></li>
-            </ul>
-          </div>
-          
-          <!-- Column 3: Resources & Support -->
-          <div class="space-y-4">
-            <h4 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Resources</h4>
-            <ul class="space-y-2.5 text-xs">
-              <li><a href="/blog" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors font-semibold text-indigo-500">Knowledge Hub & Blog</a></li>
-              <li><a href="/how-to-use" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">How to Use Guide</a></li>
-              <li><a href="/about" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">About the Project</a></li>
-              <li><a href="/contact" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Get in Touch / Contact</a></li>
-            </ul>
-          </div>
-          
-          <!-- Column 4: Legal & Policy -->
-          <div class="space-y-4">
-            <h4 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Legal</h4>
-            <ul class="space-y-2.5 text-xs">
-              <li><a href="/privacy" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms" class="hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors">Terms of Service</a></li>
-              
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Bottom Row -->
-        <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>© 2026 MyLogoQR. All rights reserved. No scan limits, completely free.</p>
-          <p>Created by <a href="/about" class="font-semibold hover:text-indigo-500 transition-colors underline">SRK AMD</a></p>
-        </div>
-      </div>
-    </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const lightIcon = document.getElementById('theme-icon-light');
-      const darkIcon = document.getElementById('theme-icon-dark');
-      
-      function updateIcons() {
-        if (document.documentElement.classList.contains('dark')) {
-          lightIcon.classList.add('hidden');
-          darkIcon.classList.remove('hidden');
-        } else {
-          lightIcon.classList.remove('hidden');
-          darkIcon.classList.add('hidden');
-        }
-      }
-      updateIcons();
-      
-      themeToggle.addEventListener('click', () => {
-        if (document.documentElement.classList.contains('dark')) {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        }
-        updateIcons();
-      });
-      
-      lucide.createIcons();
-    });
-  </script>
-  <!-- Adsterra Social Bar -->
-  <script src="https://pl31576217.profitableratecpmnetwork.com/f7/cb/52/f7cb5257d6a44b19f94f65d739648e40.js"></script>
+  <div>
+   <h4>Resources</h4>
+   <a href="/blog">Blog</a>
+   <a href="/how-to-use">How to Use</a>
+   <a href="/about">About</a>
+   <a href="/contact">Contact</a>
+  </div>
+  <div>
+   <h4>Generators</h4>
+   <a href="/whatsapp-qr-code-generator">WhatsApp QR</a>
+   <a href="/wifi-qr-code-generator">Wi-Fi QR</a>
+   <a href="/text-qr-code-generator">Text QR</a>
+   <a href="/vcard-qr-code-generator">vCard QR</a>
+  </div>
+  <div>
+   <h4>Legal</h4>
+   <a href="/privacy">Privacy Policy</a>
+   <a href="/terms">Terms of Service</a>
+  </div>
+ </div>
+ <div class="copy">&copy; 2026 MyLogoQR &mdash; All rights reserved</div>
+</div></footer>
+<script>
+var m=document.querySelector('.menu'),n=document.getElementById('nav');
+if(m&&n){m.onclick=function(){m.setAttribute('aria-expanded',n.classList.toggle('open'))};}
+</script>
+<script src="/app.js"></script>
 </body>
 </html>

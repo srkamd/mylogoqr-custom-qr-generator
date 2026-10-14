@@ -1,0 +1,27 @@
+# Archives and build bundles
+*.zip
+*.tar.gz
+
+# Local logs and temporary files
+*.log
+scratch_*
+*.tmp
+
+# Maintenance and scratch automation scripts
+apply_*.py
+audit_*.py
+check_*.py
+clean_*.py
+fix_*.py
+generate_*.py
+inspect_*.py
+integrate_*.py
+remove_*.py
+unify_*.py
+update_*.py
+upgrade_*.py
+verify_*.py
+
+# System files
+.DS_Store
+Thumbs.db
