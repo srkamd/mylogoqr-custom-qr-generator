@@ -151,11 +151,16 @@ This project highlights several key competencies sought after in **engineering s
 
 ---
 
-## 🌐 Live Platform & Contact
+## 👨‍💻 Engineering Leadership & Author Profile
 
-- **Live Production URL:** [https://mylogoqr.com](https://mylogoqr.com)
-- **Developer / Creator:** MyLogoQR Engineering
-- **Inquiries & Contracts:** [https://mylogoqr.com/contact](https://mylogoqr.com/contact)
+### **Shahrukh Ahmad (SRK AMD)**  
+*Lead Software Architect & Full-Stack Systems Engineer*
+
+- **Live Production:** [mylogoqr.com](https://mylogoqr.com)
+- **GitHub:** [@srkamd](https://github.com/srkamd)
+- **Facebook:** [@srkamdpk](https://www.facebook.com/srkamdpk)
+- **Instagram:** [@srkamd](https://www.instagram.com/srkamd/)
+- **Technical Support & Inquiries:** [https://mylogoqr.com/contact](https://mylogoqr.com/contact)
 
 ---
 
