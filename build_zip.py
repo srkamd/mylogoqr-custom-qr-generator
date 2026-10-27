@@ -1,16 +1,18 @@
 import os
 import zipfile
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 zip_path = 'mylogoqr_production_build.zip'
 if os.path.exists(zip_path):
     os.remove(zip_path)
 
 with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
     for root, dirs, files in os.walk('.'):
-        if '.git' in root or 'node_modules' in root or '.system_generated' in root:
+        if any(ignored in root for ignored in ['.git', 'node_modules', '.system_generated', 'tests', 'scripts']):
             continue
         for file in files:
-            if file == zip_path or file.endswith('.py') or file.endswith('.log'):
+            if file == zip_path or file.endswith('.py') or file.endswith('.log') or file.startswith('Screenshot'):
                 continue
             ext = os.path.splitext(file)[1].lower()
             name = file.lower()

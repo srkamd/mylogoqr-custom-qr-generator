@@ -4,6 +4,8 @@ import os
 PORT = 8080
 
 class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
+    def address_string(self):
+        return self.client_address[0]
     def translate_path(self, path):
         clean = path.split('?')[0].split('#')[0]
         
@@ -28,6 +30,7 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 if __name__ == '__main__':
-    print(f"Starting MyLogoQR Local Dev Server on port {PORT}...")
-    server = http.server.ThreadingHTTPServer(('localhost', PORT), CleanURLHandler)
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    print(f"Starting MyLogoQR Local Dev Server on port {PORT}...", flush=True)
+    server = http.server.ThreadingHTTPServer(('0.0.0.0', PORT), CleanURLHandler)
     server.serve_forever()

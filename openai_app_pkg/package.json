@@ -1,0 +1,28 @@
+{
+  "name": "mylogoqr-openai-app",
+  "version": "1.0.0",
+  "description": "MyLogoQR official OpenAI App & MCP Server for ChatGPT App Directory",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "openai",
+    "chatgpt",
+    "apps-sdk",
+    "mcp",
+    "qr-code",
+    "generator",
+    "mylogoqr"
+  ],
+  "author": "Shahrukh Ahmad (srkamd)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "qrcode": "^1.5.3"
+  }
+}

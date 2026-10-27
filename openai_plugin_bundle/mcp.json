@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "mylogoqr": {
+      "type": "http",
+      "url": "https://api.mylogoqr.com/mcp",
+      "description": "High-resolution QR code generator supporting Wi-Fi, vCard, WhatsApp, and custom color styles."
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mylogoqr",
+  "version": "1.0.0",
+  "description": "Create professional branded QR codes with custom colors and shapes for websites, Wi-Fi, WhatsApp, and vCard business cards.",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json",
+  "extensions": {
+    "com.openai": {
+      "presentation": {
+        "title": "MyLogoQR: Branded QR Studio",
+        "icon": "./assets/icon.png",
+        "category": "Utilities",
+        "developer": "Shahrukh Ahmad",
+        "websiteUrl": "https://mylogoqr.com",
+        "privacyPolicyUrl": "https://mylogoqr.com/privacy.html",
+        "termsUrl": "https://mylogoqr.com/terms.html"
+      }
+    }
+  }
+}

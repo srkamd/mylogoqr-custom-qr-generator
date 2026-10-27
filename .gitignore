@@ -25,3 +25,5 @@ verify_*.py
 # System files
 .DS_Store
 Thumbs.db
+Screenshot*
+fazier_screenshots/
