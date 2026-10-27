@@ -3,18 +3,48 @@
   "name": "mylogoqr",
   "version": "1.0.0",
   "description": "Create professional branded QR codes with custom colors and shapes for websites, Wi-Fi, WhatsApp, and vCard business cards.",
+  "author": {
+    "name": "Shahrukh Ahmad",
+    "email": "srkamd.dev@gmail.com",
+    "url": "https://mylogoqr.com"
+  },
+  "homepage": "https://mylogoqr.com",
   "skills": "./skills/",
-  "mcpServers": "./mcp.json",
+  "mcpServers": "./.mcp.json",
   "extensions": {
     "com.openai": {
+      "interface": {
+        "displayName": "MyLogoQR",
+        "shortDescription": "Branded QR Code Studio",
+        "longDescription": "Create professional branded QR codes with custom colors and shapes for websites, Wi-Fi, WhatsApp, and vCard business cards.",
+        "developerName": "Shahrukh Ahmad",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://mylogoqr.com",
+        "supportURL": "https://mylogoqr.com/contact.html",
+        "privacyPolicyURL": "https://mylogoqr.com/privacy.html",
+        "termsOfServiceURL": "https://mylogoqr.com/terms.html",
+        "logo": "./assets/icon.png",
+        "composerIcon": "./assets/icon.png"
+      },
       "presentation": {
         "title": "MyLogoQR: Branded QR Studio",
+        "subtitle": "Branded QR Code Studio",
+        "shortDescription": "Branded QR Code Studio",
         "icon": "./assets/icon.png",
-        "category": "Utilities",
+        "logo": "./assets/icon.png",
+        "composer_icon": "./assets/icon.png",
+        "category": "Productivity",
         "developer": "Shahrukh Ahmad",
+        "developerName": "Shahrukh Ahmad",
         "websiteUrl": "https://mylogoqr.com",
+        "websiteURL": "https://mylogoqr.com",
+        "supportUrl": "https://mylogoqr.com/contact.html",
+        "supportURL": "https://mylogoqr.com/contact.html",
         "privacyPolicyUrl": "https://mylogoqr.com/privacy.html",
-        "termsUrl": "https://mylogoqr.com/terms.html"
+        "privacyPolicyURL": "https://mylogoqr.com/privacy.html",
+        "termsUrl": "https://mylogoqr.com/terms.html",
+        "termsOfServiceURL": "https://mylogoqr.com/terms.html"
       }
     }
   }

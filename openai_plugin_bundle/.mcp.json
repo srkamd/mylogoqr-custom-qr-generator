@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "mylogoqr": {
+      "type": "http",
+      "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp",
+      "description": "High-resolution QR code generator supporting Wi-Fi, vCard, WhatsApp, and custom color styles."
+    }
+  }
+}
