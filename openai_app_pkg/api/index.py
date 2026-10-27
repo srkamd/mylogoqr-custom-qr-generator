@@ -310,6 +310,8 @@ def generate_qr_base64(text: str, fill_color: str = "#12163A", back_color: str =
     return f"data:image/png;base64,{img_str}"
 
 @app.get("/")
+@app.get("/api")
+@app.get("/api/index.py")
 def home(request: Request):
     accept = request.headers.get("accept", "")
     if "text/html" in accept:
@@ -470,6 +472,22 @@ def handle_mcp(req: MCPRequest):
         }
 
     return {"jsonrpc": "2.0", "id": req.id, "result": {"status": "ok"}}
+
+@app.api_route("/{full_path:path}", methods=["GET", "POST"])
+def catch_all(request: Request, full_path: str):
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept and request.method == "GET":
+        return HTMLResponse(content=HTML_DASHBOARD)
+    return {
+        "status": "online",
+        "app": "MyLogoQR OpenAI App & MCP Server",
+        "version": "1.0.0",
+        "received_path": full_path,
+        "mcp_endpoint": "/mcp",
+        "health_check": "/health",
+        "docs": "/docs",
+        "website": "https://mylogoqr.com"
+    }
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
