@@ -474,10 +474,12 @@ async def universal_handler(request: Request, full_path: str = ""):
     # Handle MCP POST request
     if request.method == "POST":
         try:
-            body = await request.json()
-            if isinstance(body, dict) and ("method" in body or "jsonrpc" in body):
-                result = process_mcp_call(body)
-                return JSONResponse(result)
+            raw_body = await request.body()
+            if raw_body:
+                body = json.loads(raw_body.decode("utf-8"))
+                if isinstance(body, dict) and ("method" in body or "jsonrpc" in body):
+                    result = process_mcp_call(body)
+                    return JSONResponse(result)
         except Exception:
             pass
 
