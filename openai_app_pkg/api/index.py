@@ -486,7 +486,8 @@ def catch_all(request: Request, full_path: str):
         "mcp_endpoint": "/mcp",
         "health_check": "/health",
         "docs": "/docs",
-        "website": "https://mylogoqr.com"
+        "website": "https://mylogoqr.com",
+        "headers": dict(request.headers)
     }
 
 if __name__ == "__main__":
