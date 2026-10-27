@@ -10,7 +10,12 @@
   },
   "homepage": "https://mylogoqr.com",
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "mcpServers": {
+    "mylogoqr": {
+      "type": "http",
+      "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
+    }
+  },
   "extensions": {
     "com.openai": {
       "interface": {
@@ -26,6 +31,12 @@
         "termsOfServiceURL": "https://mylogoqr.com/terms.html",
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/icon.png"
+      },
+      "mcp_servers": {
+        "mylogoqr": {
+          "type": "http",
+          "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
+        }
       },
       "presentation": {
         "title": "MyLogoQR: Branded QR Studio",

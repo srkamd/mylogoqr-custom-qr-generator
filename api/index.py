@@ -313,6 +313,28 @@ def process_mcp_call(body_json: dict) -> dict:
     method = body_json.get("method", "")
     params = body_json.get("params") or {}
 
+    # 1. MCP Protocol Handshake
+    if method == "initialize":
+        return {
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "result": {
+                "protocolVersion": "2024-11-05",
+                "capabilities": {
+                    "tools": {
+                        "listChanged": False
+                    }
+                },
+                "serverInfo": {
+                    "name": "mylogoqr",
+                    "version": "1.0.0"
+                }
+            }
+        }
+
+    if method in ("notifications/initialized", "ping"):
+        return {"jsonrpc": "2.0", "id": req_id, "result": {}}
+
     if method == "tools/list":
         return {
             "jsonrpc": "2.0",
