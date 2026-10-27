@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "mylogoqr",
+  "name": "mylogoqr-studio",
   "version": "1.0.0",
   "description": "Create professional branded QR codes with custom colors and shapes for websites, Wi-Fi, WhatsApp, and vCard business cards.",
   "author": {
@@ -9,13 +9,7 @@
     "url": "https://mylogoqr.com"
   },
   "homepage": "https://mylogoqr.com",
-  "skills": "./skills/",
-  "mcpServers": {
-    "mylogoqr": {
-      "type": "http",
-      "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
-    }
-  },
+  "mcpServers": "./mcp.json",
   "extensions": {
     "com.openai": {
       "interface": {
@@ -31,31 +25,6 @@
         "termsOfServiceURL": "https://mylogoqr.com/terms.html",
         "logo": "./assets/icon.png",
         "composerIcon": "./assets/icon.png"
-      },
-      "mcp_servers": {
-        "mylogoqr": {
-          "type": "http",
-          "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
-        }
-      },
-      "presentation": {
-        "title": "MyLogoQR: Branded QR Studio",
-        "subtitle": "Branded QR Code Studio",
-        "shortDescription": "Branded QR Code Studio",
-        "icon": "./assets/icon.png",
-        "logo": "./assets/icon.png",
-        "composer_icon": "./assets/icon.png",
-        "category": "Productivity",
-        "developer": "Shahrukh Ahmad",
-        "developerName": "Shahrukh Ahmad",
-        "websiteUrl": "https://mylogoqr.com",
-        "websiteURL": "https://mylogoqr.com",
-        "supportUrl": "https://mylogoqr.com/contact.html",
-        "supportURL": "https://mylogoqr.com/contact.html",
-        "privacyPolicyUrl": "https://mylogoqr.com/privacy.html",
-        "privacyPolicyURL": "https://mylogoqr.com/privacy.html",
-        "termsUrl": "https://mylogoqr.com/terms.html",
-        "termsOfServiceURL": "https://mylogoqr.com/terms.html"
       }
     }
   }
