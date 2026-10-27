@@ -1,13 +1,12 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse, HTMLResponse, JSONResponse
-from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import qrcode
 import io
 import base64
 import os
-import uvicorn
+import json
 
 app = FastAPI(title="MyLogoQR OpenAI App & MCP Server", version="1.0.0")
 
@@ -309,58 +308,15 @@ def generate_qr_base64(text: str, fill_color: str = "#12163A", back_color: str =
     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
     return f"data:image/png;base64,{img_str}"
 
-@app.get("/")
-@app.get("/api")
-@app.get("/api/index.py")
-def home(request: Request):
-    accept = request.headers.get("accept", "")
-    if "text/html" in accept:
-        return HTMLResponse(content=HTML_DASHBOARD)
-    return {
-        "status": "online",
-        "app": "MyLogoQR OpenAI App & MCP Server",
-        "version": "1.0.0",
-        "mcp_endpoint": "/mcp",
-        "health_check": "/health",
-        "docs": "/docs",
-        "website": "https://mylogoqr.com"
-    }
+def process_mcp_call(body_json: dict) -> dict:
+    req_id = body_json.get("id")
+    method = body_json.get("method", "")
+    params = body_json.get("params") or {}
 
-@app.get("/generate")
-def direct_generate(text: str = "https://mylogoqr.com", color: str = "#12163A", bg: str = "#FFFFFF"):
-    """Quick testing API to generate QR code directly."""
-    b64 = generate_qr_base64(text, fill_color=color, back_color=bg)
-    return {"status": "success", "text": text, "qr_base64": b64}
-
-@app.get("/.well-known/openai-apps-challenge", response_class=PlainTextResponse)
-def openai_challenge():
-    """Domain verification token for OpenAI App Directory."""
-    return OPENAI_CHALLENGE_TOKEN
-
-@app.get("/health")
-def health_check():
-    return {
-        "status": "healthy",
-        "app": "MyLogoQR OpenAI App (MCP Server)",
-        "version": "1.0.0",
-        "website": "https://mylogoqr.com"
-    }
-
-# -------------------------------------------------------------
-# MCP JSON-RPC Protocol Endpoint
-# -------------------------------------------------------------
-class MCPRequest(BaseModel):
-    jsonrpc: str = "2.0"
-    id: Optional[Any] = None
-    method: str
-    params: Optional[Dict[str, Any]] = None
-
-@app.post("/mcp")
-def handle_mcp(req: MCPRequest):
-    if req.method == "tools/list":
+    if method == "tools/list":
         return {
             "jsonrpc": "2.0",
-            "id": req.id,
+            "id": req_id,
             "result": {
                 "tools": [
                     {
@@ -423,11 +379,9 @@ def handle_mcp(req: MCPRequest):
             }
         }
 
-    if req.method == "tools/call":
-        params = req.params or {}
+    if method == "tools/call":
         name = params.get("name")
         args = params.get("arguments", {})
-
         dark = args.get("darkColor", "#12163A")
         light = args.get("lightColor", "#FFFFFF")
 
@@ -454,13 +408,12 @@ def handle_mcp(req: MCPRequest):
             payload = f"BEGIN:VCARD\\nVERSION:3.0\\nN:{ln};{fn}\\nFN:{fn} {ln}\\nTEL:{ph}\\nEMAIL:{em}\\nORG:{co}\\nEND:VCARD"
             title = f"Contact: {fn} {ln}"
         else:
-            raise HTTPException(status_code=404, detail=f"Tool {name} not found")
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Tool {name} not found"}}
 
         data_url = generate_qr_base64(payload, fill_color=dark, back_color=light)
-
         return {
             "jsonrpc": "2.0",
-            "id": req.id,
+            "id": req_id,
             "result": {
                 "content": [
                     {
@@ -471,25 +424,80 @@ def handle_mcp(req: MCPRequest):
             }
         }
 
-    return {"jsonrpc": "2.0", "id": req.id, "result": {"status": "ok"}}
+    return {"jsonrpc": "2.0", "id": req_id, "result": {"status": "ok"}}
 
-@app.api_route("/{full_path:path}", methods=["GET", "POST"])
-def catch_all(request: Request, full_path: str):
+@app.get("/.well-known/openai-apps-challenge", response_class=PlainTextResponse)
+def openai_challenge():
+    """Domain verification token for OpenAI App Directory."""
+    return OPENAI_CHALLENGE_TOKEN
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "app": "MyLogoQR OpenAI App (MCP Server)",
+        "version": "1.0.0",
+        "website": "https://mylogoqr.com"
+    }
+
+@app.get("/generate")
+def direct_generate(text: str = "https://mylogoqr.com", color: str = "#12163A", bg: str = "#FFFFFF"):
+    b64 = generate_qr_base64(text, fill_color=color, back_color=bg)
+    return {"status": "success", "text": text, "qr_base64": b64}
+
+# Main universal handler for all routes & methods
+@app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
+async def universal_handler(request: Request, full_path: str = ""):
+    path = "/" + full_path.lstrip("/")
+
+    # Check for OpenAI Verification Challenge
+    if "openai-apps-challenge" in path:
+        return PlainTextResponse(OPENAI_CHALLENGE_TOKEN)
+
+    # Check for Health
+    if path.endswith("/health"):
+        return JSONResponse({
+            "status": "healthy",
+            "app": "MyLogoQR OpenAI App (MCP Server)",
+            "version": "1.0.0",
+            "website": "https://mylogoqr.com"
+        })
+
+    # Check for Direct Generate
+    if path.endswith("/generate"):
+        text = request.query_params.get("text", "https://mylogoqr.com")
+        color = request.query_params.get("color", "#12163A")
+        bg = request.query_params.get("bg", "#FFFFFF")
+        b64 = generate_qr_base64(text, fill_color=color, back_color=bg)
+        return JSONResponse({"status": "success", "text": text, "qr_base64": b64})
+
+    # Handle MCP POST request
+    if request.method == "POST":
+        try:
+            body = await request.json()
+            if isinstance(body, dict) and ("method" in body or "jsonrpc" in body):
+                result = process_mcp_call(body)
+                return JSONResponse(result)
+        except Exception:
+            pass
+
+    # For browser navigation (HTML)
     accept = request.headers.get("accept", "")
     if "text/html" in accept and request.method == "GET":
         return HTMLResponse(content=HTML_DASHBOARD)
-    return {
+
+    # Fallback status info
+    return JSONResponse({
         "status": "online",
         "app": "MyLogoQR OpenAI App & MCP Server",
         "version": "1.0.0",
-        "received_path": full_path,
         "mcp_endpoint": "/mcp",
         "health_check": "/health",
         "docs": "/docs",
-        "website": "https://mylogoqr.com",
-        "headers": dict(request.headers)
-    }
+        "website": "https://mylogoqr.com"
+    })
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
-    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True)
+    import uvicorn
+    uvicorn.run("index:app", host="0.0.0.0", port=port, reload=True)
