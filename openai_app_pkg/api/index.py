@@ -21,6 +21,17 @@ app.add_middleware(
 
 OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "mylogoqr-openai-verification-token")
 
+@app.get("/")
+def home():
+    return {
+        "status": "online",
+        "app": "MyLogoQR OpenAI App & MCP Server",
+        "version": "1.0.0",
+        "mcp_endpoint": "/mcp",
+        "health_check": "/health",
+        "docs": "/docs"
+    }
+
 @app.get("/.well-known/openai-apps-challenge", response_class=PlainTextResponse)
 def openai_challenge():
     """Domain verification token for OpenAI App Directory."""
