@@ -327,6 +327,6 @@ async def handler(request: Request, full_path: str = ""):
         "protocol": "MCP JSON-RPC 2024-11-05",
         "mcp_endpoint": "/mcp",
         "tools": ["create_qr_code", "create_wifi_qr", "create_whatsapp_qr", "create_vcard_qr"],
-        "website": "https://mylogoqr.com"
+        "website": "https://mylogoqr.com", "debug_path": str(request.url.path), "debug_full_path": full_path, "debug_url": str(request.url)
     })
 
