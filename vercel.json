@@ -2,6 +2,10 @@
   "version": 2,
   "rewrites": [
     {
+      "source": "/.well-known/openai-apps-challenge",
+      "destination": "/api/index.py?challenge=1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api/index.py"
     }

@@ -19,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "owWsqczXj7AO1Am4lT_ZanlPzMprywhSnBeEysHu-3o")
 
 
 def escape_wifi_value(value: str) -> str:
@@ -241,7 +241,7 @@ def handle_mcp_request(body: dict) -> dict:
 @app.get("/.well-known/openai-apps-challenge")
 @app.get("/api/index.py/.well-known/openai-apps-challenge")
 async def openai_apps_challenge():
-    token = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+    token = os.getenv("OPENAI_CHALLENGE_TOKEN", "owWsqczXj7AO1Am4lT_ZanlPzMprywhSnBeEysHu-3o")
     return PlainTextResponse(token)
 
 
@@ -284,8 +284,8 @@ async def handler(request: Request, full_path: str = ""):
 
     # 3. Domain verification for OpenAI challenge (MUST be plain text!)
     all_path_info = f"{full_path} {request.url.path} {req_path}"
-    if "openai-apps-challenge" in all_path_info:
-        token = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+    if request.query_params.get("challenge") == "1" or "openai-apps-challenge" in all_path_info:
+        token = os.getenv("OPENAI_CHALLENGE_TOKEN", "owWsqczXj7AO1Am4lT_ZanlPzMprywhSnBeEysHu-3o")
         return PlainTextResponse(token)
 
     # 4. Health endpoint
