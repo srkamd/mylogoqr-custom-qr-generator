@@ -6,6 +6,8 @@ import io
 import base64
 import os
 import json
+import re
+import urllib.parse
 
 app = FastAPI(title="MyLogoQR MCP Server", version="1.0.0")
 
@@ -17,11 +19,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "mylogoqr-openai-verification-token")
+OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+
+
+def escape_wifi_value(value: str) -> str:
+    return re.sub(r'([\\;,:"])', r'\\\1', str(value))
+
+
+def escape_vcard_value(value: str) -> str:
+    text = str(value).replace('\\', '\\\\').replace('\r\n', '\n').replace('\r', '\n')
+    text = text.replace('\n', '\\n').replace(',', '\\,').replace(';', '\\;')
+    return text
 
 
 def generate_qr_base64(text: str, fill_color: str = "#12163A", back_color: str = "#FFFFFF") -> str:
-    qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=3)
+    qr = qrcode.QRCode(version:None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=3)
     qr.add_data(text)
     qr.make(fit=True)
     img = qr.make_image(fill_color=fill_color, back_color=back_color)
@@ -123,28 +135,44 @@ def handle_mcp_request(body: dict) -> dict:
 
         if name == "create_qr_code":
             payload = args.get("text", "")
-            title = args.get("label", payload)
+            title = "QR code"
         elif name == "create_wifi_qr":
             ssid = args.get("ssid", "")
+            if not isinstance(ssid, str) or not ssid.strip():
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "ssid is required."}}
             pwd = args.get("password", "")
             enc = args.get("encryption", "WPA")
-            payload = f"WIFI:S:{ssid};T:{enc};P:{pwd};;"
-            title = f"Wi-Fi: {ssid}"
+            payload = f"WIFI:S:{escape_wifi_value(ssid)};T:{enc};P:{escape_wifi_value(pwd)};;"
+            title = "Wi-Fi QR code"
         elif name == "create_whatsapp_qr":
             phone = "".join(filter(str.isdigit, str(args.get("phone", ""))))
+            if not phone:
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "A phone number with country code is required."}}
             msg = args.get("message", "")
-            payload = f"https://wa.me/{phone}" + (f"?text={msg}" if msg else "")
-            title = f"WhatsApp: {phone}"
+            payload = f"https://wa.me/{phone}" + (f"?text={urllib.parse.quote(msg, safe='')}" if msg else "")
+            title = "WhatsApp QR code"
         elif name == "create_vcard_qr":
             fn = args.get("firstName", "")
             ln = args.get("lastName", "")
             ph = args.get("phone", "")
             em = args.get("email", "")
             co = args.get("company", "")
-            payload = f"BEGIN:VCARD\nVERSION:3.0\nN:{ln};{fn}\nFN:{fn} {ln}\nTEL:{ph}\nEMAIL:{em}\nORG:{co}\nEND:VCARD"
-            title = f"Contact: {fn} {ln}"
+            if not str(fn).strip() or not str(ph).strip():
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "firstName and phone are required for a vCard."}}
+            payload = f"BEGIN:VCARD\nVERSION:3.0\nN:{escape_vcard_value(ln)};{escape_vcard_value(fn)}\nFN:{escape_vcard_value(fn)} {escape_vcard_value(ln)}\nTEL:{escape_vcard_value(ph)}\nEMAIL:{escape_vcard_value(em)}\nORG:{escape_vcard_value(co)}\nEND:VCARD"
+            title = "Contact QR code"
         else:
             return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown tool: {name}"}}
+
+        if not isinstance(payload, str) or not payload.strip():
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "A non-empty QR value is required."}}
+        if len(payload.encode("utf-8")) > 2000:
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "QR content is too long. Use 2000 UTF-8 bytes or fewer."}}
+        color_pattern = r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        if not isinstance(dark, str) or not re.fullmatch(color_pattern, dark):
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "darkColor must be a 3- or 6-digit hex color."}}
+        if not isinstance(light, str) or not re.fullmatch(color_pattern, light):
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "lightColor must be a 3- or 6-digit hex color."}}
 
         data_url = generate_qr_base64(payload, fill_color=dark, back_color=light)
         return {
@@ -154,13 +182,14 @@ def handle_mcp_request(body: dict) -> dict:
                 "content": [{"type": "text", "text": f"QR Code Created: {title}\n\n![QR]({data_url})\n\nBy MyLogoQR"}]
             }
         }
+    }
 
     return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown method: {method}"}}
 
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"])
 async def handler(request: Request, full_path: str = ""):
-    # 1. POST is ALWAYS handled as MCP JSON-RPC
+    # 1. POST is ALWAYS handled as MCP JSON-RPG
     if request.method == "POST":
         try:
             raw = await request.body()
@@ -209,7 +238,7 @@ async def handler(request: Request, full_path: str = ""):
         return HTMLResponse(content="""<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MyLogoQR MCP Server</title>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0B0F19;color:#F8FAFC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.c{max-width:600px;background:rgba(22,27,46,.75);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.5)}.b{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.4);color:#2DD4BF;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}.dot{width:8px;height:8px;border-radius:50%;background:#2DD4BF;box-shadow:0 0 10px #2DD4BF;animation:p 1.8s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}p{color:#94A3B8;line-height:1.6;margin-bottom:20px}.g{display:grid;gap:12px;margin-bottom:20px}.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}.card .l{font-size:.75rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.card .v{font-family:monospace;color:#A5B4FC;font-weight:600}a.btn{display:inline-block;background:linear-gradient(135deg,#14B8A6,#0D9488);color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:8px}</style>
+<style>*{ margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0B0F19;color:#F8FAFC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.c{max-width:600px;background:rgba(22,27,46,.75);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.5)}.b{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.4);color:#2DD4BF;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}.dot{width:8px;height:8px;border-radius:50%;background:#2DD4BF;box-shadow:0 0 10px #2DD4CF;animation:p 1.8s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}p{color:#94A3B8;line-height:1.6;margin-bottom:20px}.g{display:grid;gap:12px;margin-bottom:20px}.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}.card .l{font-size:.75rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.card .v{font-family:monospace;color:#A5B4FC;font-weight:600}a.btn{display:inline-block;background:linear-gradient(135deg,#14B8A6,0D9488);color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:8px}</style>
 </head><body><div class="c">
 <div class="b"><div class="dot"></div>MCP Server Online</div>
 <h1>MyLogoQR AI Engine</h1>
@@ -219,7 +248,7 @@ async def handler(request: Request, full_path: str = ""):
 <div class="card"><div class="l">Tools Available</div><div class="v">create_qr_code, create_wifi_qr, create_whatsapp_qr, create_vcard_qr</div></div>
 <div class="card"><div class="l">Protocol</div><div class="v">MCP JSON-RPC 2024-11-05</div></div>
 </div>
-<a class="btn" href="https://mylogoqr.com" target="_blank">Visit MyLogoQR.com &rarr;</a>
+<a class="btn" href="https://mylogoqr.com" target="_blank">Visit MyLogoQR.com &rtar;</a>
 </div></body></html>""")
 
     # 7. Fallback API status
