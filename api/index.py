@@ -46,7 +46,15 @@ MCP_TOOLS = [
     {
         "name": "create_qr_code",
         "description": "Generates a custom styled QR code for any URL or text with custom brand colors.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
         "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
             "readOnlyHint": True,
             "destructiveHint": False,
             "openWorldHint": False
@@ -65,7 +73,15 @@ MCP_TOOLS = [
     {
         "name": "create_wifi_qr",
         "description": "Generates a Wi-Fi QR code for smartphones to scan and connect instantly.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
         "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
             "readOnlyHint": True,
             "destructiveHint": False,
             "openWorldHint": False
@@ -84,7 +100,15 @@ MCP_TOOLS = [
     {
         "name": "create_whatsapp_qr",
         "description": "Generates a click-to-chat WhatsApp QR code with optional pre-filled message.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
         "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
             "readOnlyHint": True,
             "destructiveHint": False,
             "openWorldHint": False
@@ -102,7 +126,15 @@ MCP_TOOLS = [
     {
         "name": "create_vcard_qr",
         "description": "Generates a digital business card (vCard) QR code with contact info.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
         "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
             "readOnlyHint": True,
             "destructiveHint": False,
             "openWorldHint": False

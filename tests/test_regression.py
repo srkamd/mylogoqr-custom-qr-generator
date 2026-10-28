@@ -25,6 +25,7 @@ def get_all_routes():
         "/about",
         "/contact",
         "/privacy",
+        "/chatgpt-privacy",
         "/terms",
         "/faq",
         "/author",
@@ -143,3 +144,4 @@ class TestMyLogoQRRegression(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+

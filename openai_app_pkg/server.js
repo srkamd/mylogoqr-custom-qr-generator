@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const OPENAI_CHALLENGE_TOKEN = process.env.OPENAI_CHALLENGE_TOKEN || 'mylogoqr-openai-verification-token';
+const OPENAI_CHALLENGE_TOKEN = process.env.OPENAI_CHALLENGE_TOKEN || '';
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 
 app.use(cors({ origin: '*' }));
@@ -189,14 +189,14 @@ app.post('/mcp', async (req, res) => {
 
       if (name === 'create_qr_code') {
         qrText = args.text;
-        description = `QR Code for: ${args.label || args.text}`;
+        description = 'QR code created'
       } else if (name === 'create_wifi_qr') {
         const enc = args.encryption || 'WPA';
         const pass = args.password || '';
         const hid = args.hidden ? 'H:true;' : '';
         qrText = `WIFI:S:${args.ssid};T:${enc};P:${pass};${hid};`;
         darkColor = args.darkColor || '#008170';
-        description = `Wi-Fi QR Code for network "${args.ssid}"`;
+        description = 'Wi-Fi QR code created'
       } else if (name === 'create_vcard_qr') {
         qrText = [
           'BEGIN:VCARD',
@@ -210,13 +210,13 @@ app.post('/mcp', async (req, res) => {
           args.url ? `URL:${args.url}` : '',
           'END:VCARD'
         ].filter(Boolean).join('\n');
-        description = `Digital vCard QR Code for ${args.firstName} ${args.lastName || ''}`;
+        description = 'Contact QR code created'
       } else if (name === 'create_whatsapp_qr') {
         const cleanPhone = args.phone.replace(/[^0-9]/g, '');
         const encodedMsg = args.message ? `?text=${encodeURIComponent(args.message)}` : '';
         qrText = `https://wa.me/${cleanPhone}${encodedMsg}`;
         darkColor = args.darkColor || '#25D366';
-        description = `WhatsApp Click-to-Chat QR Code for ${args.phone}`;
+        description = 'WhatsApp QR code created'
       } else {
         return res.status(404).json({
           jsonrpc: '2.0',
@@ -240,7 +240,7 @@ app.post('/mcp', async (req, res) => {
           content: [
             {
               type: 'text',
-              text: `### ✅ ${description}\n\nScan with any smartphone camera:\n\n![Generated QR Code](${dataUrl})\n\n---\n**Details:**\n- **Payload:** \`${qrText.length > 80 ? qrText.substring(0, 80) + '...' : qrText}\`\n- **Color Scheme:** Foreground: \`${darkColor}\` | Background: \`${lightColor}\`\n\n*Created with [MyLogoQR](https://mylogoqr.com) - Custom Branded QR Studio.*`
+              text: `### ✅ ${description}\n\nScan with any smartphone camera:\n\n![Generated QR Code](${dataUrl})\n\n---\n**Details:**\n- **Color Scheme:** Foreground: \`${darkColor}\` | Background: \`${lightColor}\`\n\n*Created with [MyLogoQR](https://mylogoqr.com) - Custom Branded QR Studio.*`
             },
             {
               type: 'resource',

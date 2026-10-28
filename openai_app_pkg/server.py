@@ -6,6 +6,8 @@ import io
 import base64
 import os
 import json
+import re
+import urllib.parse
 
 app = FastAPI(title="MyLogoQR MCP Server", version="1.0.0")
 
@@ -17,7 +19,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "mylogoqr-openai-verification-token")
+OPENAI_CHALLENGE_TOKEN = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+
+
+def escape_wifi_value(value: str) -> str:
+    return re.sub(r'([\\;,:"])', r'\\\1', str(value))
+
+
+def escape_vcard_value(value: str) -> str:
+    text = str(value).replace('\\', '\\\\').replace('\r\n', '\n').replace('\r', '\n')
+    text = text.replace('\n', '\\n').replace(',', '\\,').replace(';', '\\;')
+    return text
 
 
 def generate_qr_base64(text: str, fill_color: str = "#12163A", back_color: str = "#FFFFFF") -> str:
@@ -34,6 +46,19 @@ MCP_TOOLS = [
     {
         "name": "create_qr_code",
         "description": "Generates a custom styled QR code for any URL or text with custom brand colors.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -48,6 +73,19 @@ MCP_TOOLS = [
     {
         "name": "create_wifi_qr",
         "description": "Generates a Wi-Fi QR code for smartphones to scan and connect instantly.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -62,6 +100,19 @@ MCP_TOOLS = [
     {
         "name": "create_whatsapp_qr",
         "description": "Generates a click-to-chat WhatsApp QR code with optional pre-filled message.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -75,6 +126,19 @@ MCP_TOOLS = [
     {
         "name": "create_vcard_qr",
         "description": "Generates a digital business card (vCard) QR code with contact info.",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "openWorldHint": False,
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
+        "provided_tool_annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -123,28 +187,44 @@ def handle_mcp_request(body: dict) -> dict:
 
         if name == "create_qr_code":
             payload = args.get("text", "")
-            title = args.get("label", payload)
+            title = "QR code"
         elif name == "create_wifi_qr":
             ssid = args.get("ssid", "")
+            if not isinstance(ssid, str) or not ssid.strip():
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "ssid is required."}}
             pwd = args.get("password", "")
             enc = args.get("encryption", "WPA")
-            payload = f"WIFI:S:{ssid};T:{enc};P:{pwd};;"
-            title = f"Wi-Fi: {ssid}"
+            payload = f"WIFI:S:{escape_wifi_value(ssid)};T:{enc};P:{escape_wifi_value(pwd)};;"
+            title = "Wi-Fi QR code"
         elif name == "create_whatsapp_qr":
             phone = "".join(filter(str.isdigit, str(args.get("phone", ""))))
+            if not phone:
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "A phone number with country code is required."}}
             msg = args.get("message", "")
-            payload = f"https://wa.me/{phone}" + (f"?text={msg}" if msg else "")
-            title = f"WhatsApp: {phone}"
+            payload = f"https://wa.me/{phone}" + (f"?text={urllib.parse.quote(msg, safe='')}" if msg else "")
+            title = "WhatsApp QR code"
         elif name == "create_vcard_qr":
             fn = args.get("firstName", "")
             ln = args.get("lastName", "")
             ph = args.get("phone", "")
             em = args.get("email", "")
             co = args.get("company", "")
-            payload = f"BEGIN:VCARD\nVERSION:3.0\nN:{ln};{fn}\nFN:{fn} {ln}\nTEL:{ph}\nEMAIL:{em}\nORG:{co}\nEND:VCARD"
-            title = f"Contact: {fn} {ln}"
+            if not str(fn).strip() or not str(ph).strip():
+                return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "firstName and phone are required for a vCard."}}
+            payload = f"BEGIN:VCARD\nVERSION:3.0\nN:{escape_vcard_value(ln)};{escape_vcard_value(fn)}\nFN:{escape_vcard_value(fn)} {escape_vcard_value(ln)}\nTEL:{escape_vcard_value(ph)}\nEMAIL:{escape_vcard_value(em)}\nORG:{escape_vcard_value(co)}\nEND:VCARD"
+            title = "Contact QR code"
         else:
             return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown tool: {name}"}}
+
+        if not isinstance(payload, str) or not payload.strip():
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "A non-empty QR value is required."}}
+        if len(payload.encode("utf-8")) > 2000:
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "QR content is too long. Use 2000 UTF-8 bytes or fewer."}}
+        color_pattern = r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        if not isinstance(dark, str) or not re.fullmatch(color_pattern, dark):
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "darkColor must be a 3- or 6-digit hex color."}}
+        if not isinstance(light, str) or not re.fullmatch(color_pattern, light):
+            return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32602, "message": "lightColor must be a 3- or 6-digit hex color."}}
 
         data_url = generate_qr_base64(payload, fill_color=dark, back_color=light)
         return {

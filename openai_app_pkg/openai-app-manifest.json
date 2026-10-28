@@ -1,20 +1,18 @@
 {
   "name": "MyLogoQR - Branded QR Code Studio",
-  "short_description": "Create beautiful branded QR codes with custom colors for links, Wi-Fi, contacts, and WhatsApp.",
-  "long_description": "MyLogoQR brings professional QR code design directly into ChatGPT. Generate high-resolution, custom-styled QR codes for websites, secure Wi-Fi access (scan to connect), digital vCard business cards, and direct WhatsApp chats with instant color customization and downloadable SVG and PNG formats.",
+  "short_description": "Create branded QR codes for links, Wi-Fi, contacts, and WhatsApp.",
+  "long_description": "Create QR codes inside ChatGPT for links, Wi-Fi, WhatsApp, and digital business cards. Customize foreground and background colors. Inputs are sent to the MyLogoQR service for QR generation.",
   "developer_name": "Shahrukh Ahmad",
   "developer_url": "https://mylogoqr.com",
   "support_email": "srkamd.dev@gmail.com",
-  "privacy_policy_url": "https://mylogoqr.com/privacy.html",
+  "privacy_policy_url": "https://mylogoqr.com/chatgpt-privacy",
   "terms_of_service_url": "https://mylogoqr.com/terms.html",
   "categories": [
-    "Productivity",
-    "Design & Creative",
-    "Utilities"
+    "Creativity"
   ],
   "transport": {
-    "type": "http",
-    "endpoint": "https://api.mylogoqr.com/mcp"
+    "type": "streamable-http",
+    "endpoint": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
   },
   "capabilities": {
     "interactive_widgets": true,

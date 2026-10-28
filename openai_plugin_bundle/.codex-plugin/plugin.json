@@ -1,12 +1,7 @@
 {
   "name": "mylogoqr",
   "version": "1.0.0",
-  "description": "Create professional branded QR codes with custom colors and shapes for websites, Wi-Fi, WhatsApp, and vCard business cards.",
+  "description": "Design branded QR codes for links, Wi-Fi, WhatsApp, and digital business cards.",
   "skills": "./skills/",
-  "mcpServers": {
-    "mylogoqr": {
-      "type": "http",
-      "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
-    }
-  }
+  "mcpServers": "./.mcp.json"
 }

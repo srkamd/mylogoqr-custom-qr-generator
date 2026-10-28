@@ -12,6 +12,7 @@ const filesToCheck = [
   'about.html',
   'contact.html',
   'privacy.html',
+  'chatgpt-privacy.html',
   'terms.html',
   'how-to-use.html',
   'styles.css',
@@ -95,7 +96,14 @@ htmlFiles.forEach(file => {
   // Google AdSense Account Verification check
   const hasAdSenseMeta = content.includes('ca-pub-9504324837751358');
   const hasAdSenseScript = content.includes('pagead2.googlesyndication.com');
-  if (hasAdSenseMeta && hasAdSenseScript) {
+  if (file === 'chatgpt-privacy.html') {
+    if (!hasAdSenseMeta && !hasAdSenseScript) {
+      console.log('  [PASS] Privacy notice does not load advertising scripts.');
+    } else {
+      console.error('  [FAIL] Privacy notice should not load advertising scripts.');
+      failed = true;
+    }
+  } else if (hasAdSenseMeta && hasAdSenseScript) {
     console.log(`  [PASS] Verified Google AdSense Publisher Tag: ca-pub-9504324837751358`);
   } else {
     console.error(`  [FAIL] Missing Google AdSense Publisher verification in <head>!`);
@@ -156,3 +164,4 @@ if (failed) {
   console.log('==================================================');
   process.exit(0);
 }
+

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mylogoqr-cache-v5';
+const CACHE_NAME = 'mylogoqr-cache-v6';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -14,6 +14,8 @@ const ASSETS_TO_CACHE = [
   '/contact.html',
   '/privacy',
   '/privacy.html',
+  '/chatgpt-privacy',
+  '/chatgpt-privacy.html',
   '/terms',
   '/terms.html',
   '/whatsapp-qr-code-generator',
@@ -75,3 +77,4 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
