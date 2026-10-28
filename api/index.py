@@ -46,6 +46,11 @@ MCP_TOOLS = [
     {
         "name": "create_qr_code",
         "description": "Generates a custom styled QR code for any URL or text with custom brand colors.",
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -60,6 +65,11 @@ MCP_TOOLS = [
     {
         "name": "create_wifi_qr",
         "description": "Generates a Wi-Fi QR code for smartphones to scan and connect instantly.",
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -74,6 +84,11 @@ MCP_TOOLS = [
     {
         "name": "create_whatsapp_qr",
         "description": "Generates a click-to-chat WhatsApp QR code with optional pre-filled message.",
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -87,6 +102,11 @@ MCP_TOOLS = [
     {
         "name": "create_vcard_qr",
         "description": "Generates a digital business card (vCard) QR code with contact info.",
+        "annotations": {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "openWorldHint": False
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -260,3 +280,4 @@ async def handler(request: Request, full_path: str = ""):
         "tools": ["create_qr_code", "create_wifi_qr", "create_whatsapp_qr", "create_vcard_qr"],
         "website": "https://mylogoqr.com"
     })
+
