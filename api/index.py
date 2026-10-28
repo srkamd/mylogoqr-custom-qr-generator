@@ -259,7 +259,9 @@ async def handler(request: Request, full_path: str = ""):
     # 2. Check original requested URL using Vercel headers or ASGI scope
     headers = dict(request.headers)
     req_path = (
-        headers.get("x-matched-path")
+        request.query_params.get("path", "")
+        or headers.get("x-forwarded-path")
+        or headers.get("x-matched-path")
         or headers.get("x-vercel-matched-path")
         or headers.get("x-original-url")
         or headers.get("x-forwarded-uri")
