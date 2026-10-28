@@ -238,6 +238,19 @@ def handle_mcp_request(body: dict) -> dict:
     return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown method: {method}"}}
 
 
+@app.get("/.well-known/openai-apps-challenge")
+@app.get("/api/index.py/.well-known/openai-apps-challenge")
+async def openai_apps_challenge():
+    token = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+    return PlainTextResponse(token)
+
+
+@app.get("/health")
+@app.get("/api/index.py/health")
+async def health_check():
+    return JSONResponse({"status": "healthy", "app": "MyLogoQR MCP Server", "version": "1.0.0"})
+
+
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"])
 async def handler(request: Request, full_path: str = ""):
     # 1. POST is ALWAYS handled as MCP JSON-RPC
@@ -259,7 +272,9 @@ async def handler(request: Request, full_path: str = ""):
     # 2. Check original requested URL using Vercel headers or ASGI scope
     headers = dict(request.headers)
     req_path = (
-        headers.get("x-matched-path")
+        request.query_params.get("path", "")
+        or headers.get("x-forwarded-path")
+        or headers.get("x-matched-path")
         or headers.get("x-vercel-matched-path")
         or headers.get("x-original-url")
         or headers.get("x-forwarded-uri")
@@ -268,8 +283,10 @@ async def handler(request: Request, full_path: str = ""):
     )
 
     # 3. Domain verification for OpenAI challenge (MUST be plain text!)
-    if "openai-apps-challenge" in req_path:
-        return PlainTextResponse(OPENAI_CHALLENGE_TOKEN)
+    all_path_info = f"{full_path} {request.url.path} {req_path}"
+    if "openai-apps-challenge" in all_path_info:
+        token = os.getenv("OPENAI_CHALLENGE_TOKEN", "")
+        return PlainTextResponse(token)
 
     # 4. Health endpoint
     if "health" in req_path:
@@ -310,5 +327,6 @@ async def handler(request: Request, full_path: str = ""):
         "protocol": "MCP JSON-RPC 2024-11-05",
         "mcp_endpoint": "/mcp",
         "tools": ["create_qr_code", "create_wifi_qr", "create_whatsapp_qr", "create_vcard_qr"],
-        "website": "https://mylogoqr.com"
+        "website": "https://mylogoqr.com", "debug_path": str(request.url.path), "debug_full_path": full_path, "debug_url": str(request.url)
     })
+
