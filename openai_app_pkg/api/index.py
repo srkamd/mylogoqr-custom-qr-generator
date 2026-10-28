@@ -283,9 +283,14 @@ async def handler(request: Request, full_path: str = ""):
     )
 
     # 3. Domain verification for OpenAI challenge (MUST be plain text!)
-    all_path_info = f"{full_path} {request.url.path} {req_path}"
-    if request.query_params.get("challenge") == "1" or "openai-apps-challenge" in all_path_info:
+    all_path_and_headers = f"{full_path} {request.url} {req_path} {dict(request.headers)}".lower()
+    if (
+        "openai-apps-challenge" in all_path_and_headers
+        or request.query_params.get("challenge") == "1"
+    ):
         token = os.getenv("OPENAI_CHALLENGE_TOKEN", "owWsqczXj7AO1Am4lT_ZanlPzMprywhSnBeEysHu-3o")
+        if token == "OPENAI_CHALLENGE_TOKEN" or not token.strip():
+            token = "owWsqczXj7AO1Am4lT_ZanlPzMprywhSnBeEysHu-3o"
         return PlainTextResponse(token)
 
     # 4. Health endpoint
