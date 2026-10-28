@@ -2,27 +2,7 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/mcp",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/health",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/docs",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/openapi.json",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/generate",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/.well-known/(.*)",
+      "source": "/(.*)",
       "destination": "/api/index.py"
     }
   ]
