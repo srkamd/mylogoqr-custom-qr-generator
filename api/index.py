@@ -6,7 +6,6 @@ import io
 import base64
 import os
 import json
-import traceback
 
 app = FastAPI(title="MyLogoQR MCP Server", version="1.0.0")
 
@@ -159,13 +158,9 @@ def handle_mcp_request(body: dict) -> dict:
     return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown method: {method}"}}
 
 
-# ---- Single universal endpoint ----
-# Vercel rewrites ALL paths to /api/index.py, so FastAPI always sees path = /api/index.py
-# We MUST handle everything in one catch-all.
-
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"])
 async def handler(request: Request, full_path: str = ""):
-    # --- POST = MCP JSON-RPC (always try) ---
+    # 1. POST is ALWAYS handled as MCP JSON-RPC
     if request.method == "POST":
         try:
             raw = await request.body()
@@ -181,24 +176,35 @@ async def handler(request: Request, full_path: str = ""):
                 "error": {"code": -32700, "message": f"Parse error: {str(e)}"}
             }, status_code=200)
 
-    # --- GET: check query params for special paths ---
-    qs = str(request.url)
+    # 2. Check original requested URL using Vercel headers or ASGI scope
+    headers = dict(request.headers)
+    req_path = (
+        headers.get("x-matched-path")
+        or headers.get("x-vercel-matched-path")
+        or headers.get("x-original-url")
+        or headers.get("x-forwarded-uri")
+        or request.scope.get("raw_path", b"").decode("utf-8", errors="ignore")
+        or str(request.url.path)
+    )
 
-    if "openai-apps-challenge" in qs:
+    # 3. Domain verification for OpenAI challenge (MUST be plain text!)
+    if "openai-apps-challenge" in req_path:
         return PlainTextResponse(OPENAI_CHALLENGE_TOKEN)
 
-    if "health" in qs or full_path.endswith("health"):
+    # 4. Health endpoint
+    if "health" in req_path:
         return JSONResponse({"status": "healthy", "app": "MyLogoQR MCP Server", "version": "1.0.0"})
 
-    if "generate" in qs:
+    # 5. Direct QR test generation
+    if "generate" in req_path:
         text = request.query_params.get("text", "https://mylogoqr.com")
         color = request.query_params.get("color", "#12163A")
         bg = request.query_params.get("bg", "#FFFFFF")
         b64 = generate_qr_base64(text, fill_color=color, back_color=bg)
         return JSONResponse({"status": "success", "text": text, "qr_base64": b64})
 
-    # --- Browser HTML dashboard ---
-    accept = request.headers.get("accept", "")
+    # 6. Browser HTML dashboard
+    accept = headers.get("accept", "")
     if "text/html" in accept:
         return HTMLResponse(content="""<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -216,7 +222,7 @@ async def handler(request: Request, full_path: str = ""):
 <a class="btn" href="https://mylogoqr.com" target="_blank">Visit MyLogoQR.com &rarr;</a>
 </div></body></html>""")
 
-    # --- JSON API info ---
+    # 7. Fallback API status
     return JSONResponse({
         "status": "online",
         "app": "MyLogoQR MCP Server",
