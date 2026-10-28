@@ -33,7 +33,7 @@ def escape_vcard_value(value: str) -> str:
 
 
 def generate_qr_base64(text: str, fill_color: str = "#12163A", back_color: str = "#FFFFFF") -> str:
-    qr = qrcode.QRCode(version:None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=3)
+    qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=3)
     qr.add_data(text)
     qr.make(fit=True)
     img = qr.make_image(fill_color=fill_color, back_color=back_color)
@@ -182,14 +182,13 @@ def handle_mcp_request(body: dict) -> dict:
                 "content": [{"type": "text", "text": f"QR Code Created: {title}\n\n![QR]({data_url})\n\nBy MyLogoQR"}]
             }
         }
-    }
 
     return {"jsonrpc": "2.0", "id": req_id, "error": {"code": -32601, "message": f"Unknown method: {method}"}}
 
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"])
 async def handler(request: Request, full_path: str = ""):
-    # 1. POST is ALWAYS handled as MCP JSON-RPG
+    # 1. POST is ALWAYS handled as MCP JSON-RPC
     if request.method == "POST":
         try:
             raw = await request.body()
@@ -238,7 +237,7 @@ async def handler(request: Request, full_path: str = ""):
         return HTMLResponse(content="""<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MyLogoQR MCP Server</title>
-<style>*{ margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0B0F19;color:#F8FAFC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.c{max-width:600px;background:rgba(22,27,46,.75);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.5)}.b{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.4);color:#2DD4BF;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}.dot{width:8px;height:8px;border-radius:50%;background:#2DD4BF;box-shadow:0 0 10px #2DD4CF;animation:p 1.8s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}p{color:#94A3B8;line-height:1.6;margin-bottom:20px}.g{display:grid;gap:12px;margin-bottom:20px}.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}.card .l{font-size:.75rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.card .v{font-family:monospace;color:#A5B4FC;font-weight:600}a.btn{display:inline-block;background:linear-gradient(135deg,#14B8A6,0D9488);color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:8px}</style>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#0B0F19;color:#F8FAFC;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.c{max-width:600px;background:rgba(22,27,46,.75);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;backdrop-filter:blur(20px);box-shadow:0 25px 50px rgba(0,0,0,.5)}.b{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.4);color:#2DD4BF;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}.dot{width:8px;height:8px;border-radius:50%;background:#2DD4BF;box-shadow:0 0 10px #2DD4BF;animation:p 1.8s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}h1{font-size:1.8rem;font-weight:800;margin-bottom:8px}p{color:#94A3B8;line-height:1.6;margin-bottom:20px}.g{display:grid;gap:12px;margin-bottom:20px}.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}.card .l{font-size:.75rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}.card .v{font-family:monospace;color:#A5B4FC;font-weight:600}a.btn{display:inline-block;background:linear-gradient(135deg,#14B8A6,#0D9488);color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:8px}</style>
 </head><body><div class="c">
 <div class="b"><div class="dot"></div>MCP Server Online</div>
 <h1>MyLogoQR AI Engine</h1>
@@ -248,7 +247,7 @@ async def handler(request: Request, full_path: str = ""):
 <div class="card"><div class="l">Tools Available</div><div class="v">create_qr_code, create_wifi_qr, create_whatsapp_qr, create_vcard_qr</div></div>
 <div class="card"><div class="l">Protocol</div><div class="v">MCP JSON-RPC 2024-11-05</div></div>
 </div>
-<a class="btn" href="https://mylogoqr.com" target="_blank">Visit MyLogoQR.com &rtar;</a>
+<a class="btn" href="https://mylogoqr.com" target="_blank">Visit MyLogoQR.com &rarr;</a>
 </div></body></html>""")
 
     # 7. Fallback API status
