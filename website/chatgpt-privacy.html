@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPT App Privacy Notice | MyLogoQR</title>
+  <meta name="description" content="How MyLogoQR processes information when you create QR codes through its ChatGPT app.">
+  <link rel="canonical" href="https://mylogoqr.com/chatgpt-privacy">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/styles.css">
+<script>
+(function() {
+  var ua = navigator.userAgent || '';
+  if (/bot|crawler|spider|googlebot|bingbot|yandex|duckduckbot/i.test(ua)) return;
+  if (localStorage.getItem('preferred_lang')) return;
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('lang') === 'en' || params.get('noredirect') === '1') {
+    localStorage.setItem('preferred_lang', 'en');
+    return;
+  }
+  var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  var target = null;
+  if (lang.startsWith('es')) target = '/es/';
+  else if (lang.startsWith('pt')) target = '/pt/';
+  else if (lang.startsWith('ru')) target = '/ru/';
+  else if (lang.startsWith('it')) target = '/it/';
+  if (!target) return;
+
+  var path = window.location.pathname.replace(/^\/|\/$/g, '');
+  if (!path || path === 'index.html') {
+    window.location.replace(target);
+  } else {
+    var supported = [
+      'qr-code-types', 'whatsapp-qr-code-generator', 'wifi-qr-code-generator',
+      'instagram-qr-code-generator', 'google-reviews-qr-code-generator',
+      'google-maps-qr-code-generator', 'restaurant-menu-qr-code-generator',
+      'vcard-qr-code-generator', 'business-card-qr-code-generator',
+      'youtube-qr-code-generator', 'facebook-qr-code-generator',
+      'tiktok-qr-code-generator', 'telegram-qr-code-generator',
+      'spotify-qr-code-generator', 'linkedin-qr-code-generator',
+      'paypal-qr-code-generator', 'pdf-qr-code-generator',
+      'email-qr-code-generator', 'sms-qr-code-generator',
+      'text-qr-code-generator', 'app-store-qr-code-generator',
+      'real-estate-qr-code-generator', 'wedding-qr-code-generator'
+    ];
+    var baseSlug = path.replace('.html', '');
+    if (supported.indexOf(baseSlug) !== -1) {
+      window.location.replace(target + baseSlug);
+    }
+  }
+})();
+</script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></i>MyLogoQR</a>
+ <button class="menu" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">Menu</button>
+ <nav id="nav" aria-label="Main"><ul>
+  <li><a href="/qr-code-types" style="color:var(--p);font-weight:600">Generators</a></li>
+  <li><a href="/how-to-use">How to Use</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/faq">FAQ</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li><a class="cta" href="/#generator">Create QR</a></li>
+ </ul></nav>
+</div></header>
+<main>
+  <section class="hero"><div class="wrap"><h1>ChatGPT App Privacy Notice</h1><p>Effective date: October 27, 2026</p></div></section>
+  <section style="background:#fff;padding:48px 0"><div class="wrap"><article class="prose" style="max-width:840px">
+    <p>This notice explains how MyLogoQR handles information when you use the MyLogoQR QR-code app inside ChatGPT. It supplements the <a href="/privacy">MyLogoQR website privacy policy</a>. OpenAI also processes your prompts under its own terms and settings.</p>
+    <h2>Information processed</h2>
+    <p>To create a QR code, the information you provide is sent in a tool request from ChatGPT to the MyLogoQR service. Depending on the QR code, this may include a URL or text, Wi-Fi network name and password, phone number, WhatsApp message, or contact-card details.</p>
+    <h2>How the information is used</h2>
+    <p>The service uses your input to generate a QR image and returns the result to ChatGPT. The app does not require a MyLogoQR account and does not intentionally save QR inputs or generated codes in an application database. The generated QR code contains the information you provided; anyone who can scan or access the code may be able to read or use that information.</p>
+    <p>MyLogoQR does not send WhatsApp messages, connect devices to Wi-Fi, contact the encoded destination, or collect payments through this ChatGPT app.</p>
+    <h2>Logs and service providers</h2>
+    <p>The service code is designed not to log QR contents. The hosting provider may process technical request data, such as IP addresses, timestamps, and request metadata, in operational logs. The developer must verify the production host’s logging, retention, and access settings before publication; infrastructure logs may be retained under the provider’s configuration.</p>
+    <h2>Retention</h2>
+    <p>The app does not provide account storage or QR-code history. The generated result may remain in your ChatGPT conversation according to your ChatGPT settings and OpenAI policies. Technical hosting logs may be retained according to the hosting provider’s configuration.</p>
+    <h2>Contact</h2>
+    <p>For questions about MyLogoQR’s handling of information, use the <a href="/contact">MyLogoQR contact page</a>.</p>
+  </article></div></section>
+</main>
+<footer><div class="wrap">
+ <div class="fgrid">
+  <div>
+   <a class="logo" href="/" style="color:#ffffff;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+    <i aria-hidden="true" style="width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:2px;padding:6px;flex-shrink:0"><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b></i>
+    <span style="font-family:var(--h);font-size:1.3rem;font-weight:800;color:#ffffff">MyLogoQR</span>
+   </a>
+   <p style="font-size:0.92rem;line-height:1.65;color:#94A3B8;max-width:320px;margin-top:8px">
+    The leading free, 100% client-side QR code generator with custom logos, brand color styling, and high-res vector export. Private, permanent barcodes with zero scan limits or sign-up required.
+   </p>
+   <div style="margin-top:16px">
+    <a id="play-store-badge" href="#" onclick="alert('MyLogoQR Android App is currently under final testing on Google Play Console and launching very soon! Stay tuned.');return false;" style="display:inline-flex;align-items:center;gap:10px;background:#000000;color:#fff;border:1px solid rgba(255,255,255,0.22);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+     <svg width="22" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.6 1.8L13.8 12 3.6 22.2C3.2 21.8 3 21.1 3 20.3V3.7C3 2.9 3.2 2.2 3.6 1.8Z" fill="#2196F3"/>
+      <path d="M17.2 8.6L13.8 12 3.6 1.8C4 1.5 4.6 1.4 5.3 1.8L17.2 8.6Z" fill="#4CAF50"/>
+      <path d="M17.2 15.4L5.3 22.2C4.6 22.6 4 22.5 3.6 22.2L13.8 12 17.2 15.4Z" fill="#F44336"/>
+      <path d="M21.2 10.3L17.2 8.6 13.8 12 17.2 15.4 21.2 13.7C22.3 13.1 22.3 10.9 21.2 10.3Z" fill="#FFEB3B"/>
+     </svg>
+     <div style="text-align:line-height:1.2">
+      <div style="font-size:0.62rem;text-transform:uppercase;color:#94A3B8;letter-spacing:0.04em">GET IT ON</div>
+      <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">Google Play</div>
+     </div>
+     <span style="background:rgba(79,70,229,0.3);color:#A5B4FC;font-size:0.68rem;padding:2px 7px;border-radius:99px;font-weight:600;margin-left:4px">Soon</span>
+    </a>
+   </div>
+  </div>
+  <div>
+   <h4>Generators</h4>
+   <a href="/qr-code-types">All Generators Hub</a>
+   <a href="/whatsapp-qr-code-generator">WhatsApp QR Code</a>
+   <a href="/wifi-qr-code-generator">Wi-Fi Password QR</a>
+   <a href="/instagram-qr-code-generator">Instagram QR Code</a>
+   <a href="/google-reviews-qr-code-generator">Google Reviews QR</a>
+   <a href="/vcard-qr-code-generator">Digital Business Card</a>
+   <a href="/restaurant-menu-qr-code-generator">Restaurant Menu QR</a>
+  </div>
+  <div>
+   <h4>Resources</h4>
+   <a href="/blog">Guides & Blog</a>
+   <a href="/how-to-use">How to Use</a>
+   <a href="/faq">FAQ</a>
+   <a href="/author">Author & Editorial</a>
+   <a href="/about">About Us</a>
+   <a href="/contact">Contact Support</a>
+  </div>
+  <div>
+   <h4>Trust & Legal</h4>
+   <a href="/privacy">Privacy Policy</a>
+   <a href="/terms">Terms of Service</a>
+   <a href="/cookie-policy">Cookie Policy</a>
+   <a href="/disclaimer">Disclaimer</a>
+  </div>
+ </div>
+ <div style="margin-top:28px;text-align:center">
+  <a href="https://fazier.com" target="_blank" rel="noopener"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width="120" height="36" alt="Fazier badge" /></a>
+ </div>
+ <div class="lang-bar" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;font-size:0.86rem;color:#94A3B8">
+  <span style="color:#CBD5E1;font-weight:600;margin-right:8px">🌍 International Versions:</span>
+  <a href="/" onclick="localStorage.setItem('preferred_lang', 'en')" style="display:inline;padding:0 6px;text-decoration:none;font-weight:700;color:#FFFFFF">English</a> &bull; <a href="/es/" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Español</a> &bull; <a href="/pt/" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Português</a> &bull; <a href="/ru/" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Русский</a> &bull; <a href="/it/" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Italiano</a>
+</div>
+ <div class="copy" style="margin-top:14px">&copy; 2026 MyLogoQR &mdash; Free, Private QR Code Generator. All rights reserved.</div>
+</div></footer>
+<script>
+(function(){
+  var m = document.querySelector('.menu'), n = document.getElementById('nav');
+  if (m && n) {
+    m.onclick = function() {
+      var open = n.classList.toggle('open');
+      m.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    n.onclick = function(e) {
+      if (e.target.tagName === 'A') n.classList.remove('open');
+    };
+  }
+})();
+</script>
+</body>
+</html>
+

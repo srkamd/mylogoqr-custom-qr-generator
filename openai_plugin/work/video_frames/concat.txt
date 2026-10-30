@@ -1,0 +1,13 @@
+file 'D:\Projects\mylogoqr\work\video_frames\frame_00_intro.png'
+duration 6
+file 'D:\Projects\mylogoqr\work\video_frames\frame_01_case1.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\video_frames\frame_02_case2.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\video_frames\frame_03_case3.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\video_frames\frame_04_case4.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\video_frames\frame_05_summary.png'
+duration 6
+file 'D:\Projects\mylogoqr\work\video_frames\frame_5_summary.png'

@@ -2,6 +2,14 @@
 *.zip
 *.tar.gz
 
+# Python cache and dependencies
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+.venv/
+env/
+
 # Local logs and temporary files
 *.log
 scratch_*

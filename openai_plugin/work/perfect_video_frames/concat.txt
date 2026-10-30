@@ -1,0 +1,13 @@
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\00_intro.png'
+duration 6
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\01_case1_url.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\02_case2_wifi.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\03_case3_whatsapp.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\04_case4_vcard.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\05_summary.png'
+duration 7
+file 'D:\Projects\mylogoqr\work\perfect_video_frames\05_summary.png'

@@ -1,0 +1,104 @@
+
+# ----------------------------------------------------------------------
+# Core Web Vitals & Speed Optimization
+# ----------------------------------------------------------------------
+
+# 1. Enable GZIP & Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# 2. Leverage Browser Caching (1 Year for Static Assets)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# 3. Cache-Control Headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|css|js|woff2)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+</IfModule>
+
+# ==============================================================================
+# MyLogoQR Hostinger Apache / LiteSpeed Production Configuration (.htaccess)
+# ==============================================================================
+
+RewriteEngine On
+RewriteBase /
+
+# 1. Prevent rewrite recursion loop (Critical on Hostinger LiteSpeed)
+RewriteCond %{ENV:REDIRECT_STATUS} 200
+RewriteRule ^ - [L]
+
+# 2. Force HTTPS (SSL)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 3. Strip trailing slashes from non-directories for SEO canonical consistency
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# 4. Redirect external requests with explicit .html to clean extensionless URLs
+RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 5. Redirect /index to root /
+RewriteCond %{THE_REQUEST} \s/index[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# 6. Legacy redirect
+RewriteRule ^url-qr-code-generator/?$ / [R=301,L,NC]
+
+# 7. Permanent 301 Redirects for Old AI Blog Articles -> Clean QR Blog Hub
+RewriteRule ^blog/ai-.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/automated-affiliate.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/best-ai-.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/building-micro-saas.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/ethics-and-dangers.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/how-search-engines.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/how-to-build-and-sell.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/human-creativity.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/making-money-with-ai.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/no-code-and-ai.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/rise-of-agentic.*$ /blog [R=301,L,NC]
+RewriteRule ^blog/the-truth-about-autonomous.*$ /blog [R=301,L,NC]
+
+# 8. Clean URL for blog hub: /blog -> /blog.html
+RewriteRule ^blog/?$ /blog.html [L,NC]
+
+# 9. Clean URL for blog articles: /blog/slug -> /blog/slug.html
+# [^/.]+ ensures we never match files already ending in .html, .css, .jpg, etc.
+RewriteRule ^blog/([^/.]+)/?$ /blog/$1.html [L,NC]
+
+# 10. Clean URLs for multi-language roots: /es/ -> /es/index.html
+RewriteRule ^(es|pt|ru|it)/?$ /$1/index.html [L,NC]
+
+# 11. Clean URLs for multi-language tools: /es/slug -> /es/slug.html
+RewriteRule ^(es|pt|ru|it)/([^/.]+)/?$ /$1/$2.html [L,NC]
+
+# 12. Clean URL for root tools and pages: /slug -> /slug.html
+RewriteRule ^([^/.]+)/?$ /$1.html [L,NC]
+
+# Security Headers Configuration
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Custom 404 Error Document
+ErrorDocument 404 /404.html

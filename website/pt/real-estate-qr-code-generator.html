@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gerador de QR Code para Imobiliárias e Corretores com Logo | MyLogoQR</title>
+<meta name="description" content="Gere QR Codes para placas de imóveis, tours virtuais e fichas de venda com o logotipo da sua imobiliária.">
+<link rel="canonical" href="https://mylogoqr.com/pt/real-estate-qr-code-generator">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#12163A">
+<link rel="icon" type="image/jpeg" href="/app_icon.jpg">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/app_icon.jpg">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mylogoqr.com/real-estate-qr-code-generator">
+<meta property="og:title" content="Free Real Estate QR Code Generator with Logo | MyLogoQR">
+<meta property="og:description" content="Create branded real estate QR codes for property yard signs, flyers, and open house brochures. Connect prospective buyers to virtual tours instantly.">
+<meta property="og:image" content="https://mylogoqr.com/app_icon.jpg">
+<meta property="og:site_name" content="MyLogoQR">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://mylogoqr.com/real-estate-qr-code-generator">
+<meta name="twitter:title" content="Free Real Estate QR Code Generator with Logo | MyLogoQR">
+<meta name="twitter:description" content="Create branded real estate QR codes for property yard signs, flyers, and open house brochures. Connect prospective buyers to virtual tours instantly.">
+<meta name="twitter:image" content="https://mylogoqr.com/app_icon.jpg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Structured Schema Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free Real Estate QR Code Generator with Logo | MyLogoQR",
+      "url": "https://mylogoqr.com/real-estate-qr-code-generator",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "Create branded real estate QR codes for property yard signs, flyers, and open house brochures. Connect prospective buyers to virtual tours instantly.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "940",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mylogoqr.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Generators",
+          "item": "https://mylogoqr.com/qr-code-types"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Real Estate Property QR Code Generator",
+          "item": "https://mylogoqr.com/real-estate-qr-code-generator"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I link directly to a Matterport 3D tour or YouTube video?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! You can paste any URL: Matterport tour, YouTube walkthrough, Zillow listing, or your agency website."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I put my realtor headshot or brokerage logo in the middle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Upload your agency emblem or portrait photo for personal branding and trust."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What size should the QR code be on an outdoor yard sign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a sign scanned from a sidewalk (approx 1.5 to 2 meters away), print the QR code at least 12 x 12 cm to ensure fast scans from the curb."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I change the property URL after printing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "These are static QR codes. If you link to a custom property domain (e.g. 123MainStreet.com), you can forward that domain to whatever listing you wish without re-printing."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{--ink:#0A0F1D;--ink2:#1E293B;--ink3:#475569;--bg:#F8FAFC;--card:#fff;--line:#E2E8F0;--p:#4F46E5;--t:#0D9488;--a:#F59E0B;--r:18px;--g:linear-gradient(135deg,#4F46E5,#06B6D4);--h:'Bricolage Grotesque',system-ui,sans-serif;--b:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;height:auto}
+body{font-family:var(--b);color:var(--ink2);background:var(--bg);line-height:1.7;font-size:16px;padding-top:env(safe-area-inset-top,0px);-webkit-font-smoothing:antialiased}
+a{color:var(--p);text-decoration:none;font-weight:500}a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--a);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--h);color:var(--ink);line-height:1.15;letter-spacing:-.025em}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:800;margin-bottom:12px}
+h3{font-size:1.22rem;font-weight:700;margin-bottom:6px}
+p{color:var(--ink2);max-width:68ch;font-size:1.02rem}
+section{padding:64px 0}
+.center{text-align:center}.center p{margin:0 auto}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.32rem var(--h);color:var(--ink)}.logo:hover{text-decoration:none;color:var(--ink)}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--g);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:2px;padding:6px}
+.logo i b{background:#fff;border-radius:1px}.logo i b:nth-child(2n){background:transparent}
+nav ul{display:flex;gap:4px;list-style:none;padding:0;align-items:center}
+nav a{display:block;padding:8px 14px;color:var(--ink2);font-weight:600;font-size:.94rem;border-radius:10px}
+nav a:hover{background:#F1F5F9;color:var(--ink);text-decoration:none}
+nav a.cta{background:var(--ink);color:#fff;margin-left:6px;font-weight:600}nav a.cta:hover{background:var(--p);color:#fff}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:8px 14px;font:600 .9rem var(--b);cursor:pointer}
+@media(max-width:860px){.menu{display:block}nav{position:absolute;left:0;right:0;top:66px;background:#fff;border-bottom:1px solid var(--line);display:none}nav.open{display:block}nav ul{flex-direction:column;align-items:stretch;padding:12px 18px 18px}nav a.cta{margin:8px 0 0;text-align:center}}
+
+.hero{position:relative;overflow:hidden;background:#0B0F19;padding:56px 0 110px;text-align:center}
+.hero:before,.hero:after{content:"";position:absolute;width:440px;height:440px;border-radius:50%;filter:blur(100px);opacity:.35}
+.hero:before{background:#0D9488;left:-120px;top:-160px}.hero:after{background:#0F766E;right:-120px;bottom:-200px}
+.hero .wrap{position:relative;z-index:1}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 16px;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:18px}
+.hero h1{color:#fff;font-size:clamp(2.1rem,6vw,3.7rem);font-weight:800;max-width:20ch;margin:0 auto}
+.hero p{color:#E2E8F0;font-size:1.15rem;margin:16px auto 0;font-weight:400;max-width:60ch}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px;list-style:none;padding:0}
+.chips li{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#F8FAFC;padding:7px 15px;border-radius:99px;font-size:.88rem;font-weight:500}
+
+.tool{margin-top:-70px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 50px rgba(15,23,42,.1);overflow:hidden;position:relative;z-index:2}
+.tabs{display:flex;gap:6px;padding:12px;overflow-x:auto;background:#F1F5F9;border-bottom:1px solid var(--line)}
+.tabs button{flex:none;border:0;background:transparent;padding:11px 18px;border-radius:12px;font:600 .94rem var(--b);color:var(--ink2);cursor:pointer;transition:.15s}
+.tabs button:hover{background:#fff;color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--g);color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.25)}
+.tgrid{display:grid;grid-template-columns:1fr 360px}
+.ctrl{padding:26px;display:grid;gap:26px}
+.prev{padding:26px;border-left:1px solid var(--line);background:linear-gradient(180deg,#F8FAFC,#EEF2F6)}
+.sticky{position:sticky;top:86px}
+@media(max-width:860px){.tgrid{grid-template-columns:1fr}.prev{border-left:0;border-bottom:1px solid var(--line);order:-1}.sticky{position:static}.ctrl{padding:18px}}
+fieldset{border:0;padding:0;display:grid;gap:12px;min-width:0}
+legend{font:800 1.05rem var(--h);color:var(--ink);margin-bottom:10px;padding:0}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+label{display:grid;gap:5px;font-size:.86rem;font-weight:600;color:var(--ink)}
+input[type=text],input[type=tel],input[type=email],input[type=url],select{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font:400 .95rem var(--b);background:#fff;color:var(--ink)}
+input[type=file]{font-size:.85rem;color:var(--ink2)}
+input[type=color]{width:100%;height:44px;border:1px solid var(--line);border-radius:12px;padding:3px;background:#fff;cursor:pointer}
+input[type=range]{width:100%;accent-color:var(--p)}
+input:focus,select:focus{border-color:var(--p);outline:none;box-shadow:0 0 0 3px rgba(79,70,229,.2)}
+.pre{display:flex;gap:10px;flex-wrap:wrap}
+.pre button{width:54px;height:54px;border-radius:14px;border:3px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer;position:relative;overflow:hidden}
+.pre button:after{content:"";position:absolute;inset:14px;background:rgba(255,255,255,.9);border-radius:5px}
+.pre button:hover{transform:translateY(-2px)}
+.qrbox{background:#fff;border-radius:20px;padding:14px;display:grid;place-items:center;min-height:320px;aspect-ratio:1/1;box-shadow:0 10px 30px rgba(15,23,42,.08);border:1px solid var(--line)}
+.qrbox canvas{width:100%!important;height:auto!important;max-width:320px}
+.dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{display:block;text-align:center;padding:14px 18px;border-radius:14px;border:0;font:600 .95rem var(--b);cursor:pointer;transition:.15s}
+.btn.p{background:var(--g);color:#fff;box-shadow:0 8px 20px rgba(79,70,229,.25)}
+.btn.s{background:var(--ink);color:#fff}
+.btn:hover{transform:translateY(-1px);text-decoration:none}
+.note{font-size:.82rem;margin-top:12px;color:var(--ink3)}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:36px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;text-align:center}
+.stat b{display:block;font:800 1.9rem var(--h);background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:.9rem;color:var(--ink2);font-weight:500}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:32px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.2s;box-shadow:0 4px 6px -1px rgba(15,23,42,.03)}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,23,42,.08)}
+.card h3{color:var(--ink);margin-bottom:8px}
+.card p{color:var(--ink2);font-size:.98rem}
+.ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:1.45rem;margin-bottom:16px;background:#EEF2FF}
+section.dark{background:#0B0F19;color:#fff}section.dark h2{color:#fff}section.dark p{color:#CBD5E1}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:28px;list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:22px}
+.steps li:before{content:counter(s);width:40px;height:40px;border-radius:12px;background:var(--g);display:grid;place-items:center;font:800 1.1rem var(--h);margin-bottom:12px;color:#fff}
+.steps h3{color:#fff}
+.steps p{color:#CBD5E1}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);margin-top:24px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line);color:var(--ink2)}
+th{background:#F1F5F9;color:var(--ink);font-weight:700}tr:last-child td{border:0}td:first-child{color:var(--ink);font-weight:600}
+details{border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-top:10px;background:#fff}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}details p{margin-top:8px;color:var(--ink2)}
+.band{background:var(--g);border-radius:26px;padding:48px 24px;text-align:center;color:#fff}
+.band h2{color:#fff}.band p{color:#F1F5F9;margin:0 auto 24px}
+.band a{display:inline-block;background:#fff;color:var(--ink);padding:14px 28px;border-radius:14px;font-weight:700}.band a:hover{text-decoration:none}
+
+footer{background:#080C1A;color:#94A3B8;padding:48px 0 32px;font-size:.93rem;margin-top:60px}
+footer h4{color:#fff;font:700 1.05rem var(--h);margin-bottom:12px}
+footer a{color:#94A3B8;display:block;padding:4px 0;transition:color .15s}footer a:hover{color:#fff;text-decoration:none}
+footer p{color:#94A3B8;line-height:1.6}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:28px}
+.copy{margin-top:32px;padding-top:0;border:none;font-size:.88rem;color:#94A3B8;text-align:center}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}.fgrid>div:first-child{grid-column:1/-1}section{padding:46px 0}.hero{padding:40px 0 80px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+.prose{max-width:780px;margin:0 auto;line-height:1.8}.prose h2{margin-top:42px;color:var(--ink)}.prose h3{margin-top:26px;font-size:1.3rem;color:var(--ink)}.prose p{margin-top:14px;max-width:none;font-size:1.05rem;color:var(--ink2)}.prose ul{margin:14px 0 0 24px;color:var(--ink2);line-height:1.8}.by{display:flex;align-items:center;gap:12px;margin-top:18px;font-size:.92rem;color:var(--ink2)}.by i{width:38px;height:38px;border-radius:50%;background:var(--g);display:grid;place-items:center;color:#fff;font:800 .95rem var(--h);font-style:normal}.tip{background:#EEF2FF;border-left:4px solid var(--p);border-radius:12px;padding:16px 20px;margin-top:22px;color:var(--ink)}
+</style>
+<link rel="alternate" hreflang="x-default" href="https://mylogoqr.com/real-estate-qr-code-generator" />
+<link rel="alternate" hreflang="en" href="https://mylogoqr.com/real-estate-qr-code-generator" />
+<link rel="alternate" hreflang="es" href="https://mylogoqr.com/es/real-estate-qr-code-generator" />
+<link rel="alternate" hreflang="pt" href="https://mylogoqr.com/pt/real-estate-qr-code-generator" />
+<link rel="alternate" hreflang="ru" href="https://mylogoqr.com/ru/real-estate-qr-code-generator" />
+<link rel="alternate" hreflang="it" href="https://mylogoqr.com/it/real-estate-qr-code-generator" />
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></i>MyLogoQR</a>
+ <button class="menu" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">Menu</button>
+ <nav id="nav" aria-label="Main"><ul>
+  <li><a href="/pt/qr-code-types" style="color:var(--p);font-weight:600">Geradores</a></li>
+  <li><a href="/how-to-use">Como Usar</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/faq">Perguntas</a></li>
+  <li><a href="/about">Sobre Nós</a></li>
+  <li><a href="/contact">Contato</a></li>
+  <li><a class="cta" href="/#generator">Criar QR</a></li>
+ </ul></nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+ <span class="badge">Property Listings & Tours</span>
+ <h1>Gerador de QR Code para Mercado Imobiliário com Logo</h1>
+ <p>Turn passersby into qualified property leads. Place high-resolution QR codes on yard signs, lockboxes, and brochures for instant listing tours.</p>
+ <ul class="chips"><li>Instant 3D Virtual Tour Links</li><li>Yard Sign & Window Poster Ready</li><li>Agency Logo & Headshot Center</li><li>High-Resolution SVG Vector</li></ul>
+</div></div>
+
+<div class="wrap">
+<div class="tool" id="generator">
+ <div class="tabs" role="tablist" id="tabs"></div>
+ <div class="tgrid">
+  <div class="ctrl">
+   <fieldset><legend>1. Property Listing or Virtual Tour</legend><div class="row" id="fields"></div></fieldset>
+   <fieldset><legend>2. Estilos rápidos</legend><div class="pre" id="pre"></div></fieldset>
+   <fieldset><legend>3. Cores</legend><div class="row">
+    <label>Fill<select id="fill"><option value="solid">Solid</option><option value="linear" selected>Linear gradient</option><option value="radial">Radial gradient</option></select></label>
+    <label>Color<input type="color" id="c1" value="#0D9488"></label>
+    <label id="c2w">Second color<input type="color" id="c2" value="#0F766E"></label>
+    <label>Cor de fundo<input type="color" id="bg" value="#FFFFFF"></label>
+   </div></fieldset>
+   <fieldset><legend>4. Shapes</legend><div class="row">
+    <label>Dots<select id="dot"><option value="square">Square</option><option value="dots">Dots</option><option value="rounded" selected>Rounded</option><option value="extra-rounded">Extra rounded</option><option value="classy">Classy</option><option value="classy-rounded">Classy rounded</option></select></label>
+    <label>Corner frame<select id="eo"><option value="square">Square</option><option value="extra-rounded" selected>Rounded</option><option value="dot">Circle</option></select></label>
+    <label>Corner dot<select id="ei"><option value="square">Square</option><option value="dot" selected>Circle</option></select></label>
+   </div></fieldset>
+   <fieldset><legend>5. Logo</legend><div class="row">
+    <label>Enviar logotipo<input type="file" id="logo" accept="image/*"></label>
+    <label>Tamanho do logo <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
+    <label>Error correction<select id="ec"><option value="Q" selected>Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
+   </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
+  </div>
+  <div class="prev"><div class="sticky">
+   <div class="qrbox" id="qr" aria-live="polite"></div>
+   <div class="dl"><button class="btn p" data-ext="png">Baixar PNG</button><button class="btn s" data-ext="svg">Baixar SVG</button></div>
+   <p class="note">1000 × 1000 px. Scan with your smartphone camera to test scan before sending to print.</p>
+  </div></div>
+ </div>
+</div>
+</div>
+
+<section><div class="wrap center">
+ <h2>Capture Buyers When They Drive By Your Property</h2>
+ <p>When prospective buyers pause in front of a house for sale, don't let them drive away wondering about the price and interior. A yard sign QR code gives them an instant interior walkthrough.</p>
+ <div class="stats">
+  <div class="stat"><b>24/7</b><span>Drive-by buyer lead capture</span></div>
+  <div class="stat"><b>3D Tour</b><span>Instant immersive interior walkthrough</span></div>
+  <div class="stat"><b>100% Free</b><span>No scan limits or expiry</span></div>
+  <div class="stat"><b>Vector SVG</b><span>Scalable for posters & merch</span></div>
+ </div>
+ <div class="grid"><div class="card"><div class="ic">🪧</div><h3>Yard Signs & Rider Boards</h3><p>Print a weather-resistant QR rider board under your main sign with 'Scan for Price & 3D Tour'.</p></div><div class="card"><div class="ic">📑</div><h3>Open House Feature Sheets</h3><p>Give visitors a clean flyer with a QR code linking to high-res floor plans, school district info, and HOA documents.</p></div><div class="card"><div class="ic">🏢</div><h3>Brokerage Window Displays</h3><p>Put illuminated QR cards on office windows so evening strollers browse active local listings.</p></div></div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+ <h2>Three Easy Steps to Create Your Branded QR Code</h2>
+ <ol class="steps">
+  <li><h3>Enter Destination Details</h3><p>Paste your link, handle, or contact details directly into the generator tool.</p></li>
+  <li><h3>Style with Brand Colors & Logo</h3><p>Pick gradient or solid colors, customize dot corners, and upload your central brand logo.</p></li>
+  <li><h3>Test & Export Vector SVG / PNG</h3><p>Scan the live preview with your mobile camera and download print-ready 1000x1000px files.</p></li>
+ </ol>
+</div></section>
+
+
+<section class="white-s" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<div class="wrap">
+<article class="prose">
+ <h2 style="margin-top:0">The Comprehensive Guide to Real Estate Property QR Code Generator</h2>
+ <div class="by"><i>M</i><span>Written by MyLogoQR Editorial Team &mdash; Hands-on field tested</span></div>
+ 
+<p>Modern consumers demand speed and simplicity. Standard web addresses with long sub-directories or tracking parameters create friction when printed in the real world. A tailored real estate property qr code generator eliminates manual typing and connects users directly to your destination.</p>
+
+<h3>Best Practices for Real-World Deployment</h3>
+<ul>
+  <li><b>Maintain High Contrast:</b> Always use a dark pattern on a clean white or light background. Avoid pale pastel colors that wash out under sunlight.</li>
+  <li><b>Protect the Quiet Zone:</b> Keep at least 4 modules of clear blank margin around all four sides of the barcode.</li>
+  <li><b>Test Before Printing:</b> Scan your live preview with a mobile phone camera at varying angles and lighting conditions before sending files to commercial print.</li>
+</ul>
+
+<div class="tip">
+  <b>Vector Quality Export:</b> Always download the <b>SVG vector format</b> for large print signs, banners, and packaging. SVGs remain razor-sharp at any resolution.
+</div>
+
+</article>
+</div>
+</section>
+
+<section><div class="wrap">
+ <h2>Frequently Asked Questions</h2>
+ <details><summary>Can I link directly to a Matterport 3D tour or YouTube video?</summary><p>Yes! You can paste any URL: Matterport tour, YouTube walkthrough, Zillow listing, or your agency website.</p></details><details><summary>Can I put my realtor headshot or brokerage logo in the middle?</summary><p>Yes! Upload your agency emblem or portrait photo for personal branding and trust.</p></details><details><summary>What size should the QR code be on an outdoor yard sign?</summary><p>For a sign scanned from a sidewalk (approx 1.5 to 2 meters away), print the QR code at least 12 x 12 cm to ensure fast scans from the curb.</p></details><details><summary>Can I change the property URL after printing?</summary><p>These are static QR codes. If you link to a custom property domain (e.g. 123MainStreet.com), you can forward that domain to whatever listing you wish without re-printing.</p></details>
+</div></section>
+
+<div class="wrap"><div class="band">
+ <h2>Ready to Create Your Custom QR Code?</h2>
+ <p>Generate high-resolution PNG & SVG vector QR codes completely free in your browser.</p>
+ <a href="#generator">Start Generating Now</a>
+</div></div>
+</main>
+
+<footer><div class="wrap">
+ <div class="fgrid">
+  <div>
+   <a class="logo" href="/" style="color:#ffffff;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+    <i aria-hidden="true" style="width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:2px;padding:6px;flex-shrink:0"><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b></i>
+    <span style="font-family:var(--h);font-size:1.3rem;font-weight:800;color:#ffffff">MyLogoQR</span>
+   </a>
+   <p style="font-size:0.92rem;line-height:1.65;color:#94A3B8;max-width:320px;margin-top:8px">O principal gerador de QR Code gratuito com logotipo, 100% no navegador. Crie códigos de barras vetoriais de alta resolução com design de marca e privacidade total sem limites.</p>
+   <div style="margin-top:16px">
+    <a id="play-store-badge" href="#" onclick="alert('MyLogoQR Android App is currently under final testing on Google Play Console and launching very soon! Stay tuned.');return false;" style="display:inline-flex;align-items:center;gap:10px;background:#000000;color:#fff;border:1px solid rgba(255,255,255,0.22);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+     <svg width="22" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.6 1.8L13.8 12 3.6 22.2C3.2 21.8 3 21.1 3 20.3V3.7C3 2.9 3.2 2.2 3.6 1.8Z" fill="#2196F3"/>
+      <path d="M17.2 8.6L13.8 12 3.6 1.8C4 1.5 4.6 1.4 5.3 1.8L17.2 8.6Z" fill="#4CAF50"/>
+      <path d="M17.2 15.4L5.3 22.2C4.6 22.6 4 22.5 3.6 22.2L13.8 12 17.2 15.4Z" fill="#F44336"/>
+      <path d="M21.2 10.3L17.2 8.6 13.8 12 17.2 15.4 21.2 13.7C22.3 13.1 22.3 10.9 21.2 10.3Z" fill="#FFEB3B"/>
+     </svg>
+     <div style="text-align:line-height:1.2">
+      <div style="font-size:0.62rem;text-transform:uppercase;color:#94A3B8;letter-spacing:0.04em">GET IT ON</div>
+      <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">Google Play</div>
+     </div>
+     <span style="background:rgba(79,70,229,0.3);color:#A5B4FC;font-size:0.68rem;padding:2px 7px;border-radius:99px;font-weight:600;margin-left:4px">Soon</span>
+    </a>
+   </div>
+  </div>
+  <div>
+   <h4>Geradores</h4>
+   <a href="/pt/qr-code-types">Diretório de Geradores</a>
+   <a href="/pt/whatsapp-qr-code-generator">WhatsApp QR Code</a>
+   <a href="/pt/wifi-qr-code-generator">Wi-Fi Password QR</a>
+   <a href="/pt/instagram-qr-code-generator">Instagram QR Code</a>
+   <a href="/pt/google-reviews-qr-code-generator">Google Reviews QR</a>
+   <a href="/pt/vcard-qr-code-generator">Digital Business Card</a>
+   <a href="/pt/restaurant-menu-qr-code-generator">Restaurant Menu QR</a>
+  </div>
+  <div>
+   <h4>Recursos</h4>
+   <a href="/blog">Guias e Blog</a>
+   <a href="/how-to-use">Como Usar</a>
+   <a href="/faq">Perguntas</a>
+   <a href="/author">Author & Editorial</a>
+   <a href="/about">Sobre Nós</a>
+   <a href="/contact">Suporte e Contato</a>
+  </div>
+  <div>
+   <h4>Confiança e Legal</h4>
+   <a href="/privacy">Política de Privacidade</a>
+   <a href="/terms">Termos de Serviço</a>
+   <a href="/cookie-policy">Política de Cookies</a>
+   <a href="/disclaimer">Isenção de Responsabilidade</a>
+  </div>
+ </div>
+ <div style="margin-top:28px;text-align:center">
+  <a href="https://fazier.com" target="_blank" rel="noopener"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width="120" height="36" alt="Fazier badge" /></a>
+ </div>
+ <div class="lang-bar" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;font-size:0.86rem;color:#94A3B8">
+  <span style="color:#CBD5E1;font-weight:600;margin-right:8px">🌍 Versões Internacionais:</span>
+  <a href="/real-estate-qr-code-generator" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">English</a> &bull; <a href="/es/real-estate-qr-code-generator" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Español</a> &bull; <a href="/pt/real-estate-qr-code-generator" style="display:inline;padding:0 6px;text-decoration:none;font-weight:700;color:#FFFFFF">Português</a> &bull; <a href="/ru/real-estate-qr-code-generator" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Русский</a> &bull; <a href="/it/real-estate-qr-code-generator" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Italiano</a>
+</div>
+ <div class="copy" style="margin-top:14px">© 2026 MyLogoQR — Gerador de QR Code Grátis e Privado. Todos os direitos reservados.</div>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var m=document.querySelector('.menu'),n=$('nav');
+if(m && n){
+  m.onclick=function(){m.setAttribute('aria-expanded',n.classList.toggle('open'))};
+  n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
+}
+var T={
+ url:{n:'🔗 Link',f:[['u','Listing Webpage, Matterport 3D, or Video Tour URL','url','https://youragency.com/listings/123-main-st']]},
+ wa:{n:'💬 WhatsApp',f:[['p','Phone with country code','tel','923001234567'],['m','Message (optional)','text','Hello!']]},
+ wifi:{n:'📶 Wi-Fi',f:[['s','Network name','text','MyHomeWiFi'],['w','Password','text','SecretPass123'],['t','Security','sel',['WPA','WEP','nopass']]]},
+ text:{n:'📝 Text',f:[['x','Text','text','']]},
+ vc:{n:'👤 Contact',f:[['fn','First name','text','John'],['ln','Last name','text','Doe'],['ph','Phone','tel','+1234567890'],['em','Email','email','john@example.com'],['co','Company','text','Acme Inc'],['jt','Job title','text','Director'],['ws','Website','url','https://example.com'],['ad','Address','text','New York, USA']]}
+};
+var P=[
+ {f:'linear',a:'#0D9488',b:'#0F766E',d:'rounded',o:'extra-rounded',i:'dot'},
+ {f:'linear',a:'#5B5BFF',b:'#00C2A8',d:'rounded',o:'extra-rounded',i:'dot'},
+ {f:'linear',a:'#FF5F6D',b:'#FFC371',d:'dots',o:'dot',i:'dot'},
+ {f:'radial',a:'#0F2027',b:'#2C5364',d:'classy-rounded',o:'extra-rounded',i:'square'},
+ {f:'linear',a:'#11998E',b:'#38EF7D',d:'extra-rounded',o:'extra-rounded',i:'dot'},
+ {f:'solid',a:'#000000',b:'#000000',d:'square',o:'square',i:'square'}
+];
+var cur='url',logo=null;
+function esc(s){return String(s).replace(/([\\;,:"])/g,'\\$1')}
+function v(i){var e=$('f_'+i);return e?e.value.trim():''}
+function data(){
+ if(cur==='url')return v('u')||'https://';
+ if(cur==='wa'){var p=v('p').replace(/\D/g,'');return p?'https://wa.me/'+p+(v('m')?'?text='+encodeURIComponent(v('m')):''):'https://wa.me/'}
+ if(cur==='wifi')return 'WIFI:T:'+v('t')+';S:'+esc(v('s'))+';P:'+esc(v('w'))+';;';
+ if(cur==='text')return v('x')||'MyLogoQR';
+ return 'BEGIN:VCARD\nVERSION:3.0\nN:'+v('ln')+';'+v('fn')+';;;\nFN:'+(v('fn')+' '+v('ln')).trim()+'\nORG:'+v('co')+'\nTITLE:'+v('jt')+'\nTEL:'+v('ph')+'\nEMAIL:'+v('em')+'\nURL:'+v('ws')+'\nADR:;;'+v('ad')+';;;;\nEND:VCARD';
+}
+function build(){
+ $('tabs').innerHTML='';$('fields').innerHTML='';
+ Object.keys(T).forEach(function(k){
+  var b=document.createElement('button');b.type='button';b.textContent=T[k].n;b.setAttribute('role','tab');b.setAttribute('aria-selected',k===cur);
+  b.onclick=function(){cur=k;build();draw()};$('tabs').appendChild(b)});
+ T[cur].f.forEach(function(f){
+  var l=document.createElement('label');l.textContent=f[1];var e;
+  if(f[2]==='sel'){e=document.createElement('select');f[3].forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o==='nopass'?'None':o;e.appendChild(op)})}
+  else{e=document.createElement('input');e.type=f[2];e.placeholder=f[3];if(kActiveDefault(f[0]))e.value=kActiveDefault(f[0])}
+  e.id='f_'+f[0];e.oninput=draw;l.appendChild(e);$('fields').appendChild(l)});
+ $('fields').style.gridTemplateColumns=T[cur].f.length===1?'1fr':'';
+}
+function kActiveDefault(id){
+ if(cur==='url'&&id==='u')return 'https://';
+ return '';
+}
+P.forEach(function(s,k){
+ var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Style '+(k+1));
+ b.style.background=s.f==='solid'?s.a:'linear-gradient(135deg,'+s.a+','+s.b+')';
+ b.onclick=function(){$('fill').value=s.f;$('c1').value=s.a;$('c2').value=s.b;$('dot').value=s.d;$('eo').value=s.o;$('ei').value=s.i;$('bg').value='#FFFFFF';draw()};
+ $('pre').appendChild(b)});
+var qr=new QRCodeStyling({width:1000,height:1000,type:'canvas',data:'https://'});
+qr.append($('qr'));
+function draw(){
+ var t=$('fill').value,a=$('c1').value,b=$('c2').value;$('c2w').hidden=t==='solid';
+ var c=t==='solid'?{color:a}:{color:a,gradient:{type:t,rotation:Math.PI/4,colorStops:[{offset:0,color:a},{offset:1,color:b}]}};
+ $('lsv').textContent=$('ls').value+'%';
+ qr.update({data:data(),qrOptions:{errorCorrectionLevel:$('ec').value},
+  dotsOptions:Object.assign({type:$('dot').value},c),
+  cornersSquareOptions:{type:$('eo').value,color:a},
+  cornersDotOptions:{type:$('ei').value,color:a},
+  backgroundOptions:{color:$('bg').value},image:logo,
+  imageOptions:{imageSize:$('ls').value/100,margin:6,crossOrigin:'anonymous'}});
+}
+['fill','c1','c2','bg','dot','eo','ei','ls','ec'].forEach(function(i){$(i).oninput=draw;$(i).onchange=draw});
+$('logo').onchange=function(e){var f=e.target.files[0];if(!f)return;
+ if(f.size>5242880){alert('Please choose an image under 5 MB.');return}
+ var r=new FileReader();r.onload=function(){logo=r.result;$('rm').hidden=false;draw()};r.readAsDataURL(f)};
+$('rm').onclick=function(){logo=null;$('logo').value='';$('rm').hidden=true;draw()};
+document.querySelectorAll('[data-ext]').forEach(function(b){b.onclick=function(){qr.download({name:'real-estate-qr-code-generator',extension:b.dataset.ext})}});
+build();P[0]&&$('pre').firstChild.onclick();
+})();
+</script>
+</body>
+</html>
