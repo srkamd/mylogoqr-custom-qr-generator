@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "mylogoqr": {
+      "url": "https://mylogoqr-custom-qr-generator.vercel.app/mcp"
+    }
+  }
+}

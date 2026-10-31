@@ -1,0 +1,7 @@
+{
+  "name": "mylogoqr",
+  "version": "1.0.0",
+  "description": "Design branded QR codes for links, Wi-Fi, WhatsApp, and digital business cards.",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
