@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "MyLogoQR - Free QR Code Generator with Logo & Colors",
+  "short_name": "MyLogoQR",
+  "version": "1.0.0",
+  "description": "1-Click instant QR code generator for any webpage, text, Wi-Fi, WhatsApp & vCard with custom logos, colors, SVG & PNG exports.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Generate QR Code - MyLogoQR",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "clipboardWrite",
+    "contextMenus"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "libs/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
