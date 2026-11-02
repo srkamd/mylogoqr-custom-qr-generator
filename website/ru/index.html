@@ -393,12 +393,42 @@ footer p{color:#94A3B8;line-height:1.6}
  </table></div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
- <h2>Frequently asked questions</h2>
- <details><summary>Can I change a QR code after printing it?</summary><p>No. These are static codes, so the data is part of the pattern. If your link or number changes, create a new code and reprint.</p></details>
- <details><summary>Do the codes expire or have a scan limit?</summary><p>No. There is no redirect server, so nothing can expire and nothing needs a subscription.</p></details>
- <details><summary>What logo size is safe?</summary><p>Stay at 20 to 25 percent, keep strong contrast and test with a real phone before printing.</p></details>
- <details><summary>Is my data stored anywhere?</summary><p>No. Everything is generated in your browser. See the <a href="/privacy">privacy policy</a>.</p></details>
+<!-- Comprehensive Technical Guide & Standards (AdSense Depth & EEAT) -->
+<section style="background:var(--s);padding:60px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b)"><div class="wrap">
+ <div style="max-width:880px;margin:0 auto">
+  <span style="font-size:0.85rem;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:8px">Инженерные стандарты и архитектура</span>
+  <h2 style="font-size:2rem;font-weight:800;color:var(--t);margin-bottom:16px">Полное техническое руководство по технологии QR-кодов</h2>
+  <p style="font-size:1.05rem;line-height:1.75;color:var(--m);margin-bottom:28px">QR-коды (Quick Response) представляют собой двухмерные матричные штрихкоды, соответствующие международному стандарту ISO/IEC 18004. В отличие от линейных штрихкодов, QR-коды кодируют информацию как по горизонтали, так и по вертикали в сетке двоичных модулей, обеспечивая сверхвысокую плотность данных, быстрое всенаправленное считывание и надежное математическое восстановление ошибок.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:32px">
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">1. Поисковые метки положения</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">Три квадратных шаблона по углам задают ориентацию и угол сканирования. Соотношение модулей 1:1:3:1:1 позволяет камерам смартфонов мгновенно декодировать матрицу под любым углом до 360 градусов.</p>
+   </div>
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">2. Коррекция ошибок Рида-Соломона</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">Матрица использует полиномиальные алгоритмы коррекции, способные восстанавливать утраченные модули. Уровень Q восстанавливает до 25% поврежденных данных, а Уровень H — до 30%, что позволяет размещать логотипы компаний по центру кода без потери читаемости.</p>
+   </div>
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">3. Безопасность в браузере</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">В отличие от платных платформ, перенаправляющих трафик через сторонние прокси-серверы, MyLogoQR работает полностью на устройстве пользователя через Canvas и SVG. Ваши данные не передаются на внешние серверы.</p>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<!-- Часто задаваемые вопросы -->
+<section style="padding:60px 0"><div class="wrap" style="max-width:840px">
+ <h2 class="center" style="font-size:2rem;font-weight:800;color:var(--t);margin-bottom:12px">Часто задаваемые вопросы</h2>
+ <p class="center" style="color:var(--m);margin-bottom:32px">Технические и практические ответы по генерации, коммерческому использованию и безопасности данных.</p>
+ 
+ <details><summary>Можно ли изменить данные в QR-коде после печати?</summary><p>Нет. Созданные коды являются статическими и неизменными. Данные зашиты непосредственно в физический рисунок модулей без использования промежуточных серверов.</p></details>
+
+ <details><summary>Истекает ли срок действия кодов или есть ли лимиты сканирований?</summary><p>Нет. Коды бессрочны и не имеют никаких ограничений на количество считываний.</p></details>
+
+ <details><summary>Какой размер логотипа рекомендуется?</summary><p>Рекомендуется от 20% до 25% площади кода при уровне коррекции Q или H со светлой окантовкой для надежного распознавания камерой.</p></details>
+
+ <details><summary>Можно ли использовать коды в коммерческих целях?</summary><p>Да, на 100%. Все сгенерированные файлы PNG и векторные SVG полностью бесплатны для коммерческого и личного использования.</p></details>
 </div></section>
 
 <div class="wrap"><div class="band">

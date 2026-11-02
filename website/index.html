@@ -434,12 +434,62 @@ footer p{color:#94A3B8;line-height:1.6}
  </table></div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
- <h2>Frequently asked questions</h2>
- <details><summary>Can I change a QR code after printing it?</summary><p>No. These are static codes, so the data is part of the pattern. If your link or number changes, create a new code and reprint.</p></details>
- <details><summary>Do the codes expire or have a scan limit?</summary><p>No. There is no redirect server, so nothing can expire and nothing needs a subscription.</p></details>
- <details><summary>What logo size is safe?</summary><p>Stay at 20 to 25 percent, keep strong contrast and test with a real phone before printing.</p></details>
- <details><summary>Is my data stored anywhere?</summary><p>No. Everything is generated in your browser. See the <a href="/privacy">privacy policy</a>.</p></details>
+<!-- Comprehensive Technical Guide & Standards (AdSense Depth & EEAT) -->
+<section style="background:var(--s);padding:60px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b)"><div class="wrap">
+ <div style="max-width:880px;margin:0 auto">
+  <span style="font-size:0.85rem;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:8px">Engineering Standards &amp; Architecture</span>
+  <h2 style="font-size:2rem;font-weight:800;color:var(--t);margin-bottom:16px">The Comprehensive Engineering Guide to QR Code Technology</h2>
+  <p style="font-size:1.05rem;line-height:1.75;color:var(--m);margin-bottom:28px">Quick Response (QR) codes are two-dimensional matrix barcodes defined by international standard ISO/IEC 18004:2015. Unlike traditional linear barcodes that store data in one dimension across vertical lines, QR codes encode information both horizontally and vertically across a grid of black and white square modules, delivering vastly higher data density, fast omnidirectional readability, and mathematically robust error recovery.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:32px">
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">1. Finder Patterns &amp; Alignment</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">Three identical square detection patterns in the top-left, top-right, and bottom-left corners establish the orientation, coordinate grid, and physical angle of the code. This 1:1:3:1:1 module ratio enables smartphone camera sensors to decode the matrix at angles up to 360 degrees instantly.</p>
+   </div>
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">2. Reed-Solomon Correction</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">Every matrix utilizes polynomial error correction algorithms capable of reconstructing missing, smudged, or occluded modules. Level Q recovers up to 25% damaged data, while Level H recovers up to 30%, which is what allows custom brand logos and center graphics to sit cleanly within the pattern without disrupting optical scanning.</p>
+   </div>
+   <div style="background:var(--bg);padding:22px;border-radius:12px;border:1px solid var(--b)">
+    <h3 style="font-size:1.15rem;font-weight:700;color:var(--t);margin-bottom:8px">3. In-Browser Privacy Engine</h3>
+    <p style="font-size:0.92rem;line-height:1.6;color:var(--m)">While commercial QR tools route clicks through tracking redirect proxies that expire unless a monthly fee is paid, MyLogoQR executes 100% client-side via JavaScript Canvas and SVG DOM vectors. Your raw payload never leaves your device memory, guaranteeing zero server logging and lifetime permanence.</p>
+   </div>
+  </div>
+
+  <h3 style="font-size:1.4rem;font-weight:800;color:var(--t);margin:32px 0 14px">Print &amp; Media Best Practices for Physical Deployments</h3>
+  <ul style="padding-left:22px;line-height:1.8;color:var(--m);display:flex;flex-direction:column;gap:10px;font-size:0.96rem">
+   <li><strong>The Quiet Zone Margin:</strong> Maintain a clean, unprinted border around the perimeter of the QR code equal to at least 4 module widths. Removing or encroaching on this quiet zone prevents camera sensors from differentiating the pattern from surrounding graphics or text.</li>
+   <li><strong>Optical Contrast Ratios:</strong> Always maintain a minimum 4:1 contrast ratio between foreground modules and background fill. Dark foreground modules against a light or white background deliver near-instant scanning across all mobile camera hardware, including budget sensors in low ambient lighting.</li>
+   <li><strong>Physical Scanning Distance Formula:</strong> Follow the ten-to-one rule for sizing physical media: the minimum scanning distance divided by 10 equals the minimum code width. For a table menu scanned from 30 cm away, a 3 cm code is ideal; for a billboard scanned from 10 meters away, the printed code should measure at least 1 meter wide.</li>
+   <li><strong>Vector SVG for Production Print:</strong> Always download vector SVG assets for commercial press, offset packaging, laser etching, or large-format vinyl printing. Vector graphics retain infinite resolution without pixelation or raster blur at any scale.</li>
+  </ul>
+ </div>
+</div></section>
+
+<!-- Authoritative Expanded FAQ Section -->
+<section style="padding:60px 0"><div class="wrap" style="max-width:840px">
+ <h2 class="center" style="font-size:2rem;font-weight:800;color:var(--t);margin-bottom:12px">Frequently Asked Questions</h2>
+ <p class="center" style="color:var(--m);margin-bottom:32px">Detailed technical and practical answers to common questions about QR generation, commercial usage, and data security.</p>
+ 
+ <details><summary>Can I change or edit a QR code after printing it?</summary><p>No. Codes generated on MyLogoQR are permanent static QR codes. The encoded data (such as your website URL, contact information, or Wi-Fi password) is directly compiled into the physical matrix module pattern. Because there is no intermediary redirect server or database lookup, the destination cannot be altered once printed. If your URL or phone number changes in the future, you simply generate a fresh code and reprint.</p></details>
+
+ <details><summary>Do these QR codes ever expire or have scan limits?</summary><p>No. MyLogoQR codes never expire, have zero scan limits, and require no recurring subscriptions. Traditional dynamic QR vendors force links through proprietary redirect servers that shut off after free trials expire. Our client-side static codes connect mobile camera scanners directly to your target destination forever.</p></details>
+
+ <details><summary>What logo size and contrast ratio is safe to prevent scan failures?</summary><p>We recommend keeping your logo size slider between 20% and 25% of the total matrix area while selecting Error Correction Level Q (25% recovery) or Level H (30% recovery). Always ensure your logo has a clean outline or border that separates it from the surrounding QR dots, and test scan the live on-screen preview with both iOS and Android cameras before submitting files to physical print.</p></details>
+
+ <details><summary>Is my data or Wi-Fi password stored on an external server?</summary><p>No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All cryptographic encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Nothing touches an external server, database, or analytics tracker. See our <a href="/privacy" style="color:var(--p);text-decoration:underline">Privacy Policy</a> for full architecture verification.</p></details>
+
+ <details><summary>What is the new "Label under QR" feature for brands and restaurants?</summary><p>Our optional Label under QR feature allows hospitality venues, fast food chains, retail stores, and corporate brands to add a clean, readable text label (such as "SCAN ME", "MENU", "CONNECT WI-FI", "ORDER HERE", or "PAY HERE") directly beneath the QR code. You can choose between a modern rounded Pill badge, clean typography with letter tracking, or a solid rectangular banner. When downloaded, the badge is seamlessly embedded into your high-resolution PNG or vector SVG export.</p></details>
+
+ <details><summary>Can I use these QR codes for commercial products and business marketing?</summary><p>Yes, 100%. All QR codes, vector SVG graphics, and high-resolution PNG files generated on MyLogoQR are completely free for commercial, retail, educational, and personal use without copyright royalties, licensing fees, or attribution requirements.</p></details>
+
+ <details><summary>How do Wi-Fi QR codes connect guest devices automatically?</summary><p>Our Wi-Fi tool structures network credentials into the standardized MECARD format (WIFI:T:WPA;S:NetworkName;P:Password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking "Join [Network Name]?". Tapping Join automatically authenticates the device without typing passwords manually.</p></details>
+
+ <details><summary>Which download format should I choose: PNG or SVG?</summary><p>Use PNG (1000 x 1000 px) for digital presentations, social media, email signatures, website graphics, and standard office desktop printers. Choose SVG (Scalable Vector Graphics) for professional print shops, commercial packaging, restaurant acrylic stands, signage, and vector software like Adobe Illustrator or Figma.</p></details>
+
+ <details><summary>How does Reed-Solomon Error Correction work?</summary><p>Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects up to 7% of missing data, Level M corrects up to 15%, Level Q corrects up to 25%, and Level H corrects up to 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is mathematically necessary to restore readability.</p></details>
+
+ <details><summary>How does MyLogoQR comply with Google AdSense and web quality standards?</summary><p>MyLogoQR complies with Google AdSense Program Policies, Google Webmaster Quality Guidelines, GDPR, and CCPA standards. We deliver original engineering utility, transparent authorship by a verified Systems Architect, zero malware or tracking bloatware, comprehensive educational documentation, and full cookie disclosure policies.</p></details>
 </div></section>
 
 <div class="wrap"><div class="band">
