@@ -34,7 +34,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <!-- Google AdSense Account Verification -->
 <meta name="google-adsense-account" content="ca-pub-9504324837751358">
@@ -310,12 +310,39 @@ footer p{color:#94A3B8;line-height:1.6}
     <label>Dimensione logo <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
     <label>Error correction<select id="ec"><option value="Q">Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
-   <fieldset><legend>6. Etichetta sotto il QR (Opzionale)</legend><div class="row">
-    <label>Testo sotto il QR (es. SCANSIONAMI)<input type="text" id="cta" placeholder="SCANSIONAMI, MENU, ORDINA" maxlength="30"></label>
-    <label>Stile badge<select id="ctas"><option value="pill">Badge a pillola (consigliato)</option><option value="clean">Testo pulito</option><option value="banner">Banner solido</option></select></label>
-   </div><div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
-    <button type="button" class="btn s ctap" data-t="SCANSIONAMI">SCANSIONAMI</button><button type="button" class="btn s ctap" data-t="SCANSIONA MENU">MENU</button><button type="button" class="btn s ctap" data-t="CONNETTI WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="ORDINA QUI">ORDINA</button><button type="button" class="btn s ctap" data-t="PAGA QUI">PAGA</button>
-   </div></fieldset>
+      <fieldset><legend>6. Etichetta sotto il QR (Badge di Marchio)</legend>
+    <div class="row">
+     <label>Testo sotto il QR (es. SCANSIONAMI)<input type="text" id="cta" placeholder="SCANSIONAMI, MENU, ORDINA" maxlength="30"></label>
+     <label>Stile badge
+      <select id="ctas">
+       <option value="docked">Agganciato (Fuso con il QR)</option>
+       <option value="pill" selected>Badge a pillola fluttuante</option>
+       <option value="outline">Badge con contorno moderno</option>
+       <option value="banner">Banner solido largo</option>
+       <option value="clean">Solo testo pulito</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="margin-top:6px">
+     <label>Tipografia
+      <select id="ctaf">
+       <option value="Inter" selected>Sans Moderna (Inter / Pulito)</option>
+       <option value="Montserrat">Display Geometrico (Montserrat)</option>
+       <option value="Oswald">Impatto Grassetto (Oswald - Insegne)</option>
+       <option value="Playfair Display">Serif di Lusso (Playfair - Hotel e Ristorazione)</option>
+       <option value="monospace">Monospazio Tech (Courier)</option>
+      </select>
+     </label>
+     <label>Spaziatura / Allineamento
+      <select id="ctasp">
+       <option value="floating" selected>Fluttuante (Spazio bilanciato)</option>
+       <option value="docked">Fuso (Attaccato direttamente al QR)</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
+     <button type="button" class="btn s ctap" data-t="SCANSIONAMI">SCANSIONAMI</button><button type="button" class="btn s ctap" data-t="SCANSIONA MENU">MENU</button><button type="button" class="btn s ctap" data-t="CONNETTI WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="ORDINA QUI">ORDINA</button><button type="button" class="btn s ctap" data-t="PAGA QUI">PAGA</button>
+    </div></fieldset>
   </div>
   <div class="prev"><div class="sticky">
    <div class="qrbox" id="qr" aria-live="polite"></div>

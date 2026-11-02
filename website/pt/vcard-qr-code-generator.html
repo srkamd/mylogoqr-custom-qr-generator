@@ -35,7 +35,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <!-- Google AdSense Account Verification -->
 <meta name="google-adsense-account" content="ca-pub-9504324837751358">
@@ -245,12 +245,39 @@ footer p{color:#94A3B8;line-height:1.6}
     <label>Tamanho do logo <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
     <label>Error correction<select id="ec"><option value="Q">Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
-   <fieldset><legend>6. Etiqueta sob o QR (Opcional)</legend><div class="row">
-    <label>Texto sob o QR (ex. ESCANEIE-ME)<input type="text" id="cta" placeholder="ESCANEIE-ME, CARDÁPIO, PEDIR" maxlength="30"></label>
-    <label>Estilo do selo<select id="ctas"><option value="pill">Selo pílula (recomendado)</option><option value="clean">Texto limpo</option><option value="banner">Banner sólido</option></select></label>
-   </div><div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
-    <button type="button" class="btn s ctap" data-t="ESCANEIE-ME">ESCANEIE-ME</button><button type="button" class="btn s ctap" data-t="VER CARDÁPIO">CARDÁPIO</button><button type="button" class="btn s ctap" data-t="CONECTAR WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="PEDIR AQUI">PEDIR</button><button type="button" class="btn s ctap" data-t="PAGAR AQUI">PAGAR</button>
-   </div></fieldset>
+      <fieldset><legend>6. Etiqueta sob o QR (Selos de Marca)</legend>
+    <div class="row">
+     <label>Texto sob o QR (ex. ESCANEIE-ME)<input type="text" id="cta" placeholder="ESCANEIE-ME, CARDÁPIO, PEDIR" maxlength="30"></label>
+     <label>Estilo do selo
+      <select id="ctas">
+       <option value="docked">Acoplado (Fundido ao QR)</option>
+       <option value="pill" selected>Selo de pílula flutuante</option>
+       <option value="outline">Selo com contorno moderno</option>
+       <option value="banner">Banner sólido largo</option>
+       <option value="clean">Apenas texto limpo</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="margin-top:6px">
+     <label>Tipografia
+      <select id="ctaf">
+       <option value="Inter" selected>Sans Moderna (Inter / Limpo)</option>
+       <option value="Montserrat">Display Geométrico (Montserrat)</option>
+       <option value="Oswald">Impacto Negrito (Oswald - Placas)</option>
+       <option value="Playfair Display">Serif de Luxo (Playfair - Hotéis e Gastronomia)</option>
+       <option value="monospace">Monoespaçada Tech (Courier)</option>
+      </select>
+     </label>
+     <label>Espaçamento / Alinhamento
+      <select id="ctasp">
+       <option value="floating" selected>Flutuante (Espaço equilibrado)</option>
+       <option value="docked">Fundido (Fixado direto ao QR)</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
+     <button type="button" class="btn s ctap" data-t="ESCANEIE-ME">ESCANEIE-ME</button><button type="button" class="btn s ctap" data-t="VER CARDÁPIO">CARDÁPIO</button><button type="button" class="btn s ctap" data-t="CONECTAR WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="PEDIR AQUI">PEDIR</button><button type="button" class="btn s ctap" data-t="PAGAR AQUI">PAGAR</button>
+    </div></fieldset>
   </div>
   <div class="prev"><div class="sticky">
    <div class="qrbox" id="qr" aria-live="polite"></div>

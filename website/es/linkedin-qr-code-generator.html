@@ -34,7 +34,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <!-- Structured Schema Data -->
 <script type="application/ld+json">
@@ -286,12 +286,39 @@ footer p{color:#94A3B8;line-height:1.6}
     <label>Tamaño del logo <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
     <label>Error correction<select id="ec"><option value="Q" selected>Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
-   <fieldset><legend>6. Etiqueta debajo del QR (Opcional)</legend><div class="row">
-    <label>Texto debajo del QR (ej. ESCANÉAME)<input type="text" id="cta" placeholder="ESCANÉAME, MENÚ, PEDIR" maxlength="30"></label>
-    <label>Estilo de insignia<select id="ctas"><option value="pill">Insignia de píldora (recomendado)</option><option value="clean">Texto limpio</option><option value="banner">Pancarta sólida</option></select></label>
-   </div><div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
-    <button type="button" class="btn s ctap" data-t="ESCANÉAME">ESCANÉAME</button><button type="button" class="btn s ctap" data-t="ESCANEAR MENÚ">MENÚ</button><button type="button" class="btn s ctap" data-t="CONECTAR WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="PEDIR AQUÍ">PEDIR</button><button type="button" class="btn s ctap" data-t="PAGAR AQUÍ">PAGAR</button>
-   </div></fieldset>
+      <fieldset><legend>6. Etiqueta debajo del QR (Insignias de Marca)</legend>
+    <div class="row">
+     <label>Texto debajo del QR (ej. ESCANÉAME)<input type="text" id="cta" placeholder="ESCANÉAME, MENÚ, PEDIR" maxlength="30"></label>
+     <label>Estilo de insignia
+      <select id="ctas">
+       <option value="docked">Acoplado (Fusionado al QR)</option>
+       <option value="pill" selected>Insignia de píldora flotante</option>
+       <option value="outline">Insignia con contorno moderno</option>
+       <option value="banner">Pancarta sólida ancha</option>
+       <option value="clean">Solo texto limpio</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="margin-top:6px">
+     <label>Tipografía
+      <select id="ctaf">
+       <option value="Inter" selected>Sans Moderna (Inter / Limpia)</option>
+       <option value="Montserrat">Display Geométrico (Montserrat)</option>
+       <option value="Oswald">Impacto Negrita (Oswald - Cartelería)</option>
+       <option value="Playfair Display">Serif de Lujo (Playfair - Hoteles y Restaurantes)</option>
+       <option value="monospace">Monoespaciada Tech (Courier)</option>
+      </select>
+     </label>
+     <label>Espaciado / Alineación
+      <select id="ctasp">
+       <option value="floating" selected>Flotante (Espacio equilibrado)</option>
+       <option value="docked">Fusionado (Adherido directo al QR)</option>
+      </select>
+     </label>
+    </div>
+    <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
+     <button type="button" class="btn s ctap" data-t="ESCANÉAME">ESCANÉAME</button><button type="button" class="btn s ctap" data-t="ESCANEAR MENÚ">MENÚ</button><button type="button" class="btn s ctap" data-t="CONECTAR WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="PEDIR AQUÍ">PEDIR</button><button type="button" class="btn s ctap" data-t="PAGAR AQUÍ">PAGAR</button>
+    </div></fieldset>
   </div>
   <div class="prev"><div class="sticky">
    <div class="qrbox" id="qr" aria-live="polite"></div>

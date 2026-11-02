@@ -34,7 +34,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
 <!-- Google AdSense Account Verification -->
 <meta name="google-adsense-account" content="ca-pub-9504324837751358">
@@ -347,10 +347,37 @@ footer p{color:#94A3B8;line-height:1.6}
     <label>Logo size <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
     <label>Error correction<select id="ec"><option value="Q">Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
-   <fieldset><legend>6. Label under QR (Optional)</legend><div class="row">
+   <fieldset><legend>6. Label under QR (Custom Brand Badges)</legend>
+   <div class="row">
     <label>Text under QR (e.g. SCAN ME)<input type="text" id="cta" placeholder="SCAN ME, MENU, ORDER" maxlength="30"></label>
-    <label>Badge style<select id="ctas"><option value="pill">Pill badge (recommended)</option><option value="clean">Clean text</option><option value="banner">Solid banner</option></select></label>
-   </div><div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
+    <label>Badge style
+     <select id="ctas">
+      <option value="docked">Docked (Merged with QR)</option>
+      <option value="pill" selected>Floating Pill badge</option>
+      <option value="outline">Modern Outline badge</option>
+      <option value="banner">Solid wide banner</option>
+      <option value="clean">Clean text only</option>
+     </select>
+    </label>
+   </div>
+   <div class="row" style="margin-top:6px">
+    <label>Typography font
+     <select id="ctaf">
+      <option value="Inter" selected>Modern Sans (Inter / Clean)</option>
+      <option value="Montserrat">Geometric Display (Montserrat)</option>
+      <option value="Oswald">Bold Impact (Oswald - Signs &amp; Stickers)</option>
+      <option value="Playfair Display">Luxury Serif (Playfair - Hotels &amp; Dining)</option>
+      <option value="monospace">Tech Monospace (Courier / Code)</option>
+     </select>
+    </label>
+    <label>Spacing / Alignment
+     <select id="ctasp">
+      <option value="floating" selected>Floating (Balanced space)</option>
+      <option value="docked">Merged (Attached directly to QR)</option>
+     </select>
+    </label>
+   </div>
+   <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
     <button type="button" class="btn s ctap" data-t="SCAN ME">SCAN ME</button>
     <button type="button" class="btn s ctap" data-t="SCAN FOR MENU">MENU</button>
     <button type="button" class="btn s ctap" data-t="CONNECT WI-FI">WI-FI</button>
