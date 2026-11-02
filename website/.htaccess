@@ -94,6 +94,7 @@ RewriteRule ^([^/.]+)/?$ /$1.html [L,NC]
 
 # Security Headers Configuration
 <IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
