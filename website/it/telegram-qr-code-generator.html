@@ -286,9 +286,16 @@ footer p{color:#94A3B8;line-height:1.6}
     <label>Dimensione logo <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25"></label>
     <label>Error correction<select id="ec"><option value="Q" selected>Q (best for logos)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
+   <fieldset><legend>6. Etichetta sotto il QR (Opzionale)</legend><div class="row">
+    <label>Testo sotto il QR (es. SCANSIONAMI)<input type="text" id="cta" placeholder="SCANSIONAMI, MENU, ORDINA" maxlength="30"></label>
+    <label>Stile badge<select id="ctas"><option value="pill">Badge a pillola (consigliato)</option><option value="clean">Testo pulito</option><option value="banner">Banner solido</option></select></label>
+   </div><div class="row" style="grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:6px;margin-top:6px">
+    <button type="button" class="btn s ctap" data-t="SCANSIONAMI">SCANSIONAMI</button><button type="button" class="btn s ctap" data-t="SCANSIONA MENU">MENU</button><button type="button" class="btn s ctap" data-t="CONNETTI WI-FI">WI-FI</button><button type="button" class="btn s ctap" data-t="ORDINA QUI">ORDINA</button><button type="button" class="btn s ctap" data-t="PAGA QUI">PAGA</button>
+   </div></fieldset>
   </div>
   <div class="prev"><div class="sticky">
    <div class="qrbox" id="qr" aria-live="polite"></div>
+   <div id="ctav" style="display:none;text-align:center;margin:12px auto 6px"></div>
    <div class="dl"><button class="btn p" data-ext="png">Scarica PNG</button><button class="btn s" data-ext="svg">Scarica SVG</button></div>
    <p class="note">1000 × 1000 px. Scan with your smartphone camera to test scan before sending to print.</p>
   </div></div>
@@ -498,7 +505,7 @@ qr.append($('qr'));
 function draw(){
  var t=$('fill').value,a=$('c1').value,b=$('c2').value;$('c2w').hidden=t==='solid';
  var c=t==='solid'?{color:a}:{color:a,gradient:{type:t,rotation:Math.PI/4,colorStops:[{offset:0,color:a},{offset:1,color:b}]}};
- $('lsv').textContent=$('ls').value+'%';
+ $('lsv').textContent=$('ls').value+'%';updateCTA();
  qr.update({data:data(),qrOptions:{errorCorrectionLevel:$('ec').value},
   dotsOptions:Object.assign({type:$('dot').value},c),
   cornersSquareOptions:{type:$('eo').value,color:a},
@@ -511,7 +518,114 @@ $('logo').onchange=function(e){var f=e.target.files[0];if(!f)return;
  if(f.size>5242880){alert('Please choose an image under 5 MB.');return}
  var r=new FileReader();r.onload=function(){logo=r.result;$('rm').hidden=false;draw()};r.readAsDataURL(f)};
 $('rm').onclick=function(){logo=null;$('logo').value='';$('rm').hidden=true;draw()};
-document.querySelectorAll('[data-ext]').forEach(function(b){b.onclick=function(){qr.download({name:'telegram-qr-code-generator',extension:b.dataset.ext})}});
+function getContrast(h){
+ if(!h||h.length<6)return'#FFFFFF';
+ h=h.replace('#','');
+ if(h.length===3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+ var r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16);
+ return((r*299+g*587+b*114)/1000)>=150?'#111827':'#FFFFFF';
+}
+function updateCTA(){
+ var el=$('cta'),v=el?el.value.trim().toUpperCase():'',prev=$('ctav');
+ if(!prev)return;
+ if(!v){prev.style.display='none';prev.textContent='';return}
+ prev.style.display='block';prev.textContent=v;
+ var c=$('c1').value,s=$('ctas')?$('ctas').value:'pill';
+ var fg=getContrast(c);
+ if(s==='pill'){
+  prev.style.cssText='display:inline-block;padding:7px 22px;border-radius:9999px;background:'+c+';color:'+fg+';font-weight:700;font-size:14px;letter-spacing:1.5px;margin:10px auto 4px;box-shadow:0 2px 8px rgba(0,0,0,0.12)';
+ }else if(s==='banner'){
+  prev.style.cssText='display:block;padding:8px 12px;border-radius:6px;background:'+c+';color:'+fg+';font-weight:700;font-size:14px;letter-spacing:1.5px;margin:10px auto 4px;width:85%';
+ }else{
+  prev.style.cssText='display:block;background:transparent;color:'+c+';font-weight:800;font-size:16px;letter-spacing:3px;margin:10px auto 4px';
+ }
+}
+document.querySelectorAll('.ctap').forEach(function(b){b.onclick=function(){$('cta').value=b.dataset.t;updateCTA()}});
+if($('cta')){$('cta').oninput=updateCTA;$('cta').onchange=updateCTA}
+if($('ctas')){$('ctas').onchange=updateCTA}
+document.querySelectorAll('[data-ext]').forEach(function(b){
+ b.onclick=function(){
+  var ext=b.dataset.ext;
+  var ctaEl=$('cta'),ctaText=ctaEl?ctaEl.value.trim().toUpperCase():'';
+  if(!ctaText){qr.download({name:'telegram-qr-code-generator',extension:ext});return}
+  var c1=$('c1').value,bg=$('bg').value,style=$('ctas')?$('ctas').value:'pill';
+  var fg=getContrast(c1);
+  if(ext==='png'){
+   var srcCanvas=$('qr').querySelector('canvas');
+   if(!srcCanvas){qr.download({name:'telegram-qr-code-generator',extension:'png'});return}
+   var W=srcCanvas.width,H=srcCanvas.height;
+   var extraH=Math.round(H*0.18);
+   var exp=document.createElement('canvas');
+   exp.width=W;exp.height=H+extraH;
+   var ctx=exp.getContext('2d');
+   ctx.fillStyle=bg;ctx.fillRect(0,0,exp.width,exp.height);
+   ctx.drawImage(srcCanvas,0,0,W,H);
+   var fontSize=Math.round(H*0.048);
+   ctx.font='bold '+fontSize+'px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif';
+   ctx.textAlign='center';ctx.textBaseline='middle';
+   if(style==='pill'){
+    var m=ctx.measureText(ctaText);
+    var pillW=Math.max(Math.round(W*0.48),Math.round(m.width+H*0.12));
+    var pillH=Math.round(extraH*0.64);
+    var pillX=Math.round((W-pillW)/2);
+    var pillY=H+Math.round((extraH-pillH)/2);
+    var rad=Math.round(pillH/2);
+    ctx.fillStyle=c1;ctx.beginPath();
+    ctx.moveTo(pillX+rad,pillY);ctx.lineTo(pillX+pillW-rad,pillY);
+    ctx.arcTo(pillX+pillW,pillY,pillX+pillW,pillY+rad,rad);
+    ctx.lineTo(pillX+pillW,pillY+pillH-rad);
+    ctx.arcTo(pillX+pillW,pillY+pillH,pillX+pillW-rad,pillY+pillH,rad);
+    ctx.lineTo(pillX+rad,pillY+pillH);
+    ctx.arcTo(pillX,pillY+pillH,pillX,pillY+pillH-rad,rad);
+    ctx.lineTo(pillX,pillY+rad);
+    ctx.arcTo(pillX,pillY,pillX+rad,pillY,rad);
+    ctx.closePath();ctx.fill();
+    ctx.fillStyle=fg;ctx.fillText(ctaText,W/2,pillY+Math.round(pillH/2));
+   }else if(style==='banner'){
+    var bW=Math.round(W*0.9),bH=Math.round(extraH*0.68);
+    var bX=Math.round((W-bW)/2),bY=H+Math.round((extraH-bH)/2);
+    ctx.fillStyle=c1;
+    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(bX,bY,bW,bH,14);ctx.fill()}else{ctx.fillRect(bX,bY,bW,bH)}
+    ctx.fillStyle=fg;ctx.fillText(ctaText,W/2,bY+Math.round(bH/2));
+   }else{
+    ctx.fillStyle=c1;
+    ctx.fillText(ctaText,W/2,H+Math.round(extraH*0.5));
+   }
+   var a=document.createElement('a');a.download='telegram-qr-code-generator'+'-scanme.png';
+   a.href=exp.toDataURL('image/png');a.click();
+  }else if(ext==='svg'){
+   qr.getRawData('svg').then(function(blob){
+    var r=new FileReader();
+    r.onload=function(){
+     var s=r.result;
+     var extraH=180,newH=1000+extraH;
+     s=s.replace(/viewBox="0 0 (\d+) (\d+)"/,'viewBox="0 0 1000 '+newH+'"');
+     s=s.replace(/height="(\d+)"/,'height="'+newH+'"');
+     var esc=ctaText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+     var svgAdd='';
+     if(style==='pill'){
+      var pillW=Math.max(480,ctaText.length*26+80),pillH=86;
+      var pillX=(1000-pillW)/2,pillY=1000+(extraH-pillH)/2;
+      svgAdd='<rect x="'+pillX+'" y="'+pillY+'" width="'+pillW+'" height="'+pillH+'" rx="43" fill="'+c1+'"/>'+
+             '<text x="500" y="'+(pillY+52)+'" fill="'+fg+'" font-family="system-ui,sans-serif" font-size="44" font-weight="bold" text-anchor="middle">'+esc+'</text>';
+     }else if(style==='banner'){
+      var bY=1000+(extraH-90)/2;
+      svgAdd='<rect x="60" y="'+bY+'" width="880" height="90" rx="14" fill="'+c1+'"/>'+
+             '<text x="500" y="'+(bY+54)+'" fill="'+fg+'" font-family="system-ui,sans-serif" font-size="46" font-weight="bold" text-anchor="middle">'+esc+'</text>';
+     }else{
+      svgAdd='<text x="500" y="'+(1000+extraH/2+14)+'" fill="'+c1+'" font-family="system-ui,sans-serif" font-size="48" font-weight="bold" letter-spacing="4" text-anchor="middle">'+esc+'</text>';
+     }
+     s=s.replace('</svg>',svgAdd+'</svg>');
+     var sb=new Blob([s],{type:'image/svg+xml;charset=utf-8'});
+     var u=URL.createObjectURL(sb);
+     var a=document.createElement('a');a.download='telegram-qr-code-generator'+'-scanme.svg';a.href=u;a.click();
+     setTimeout(function(){URL.revokeObjectURL(u)},1000);
+    };
+    r.readAsText(blob);
+   }).catch(function(){qr.download({name:'telegram-qr-code-generator',extension:'svg'})});
+  }
+ };
+});
 build();P[0]&&$('pre').firstChild.onclick();
 })();
 </script>
