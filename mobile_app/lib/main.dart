@@ -18,6 +18,8 @@ void main() {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Color(0xFF090D16),
+      systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
   runApp(const MyLogoQRApp());
@@ -35,27 +37,29 @@ class MyLogoQRApp extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        scaffoldBackgroundColor: const Color(0xFF090D16),
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF6366F1),
           secondary: Color(0xFF10B981),
-          surface: Color(0xFF1E293B),
+          surface: Color(0xFF131B2E),
         ),
+        fontFamily: 'Roboto',
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF0F172A),
+          backgroundColor: Color(0xFF090D16),
           elevation: 0,
           centerTitle: true,
           titleTextStyle: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
+            fontSize: 19,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.3,
+            color: Colors.white,
           ),
         ),
         navigationBarTheme: NavigationBarThemeData(
-          backgroundColor: const Color(0xFF0B0F19),
-          indicatorColor: const Color(0xFF4F46E5).withValues(alpha: 0.4),
+          backgroundColor: const Color(0xFF060910),
+          indicatorColor: const Color(0xFF4F46E5).withValues(alpha: 0.35),
           labelTextStyle: WidgetStateProperty.all(
-            const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Color(0xFF94A3B8)),
           ),
         ),
       ),
@@ -88,38 +92,44 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         index: _currentIndex,
         children: _screens,
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (idx) => setState(() => _currentIndex = idx),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.qr_code_2_rounded),
-            selectedIcon: Icon(Icons.qr_code_2_rounded, color: Colors.white),
-            label: 'Create',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.qr_code_scanner_rounded),
-            selectedIcon: Icon(Icons.qr_code_scanner_rounded, color: Colors.white),
-            label: 'Scan',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.history_rounded),
-            selectedIcon: Icon(Icons.history_rounded, color: Colors.white),
-            label: 'History',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.info_outline_rounded),
-            selectedIcon: Icon(Icons.info_rounded, color: Colors.white),
-            label: 'About',
-          ),
-        ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Color(0xFF1E293B), width: 1)),
+        ),
+        child: NavigationBar(
+          selectedIndex: _currentIndex,
+          height: 68,
+          onDestinationSelected: (idx) => setState(() => _currentIndex = idx),
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.qr_code_2_rounded),
+              selectedIcon: Icon(Icons.qr_code_2_rounded, color: Color(0xFF818CF8)),
+              label: 'Create',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.qr_code_scanner_rounded),
+              selectedIcon: Icon(Icons.qr_code_scanner_rounded, color: Color(0xFF818CF8)),
+              label: 'Scan',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.history_rounded),
+              selectedIcon: Icon(Icons.history_rounded, color: Color(0xFF818CF8)),
+              label: 'History',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.tune_rounded),
+              selectedIcon: Icon(Icons.tune_rounded, color: Color(0xFF818CF8)),
+              label: 'About',
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 /* =========================================================================
-   1. QR GENERATOR SCREEN
+   1. QR GENERATOR SCREEN - Sleek Modern SaaS Design
    ========================================================================= */
 class QRGeneratorScreen extends StatefulWidget {
   const QRGeneratorScreen({super.key});
@@ -132,7 +142,6 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
   final GlobalKey _qrRepaintKey = GlobalKey();
   String _selectedType = 'URL';
 
-  // Controllers
   final TextEditingController _urlController = TextEditingController(text: 'https://mylogoqr.com');
   final TextEditingController _textController = TextEditingController();
   final TextEditingController _wifiSsid = TextEditingController();
@@ -146,7 +155,6 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
   Color _qrColor = const Color(0xFF0F172A);
   final Color _bgColor = Colors.white;
   File? _customLogoFile;
-  bool _useDefaultLogo = true;
 
   final List<Color> _presetColors = [
     const Color(0xFF0F172A),
@@ -154,7 +162,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
     const Color(0xFF059669),
     const Color(0xFFDC2626),
     const Color(0xFFD97706),
-    const Color(0xFF9333EA),
+    const Color(0xFF7C3AED),
   ];
 
   String get _currentPayload {
@@ -179,10 +187,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
     final picker = ImagePicker();
     final picked = await picker.pickImage(source: ImageSource.gallery);
     if (picked != null) {
-      setState(() {
-        _customLogoFile = File(picked.path);
-        _useDefaultLogo = false;
-      });
+      setState(() => _customLogoFile = File(picked.path));
     }
   }
 
@@ -199,7 +204,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
       final file = File('${tempDir.path}/mylogoqr_${DateTime.now().millisecondsSinceEpoch}.png');
       await file.writeAsBytes(buffer);
 
-      await SharePlus.instance.share(ShareParams(files: [XFile(file.path)], text: 'Generated with MyLogoQR (100% Free & Private)'));
+      await Share.shareXFiles([XFile(file.path)], text: 'Created with MyLogoQR (100% Free & Private)');
       _saveToHistory(_currentPayload, 'Created');
     } catch (e) {
       if (mounted) {
@@ -229,15 +234,15 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: const Color(0xFF6366F1),
-                borderRadius: BorderRadius.circular(8),
+                gradient: const LinearGradient(colors: [Color(0xFF6366F1), Color(0xFF4F46E5)]),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: const Icon(Icons.qr_code_2_rounded, size: 20, color: Colors.white),
             ),
-            const SizedBox(width: 8),
-            const Text('MyLogoQR', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(width: 10),
+            const Text('MyLogoQR Studio', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
           ],
         ),
       ),
@@ -246,194 +251,247 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // QR Type Chips
+            // Category Selector Chips
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: ['URL', 'WhatsApp', 'Wi-Fi', 'vCard', 'Text'].map((type) {
-                  final isSelected = _selectedType == type;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChip(
-                      label: Text(type),
-                      selected: isSelected,
-                      selectedColor: const Color(0xFF4F46E5),
-                      labelStyle: TextStyle(
-                        color: isSelected ? Colors.white : Colors.grey[300],
-                        fontWeight: FontWeight.w600,
-                      ),
-                      onSelected: (val) {
-                        if (val) setState(() => _selectedType = type);
-                      },
-                    ),
-                  );
-                }).toList(),
+                children: [
+                  _buildTypeChip('URL', Icons.language_rounded),
+                  _buildTypeChip('WhatsApp', Icons.chat_rounded),
+                  _buildTypeChip('Wi-Fi', Icons.wifi_rounded),
+                  _buildTypeChip('vCard', Icons.badge_rounded),
+                  _buildTypeChip('Text', Icons.short_text_rounded),
+                ],
               ),
             ),
             const SizedBox(height: 16),
 
-            // Dynamic Inputs Card
-            Card(
-              color: const Color(0xFF1E293B),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: _buildInputs(),
+            // Inputs Glass Card
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFF131B2E),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF1E293B), width: 1.2),
               ),
+              child: _buildInputs(),
             ),
             const SizedBox(height: 16),
 
-            // Customization: Logo & Color
-            Card(
-              color: const Color(0xFF1E293B),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Custom Logo & Colors', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        OutlinedButton.icon(
-                          onPressed: _pickCustomLogo,
-                          icon: const Icon(Icons.add_photo_alternate_rounded, size: 18),
-                          label: Text(_customLogoFile != null ? 'Change Logo' : 'Custom Logo'),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            side: const BorderSide(color: Color(0xFF6366F1)),
-                          ),
+            // Customization Card
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFF131B2E),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF1E293B), width: 1.2),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Brand Logo & Colors', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15, color: Colors.white)),
+                  const SizedBox(height: 14),
+                  Row(
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: _pickCustomLogo,
+                        icon: const Icon(Icons.add_photo_alternate_rounded, size: 18),
+                        label: Text(_customLogoFile != null ? 'Change Logo' : 'Upload Logo'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1E293B),
+                          foregroundColor: Colors.white,
+                          side: const BorderSide(color: Color(0xFF4F46E5), width: 1.2),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        const SizedBox(width: 10),
-                        if (_customLogoFile != null)
-                          TextButton(
-                            onPressed: () => setState(() => _customLogoFile = null),
-                            child: const Text('Remove', style: TextStyle(color: Colors.redAccent)),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 14),
-                    const Text('QR Code Color', style: TextStyle(fontSize: 13, color: Colors.grey)),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: _presetColors.map((color) {
-                        final isSelected = _qrColor == color;
-                        return GestureDetector(
-                          onTap: () => setState(() => _qrColor = color),
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            width: 32,
-                            height: 32,
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: isSelected ? Colors.white : Colors.transparent,
-                                width: 2.5,
-                              ),
+                      ),
+                      const SizedBox(width: 12),
+                      if (_customLogoFile != null)
+                        TextButton.icon(
+                          onPressed: () => setState(() => _customLogoFile = null),
+                          icon: const Icon(Icons.close_rounded, size: 16, color: Colors.redAccent),
+                          label: const Text('Remove', style: TextStyle(color: Colors.redAccent)),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text('QR Matrix Color', style: TextStyle(fontSize: 12, color: Color(0xFF94A3B8), fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: _presetColors.map((color) {
+                      final isSelected = _qrColor == color;
+                      return GestureDetector(
+                        onTap: () => setState(() => _qrColor = color),
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 12),
+                          width: 34,
+                          height: 34,
+                          decoration: BoxDecoration(
+                            color: color,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: isSelected ? Colors.white : Colors.transparent,
+                              width: 2.5,
                             ),
-                            child: isSelected ? const Icon(Icons.check, size: 16, color: Colors.white) : null,
+                            boxShadow: isSelected
+                                ? [BoxShadow(color: color.withValues(alpha: 0.6), blurRadius: 10, spreadRadius: 1)]
+                                : null,
                           ),
-                        );
-                      }).toList(),
+                          child: isSelected ? const Icon(Icons.check, size: 16, color: Colors.white) : null,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Live QR Preview
+            Center(
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF6366F1).withValues(alpha: 0.15),
+                      blurRadius: 30,
+                      spreadRadius: 2,
                     ),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Live QR Preview Container
-            Center(
-              child: RepaintBoundary(
-                key: _qrRepaintKey,
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: _bgColor,
-                    borderRadius: BorderRadius.circular(24),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.3),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      QrImageView(
-                        data: _currentPayload,
-                        version: QrVersions.auto,
-                        size: 220,
-                        backgroundColor: Colors.transparent,
-                        eyeStyle: QrEyeStyle(
-                          eyeShape: QrEyeShape.square,
-                          color: _qrColor,
+                child: RepaintBoundary(
+                  key: _qrRepaintKey,
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: _bgColor,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        QrImageView(
+                          data: _currentPayload,
+                          version: QrVersions.auto,
+                          size: 210,
+                          backgroundColor: Colors.transparent,
+                          eyeStyle: QrEyeStyle(
+                            eyeShape: QrEyeShape.square,
+                            color: _qrColor,
+                          ),
+                          dataModuleStyle: QrDataModuleStyle(
+                            dataModuleShape: QrDataModuleShape.square,
+                            color: _qrColor,
+                          ),
+                          errorCorrectionLevel: QrErrorCorrectLevel.Q,
                         ),
-                        dataModuleStyle: QrDataModuleStyle(
-                          dataModuleShape: QrDataModuleShape.square,
-                          color: _qrColor,
-                        ),
-                        errorCorrectionLevel: QrErrorCorrectLevel.Q,
-                      ),
-                      if (_customLogoFile != null)
-                        Container(
-                          width: 48,
-                          height: 48,
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 4),
-                            ],
+                        if (_customLogoFile != null)
+                          Container(
+                            width: 48,
+                            height: 48,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 6),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.file(_customLogoFile!, fit: BoxFit.cover),
+                            ),
+                          )
+                        else
+                          Container(
+                            width: 44,
+                            height: 44,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 5),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(7),
+                              child: Image.asset('assets/logo.png', fit: BoxFit.cover),
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.file(_customLogoFile!, fit: BoxFit.cover),
-                          ),
-                        )
-                      else if (_useDefaultLogo)
-                        Container(
-                          width: 46,
-                          height: 46,
-                          padding: const EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 4),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset('assets/logo.png', fit: BoxFit.cover),
-                          ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 24),
 
-            // Export Actions
-            ElevatedButton.icon(
-              onPressed: _exportAndShare,
-              icon: const Icon(Icons.share_rounded),
-              label: const Text('Export & Share High-Res QR', style: TextStyle(fontWeight: FontWeight.bold)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4F46E5),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            // Share Action Button
+            Container(
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF4F46E5), Color(0xFF7C3AED)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(color: const Color(0xFF4F46E5).withValues(alpha: 0.35), blurRadius: 16, offset: const Offset(0, 6)),
+                ],
+              ),
+              child: ElevatedButton.icon(
+                onPressed: _exportAndShare,
+                icon: const Icon(Icons.share_rounded, size: 20),
+                label: const Text('Export & Share High-Res QR', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 30),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTypeChip(String type, IconData icon) {
+    final isSelected = _selectedType == type;
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: GestureDetector(
+        onTap: () => setState(() => _selectedType = type),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+          decoration: BoxDecoration(
+            color: isSelected ? const Color(0xFF4F46E5) : const Color(0xFF131B2E),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected ? const Color(0xFF6366F1) : const Color(0xFF1E293B),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 16, color: isSelected ? Colors.white : const Color(0xFF94A3B8)),
+              const SizedBox(width: 6),
+              Text(
+                type,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : const Color(0xFF94A3B8),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -444,10 +502,13 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
       case 'URL':
         return TextField(
           controller: _urlController,
+          style: const TextStyle(color: Colors.white),
           decoration: const InputDecoration(
             labelText: 'Website URL',
+            labelStyle: TextStyle(color: Color(0xFF94A3B8)),
             hintText: 'https://example.com',
-            prefixIcon: Icon(Icons.link_rounded),
+            prefixIcon: Icon(Icons.link_rounded, color: Color(0xFF6366F1)),
+            border: InputBorder.none,
           ),
           onChanged: (_) => setState(() {}),
         );
@@ -457,20 +518,26 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
             TextField(
               controller: _waPhone,
               keyboardType: TextInputType.phone,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Phone with Country Code',
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
                 hintText: '923001234567',
-                prefixIcon: Icon(Icons.phone_rounded),
+                prefixIcon: Icon(Icons.phone_rounded, color: Color(0xFF10B981)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
-            const SizedBox(height: 10),
+            const Divider(color: Color(0xFF1E293B)),
             TextField(
               controller: _waMessage,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Pre-filled Message (Optional)',
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
                 hintText: 'Hello, I scanned your QR code!',
-                prefixIcon: Icon(Icons.message_rounded),
+                prefixIcon: Icon(Icons.message_rounded, color: Color(0xFF10B981)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -481,19 +548,25 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
           children: [
             TextField(
               controller: _wifiSsid,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                labelText: 'Network Name (SSID)',
-                prefixIcon: Icon(Icons.wifi_rounded),
+                labelText: 'Wi-Fi Network Name (SSID)',
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+                prefixIcon: Icon(Icons.wifi_rounded, color: Color(0xFF6366F1)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
-            const SizedBox(height: 10),
+            const Divider(color: Color(0xFF1E293B)),
             TextField(
               controller: _wifiPass,
               obscureText: true,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Wi-Fi Password',
-                prefixIcon: Icon(Icons.lock_outline_rounded),
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+                prefixIcon: Icon(Icons.lock_outline_rounded, color: Color(0xFF6366F1)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -504,29 +577,38 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
           children: [
             TextField(
               controller: _vcardName,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Full Name',
-                prefixIcon: Icon(Icons.person_rounded),
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+                prefixIcon: Icon(Icons.person_rounded, color: Color(0xFF6366F1)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
-            const SizedBox(height: 10),
+            const Divider(color: Color(0xFF1E293B)),
             TextField(
               controller: _vcardPhone,
               keyboardType: TextInputType.phone,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Phone Number',
-                prefixIcon: Icon(Icons.phone_rounded),
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+                prefixIcon: Icon(Icons.phone_rounded, color: Color(0xFF6366F1)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
-            const SizedBox(height: 10),
+            const Divider(color: Color(0xFF1E293B)),
             TextField(
               controller: _vcardEmail,
               keyboardType: TextInputType.emailAddress,
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Email Address',
-                prefixIcon: Icon(Icons.email_rounded),
+                labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+                prefixIcon: Icon(Icons.email_rounded, color: Color(0xFF6366F1)),
+                border: InputBorder.none,
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -537,10 +619,13 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
         return TextField(
           controller: _textController,
           maxLines: 3,
+          style: const TextStyle(color: Colors.white),
           decoration: const InputDecoration(
             labelText: 'Text Content',
-            hintText: 'Enter any text, notes, or instructions...',
-            prefixIcon: Icon(Icons.notes_rounded),
+            labelStyle: TextStyle(color: Color(0xFF94A3B8)),
+            hintText: 'Enter text, notes, instructions...',
+            prefixIcon: Icon(Icons.notes_rounded, color: Color(0xFF6366F1)),
+            border: InputBorder.none,
           ),
           onChanged: (_) => setState(() {}),
         );
@@ -549,7 +634,7 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
 }
 
 /* =========================================================================
-   2. QR CAMERA SCANNER SCREEN
+   2. QR CAMERA SCANNER SCREEN - Immersive Pro Viewfinder & High Bottom Sheet
    ========================================================================= */
 class QRScannerScreen extends StatefulWidget {
   const QRScannerScreen({super.key});
@@ -563,109 +648,175 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   bool _isTorchOn = false;
   bool _isProcessing = false;
 
-  void _onDetect(BarcodeCapture capture) {
+  void _onDetect(BarcodeCapture capture) async {
     if (_isProcessing) return;
     final barcodes = capture.barcodes;
     if (barcodes.isEmpty) return;
 
     final rawValue = barcodes.first.rawValue;
-    if (rawValue == null || rawValue.isEmpty) return;
+    if (rawValue == null || rawValue.trim().isEmpty) return;
 
     _isProcessing = true;
     HapticFeedback.mediumImpact();
-    _saveScanHistory(rawValue);
+    _saveScanHistory(rawValue.trim());
+
+    // Stop camera so it does not freeze phone GPU/CPU
+    try {
+      await _cameraController.stop();
+    } catch (_) {}
+
+    if (!mounted) return;
+
+    final cleanRaw = rawValue.trim();
+    final isUrl = cleanRaw.startsWith('http://') || cleanRaw.startsWith('https://') || cleanRaw.contains('.');
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1E293B),
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF131B2E),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
       builder: (ctx) {
-        final isUrl = rawValue.startsWith('http://') || rawValue.startsWith('https://');
-        return Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
+        return SafeArea(
+          bottom: true,
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(22, 20, 22, 36), // High bottom padding for system bar
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Center(
+                  child: Container(
+                    width: 44,
+                    height: 4,
+                    margin: const EdgeInsets.only(bottom: 18),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF10B981).withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white24,
+                      borderRadius: BorderRadius.circular(99),
                     ),
-                    child: const Icon(Icons.check_circle_rounded, color: Color(0xFF10B981)),
                   ),
-                  const SizedBox(width: 12),
-                  const Text('QR Code Scanned', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF0F172A),
-                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: SelectableText(
-                  rawValue,
-                  style: const TextStyle(fontSize: 14, color: Colors.white70),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF10B981).withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(Icons.check_circle_rounded, color: Color(0xFF10B981), size: 24),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('QR Code Detected', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: Colors.white)),
+                        Text(
+                          isUrl ? 'Website Link' : 'Plain Content',
+                          style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  if (isUrl) ...[
+                const SizedBox(height: 18),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF090D16),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: const Color(0xFF1E293B)),
+                  ),
+                  child: SelectableText(
+                    cleanRaw,
+                    style: const TextStyle(fontSize: 14, color: Colors.white, height: 1.45, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    if (isUrl) ...[
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(colors: [Color(0xFF4F46E5), Color(0xFF7C3AED)]),
+                            borderRadius: BorderRadius.circular(14),
+                            boxShadow: [
+                              BoxShadow(color: const Color(0xFF4F46E5).withValues(alpha: 0.35), blurRadius: 12, offset: const Offset(0, 4)),
+                            ],
+                          ),
+                          child: ElevatedButton.icon(
+                            onPressed: () async {
+                              Navigator.pop(ctx);
+                              try {
+                                final target = cleanRaw.startsWith('http') ? cleanRaw : 'https://$cleanRaw';
+                                await launchUrl(Uri.parse(target), mode: LaunchMode.externalApplication);
+                              } catch (e) {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cannot open: $e')));
+                                }
+                              }
+                            },
+                            icon: const Icon(Icons.open_in_browser_rounded, size: 20),
+                            label: const Text('Open URL', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                    ],
                     Expanded(
-                      child: ElevatedButton.icon(
+                      child: OutlinedButton.icon(
                         onPressed: () async {
-                          final uri = Uri.parse(rawValue);
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(uri, mode: LaunchMode.externalApplication);
-                          }
+                          final messenger = ScaffoldMessenger.of(context);
+                          await Clipboard.setData(ClipboardData(text: cleanRaw));
+                          HapticFeedback.lightImpact();
+                          if (ctx.mounted) Navigator.pop(ctx);
+                          messenger.showSnackBar(
+                            const SnackBar(
+                              content: Row(
+                                children: [
+                                  Icon(Icons.check_circle_rounded, color: Color(0xFF10B981), size: 18),
+                                  SizedBox(width: 8),
+                                  Text('Copied to clipboard!'),
+                                ],
+                              ),
+                              backgroundColor: Color(0xFF1E293B),
+                              behavior: SnackBarBehavior.floating,
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
                         },
-                        icon: const Icon(Icons.open_in_browser_rounded),
-                        label: const Text('Open URL'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF4F46E5),
+                        icon: const Icon(Icons.copy_rounded, size: 20),
+                        label: const Text('Copy', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+                        style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          side: const BorderSide(color: Color(0xFF334155), width: 1.5),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
                   ],
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: rawValue));
-                        Navigator.pop(ctx);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Copied to clipboard!')),
-                        );
-                      },
-                      icon: const Icon(Icons.copy_rounded),
-                      label: const Text('Copy'),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-            ],
+                ),
+              ],
+            ),
           ),
         );
       },
-    ).whenComplete(() {
-      Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) setState(() => _isProcessing = false);
-      });
+    ).whenComplete(() async {
+      try {
+        await _cameraController.start();
+      } catch (_) {}
+      if (mounted) setState(() => _isProcessing = false);
     });
   }
 
@@ -694,16 +845,33 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       appBar: AppBar(
         title: const Text('Live QR Scanner'),
         actions: [
-          IconButton(
-            icon: Icon(_isTorchOn ? Icons.flash_on_rounded : Icons.flash_off_rounded),
-            onPressed: () {
-              _cameraController.toggleTorch();
-              setState(() => _isTorchOn = !_isTorchOn);
-            },
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFF131B2E),
+              shape: BoxShape.circle,
+              border: Border.all(color: const Color(0xFF1E293B)),
+            ),
+            child: IconButton(
+              icon: Icon(_isTorchOn ? Icons.flash_on_rounded : Icons.flash_off_rounded, size: 20),
+              color: _isTorchOn ? Colors.amber : Colors.white,
+              onPressed: () {
+                _cameraController.toggleTorch();
+                setState(() => _isTorchOn = !_isTorchOn);
+              },
+            ),
           ),
-          IconButton(
-            icon: const Icon(Icons.flip_camera_ios_rounded),
-            onPressed: () => _cameraController.switchCamera(),
+          Container(
+            margin: const EdgeInsets.only(right: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xFF131B2E),
+              shape: BoxShape.circle,
+              border: Border.all(color: const Color(0xFF1E293B)),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.flip_camera_ios_rounded, size: 20, color: Colors.white),
+              onPressed: () => _cameraController.switchCamera(),
+            ),
           ),
         ],
       ),
@@ -713,31 +881,46 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
             controller: _cameraController,
             onDetect: _onDetect,
           ),
-          // Scanner Overlay Frame
+          // Viewfinder Glow Target Frame
           Center(
             child: Container(
               width: 250,
               height: 250,
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFF6366F1), width: 3),
-                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF6366F1), width: 2.5),
+                borderRadius: BorderRadius.circular(24),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                  ),
+                ],
               ),
             ),
           ),
+          // Bottom Helper Pill
           Positioned(
-            bottom: 40,
-            left: 20,
-            right: 20,
+            bottom: 36,
+            left: 28,
+            right: 28,
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
               decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.7),
-                borderRadius: BorderRadius.circular(30),
+                color: const Color(0xFF090D16).withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(99),
+                border: Border.all(color: Colors.white12),
               ),
-              child: const Text(
-                'Point camera at any QR code to scan',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.center_focus_strong_rounded, size: 18, color: Color(0xFF818CF8)),
+                  SizedBox(width: 8),
+                  Text(
+                    'Align QR code inside the frame to scan',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13),
+                  ),
+                ],
               ),
             ),
           ),
@@ -788,7 +971,7 @@ class _QRHistoryScreenState extends State<QRHistoryScreen> {
         actions: [
           if (_history.isNotEmpty)
             IconButton(
-              icon: const Icon(Icons.delete_sweep_rounded),
+              icon: const Icon(Icons.delete_sweep_rounded, color: Colors.redAccent),
               onPressed: _clearHistory,
             ),
         ],
@@ -798,9 +981,19 @@ class _QRHistoryScreenState extends State<QRHistoryScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.history_rounded, size: 64, color: Colors.grey[600]),
-                  const SizedBox(height: 12),
-                  const Text('No QR history yet', style: TextStyle(color: Colors.grey, fontSize: 16)),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF131B2E),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: const Color(0xFF1E293B)),
+                    ),
+                    child: const Icon(Icons.history_rounded, size: 48, color: Color(0xFF64748B)),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text('No QR history yet', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 16, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 6),
+                  const Text('Created & scanned codes will appear here', style: TextStyle(color: Color(0xFF64748B), fontSize: 13)),
                 ],
               ),
             )
@@ -810,33 +1003,41 @@ class _QRHistoryScreenState extends State<QRHistoryScreen> {
               itemBuilder: (ctx, idx) {
                 final item = _history[idx];
                 final isCreated = item['type'] == 'Created';
-                return Card(
-                  color: const Color(0xFF1E293B),
+                return Container(
                   margin: const EdgeInsets.only(bottom: 10),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF131B2E),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: const Color(0xFF1E293B)),
+                  ),
                   child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: isCreated
-                          ? const Color(0xFF4F46E5).withValues(alpha: 0.2)
-                          : const Color(0xFF10B981).withValues(alpha: 0.2),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: isCreated
+                            ? const Color(0xFF4F46E5).withValues(alpha: 0.15)
+                            : const Color(0xFF10B981).withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Icon(
                         isCreated ? Icons.qr_code_2_rounded : Icons.qr_code_scanner_rounded,
                         color: isCreated ? const Color(0xFF818CF8) : const Color(0xFF34D399),
-                        size: 20,
+                        size: 22,
                       ),
                     ),
                     title: Text(
                       item['payload'] ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: Colors.white),
                     ),
                     subtitle: Text(
                       '${item['type']} • ${item['category'] ?? 'QR'}',
-                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      style: const TextStyle(fontSize: 12, color: Color(0xFF94A3B8)),
                     ),
                     trailing: IconButton(
-                      icon: const Icon(Icons.copy_rounded, size: 18),
+                      icon: const Icon(Icons.copy_rounded, size: 18, color: Color(0xFF94A3B8)),
                       onPressed: () {
                         Clipboard.setData(ClipboardData(text: item['payload'] ?? ''));
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -853,7 +1054,7 @@ class _QRHistoryScreenState extends State<QRHistoryScreen> {
 }
 
 /* =========================================================================
-   4. ABOUT & PRIVACY SCREEN
+   4. ABOUT & PRIVACY SCREEN - Premium Settings Card
    ========================================================================= */
 class AboutSettingsScreen extends StatelessWidget {
   const AboutSettingsScreen({super.key});
@@ -861,82 +1062,95 @@ class AboutSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About MyLogoQR')),
+      appBar: AppBar(title: const Text('About & Privacy')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(22),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 10),
+                  BoxShadow(color: const Color(0xFF6366F1).withValues(alpha: 0.25), blurRadius: 24, spreadRadius: 2),
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.asset('assets/logo.png', width: 90, height: 90, fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(18),
+                child: Image.asset('assets/logo.png', width: 88, height: 88, fit: BoxFit.cover),
               ),
             ),
             const SizedBox(height: 16),
             const Text(
               'MyLogoQR',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.white),
             ),
-            const Text(
-              'Version 1.1.0 • Native Android Edition',
-              style: TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1E293B),
+                borderRadius: BorderRadius.circular(99),
+                border: Border.all(color: Colors.white12),
+              ),
+              child: const Text(
+                'v1.1.0 • Native Android Edition',
+                style: TextStyle(color: Color(0xFF94A3B8), fontSize: 11, fontWeight: FontWeight.w600),
+              ),
             ),
             const SizedBox(height: 24),
 
-            // Privacy Card
-            Card(
-              color: const Color(0xFF1E293B),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: const Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.security_rounded, color: Color(0xFF10B981)),
-                        SizedBox(width: 8),
-                        Text('100% Privacy-First Architecture', style: TextStyle(fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'All QR codes, custom logos, and camera scanning happen strictly inside your phone memory. Zero telemetry, zero analytics tracking, and no cloud servers.',
-                      style: TextStyle(color: Colors.white70, fontSize: 13, height: 1.5),
-                    ),
-                  ],
-                ),
+            // Privacy Guarantee
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFF131B2E),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF1E293B)),
+              ),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.verified_user_rounded, color: Color(0xFF10B981), size: 20),
+                      SizedBox(width: 8),
+                      Text('100% Client-Side Privacy Guarantee', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.white)),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'All barcodes, custom logos, and camera feeds are processed strictly in your device memory. Zero tracking, zero telemetry, and never sent to cloud servers.',
+                    style: TextStyle(color: Color(0xFF94A3B8), fontSize: 13, height: 1.5),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 16),
 
-            // Links Card
-            Card(
-              color: const Color(0xFF1E293B),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            // Navigation Links
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFF131B2E),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF1E293B)),
+              ),
               child: Column(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.language_rounded, color: Color(0xFF6366F1)),
-                    title: const Text('Visit Official Website'),
-                    subtitle: const Text('https://mylogoqr.com'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
+                    leading: const Icon(Icons.language_rounded, color: Color(0xFF818CF8)),
+                    title: const Text('Official Website', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+                    subtitle: const Text('https://mylogoqr.com', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12)),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF64748B)),
                     onTap: () => launchUrl(Uri.parse('https://mylogoqr.com'), mode: LaunchMode.externalApplication),
                   ),
-                  const Divider(color: Colors.white10, height: 1),
+                  const Divider(color: Color(0xFF1E293B), height: 1),
                   ListTile(
                     leading: const Icon(Icons.star_rate_rounded, color: Colors.amber),
-                    title: const Text('Rate on Google Play'),
-                    subtitle: const Text('com.mylogoqr.app'),
-                    trailing: const Icon(Icons.chevron_right_rounded),
+                    title: const Text('Rate on Google Play', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+                    subtitle: const Text('com.mylogoqr.app', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12)),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF64748B)),
                     onTap: () => launchUrl(
                       Uri.parse('https://play.google.com/store/apps/details?id=com.mylogoqr.app'),
                       mode: LaunchMode.externalApplication,
@@ -945,10 +1159,10 @@ class AboutSettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 32),
             const Text(
-              'Engineered by SRK AMD • 100% Free Forever',
-              style: TextStyle(color: Colors.grey, fontSize: 12),
+              'Crafted by SRK AMD • 100% Free Forever',
+              style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.w500),
             ),
           ],
         ),
