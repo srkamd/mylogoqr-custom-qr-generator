@@ -263,3 +263,33 @@ footer p { color: #94A3B8; line-height: 1.65; }
   * { transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* PWA / Standalone App Optimization */
+@media (display-mode: standalone), (display-mode: fullscreen), (display-mode: minimal-ui) {
+  header nav,
+  .hero-badges,
+  .chips,
+  footer,
+  section.dark,
+  #play-store-badge,
+  .support-line {
+    display: none !important;
+  }
+  .hero {
+    padding: 16px 0 20px !important;
+  }
+  .hero h1 {
+    font-size: 1.65rem !important;
+    margin-bottom: 8px !important;
+  }
+  .hero p {
+    font-size: 0.95rem !important;
+    margin-bottom: 12px !important;
+  }
+  .tool {
+    margin-top: 10px !important;
+    border-radius: 18px !important;
+    box-shadow: none !important;
+  }
+}
+
