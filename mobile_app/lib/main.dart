@@ -156,6 +156,10 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
   final Color _bgColor = Colors.white;
   File? _customLogoFile;
 
+  final TextEditingController _badgeController = TextEditingController(text: 'SCAN ME');
+  bool _showBadge = true;
+  String _badgeStyle = 'pill'; // 'pill', 'outline', 'clean' 
+
   final List<Color> _presetColors = [
     const Color(0xFF0F172A),
     const Color(0xFF4F46E5),
@@ -345,6 +349,89 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 16),
+
+            // 6. Label Under QR (Scan Me Brand Badge)
+            Container(
+              padding: const EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                color: const Color(0xFF131B2E),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFF1E293B), width: 1.2),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.label_important_rounded, size: 20, color: Color(0xFF818CF8)),
+                          SizedBox(width: 8),
+                          Text('Label under QR (Brand Badge)', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15, color: Colors.white)),
+                        ],
+                      ),
+                      Switch(
+                        value: _showBadge,
+                        activeColor: const Color(0xFF6366F1),
+                        onChanged: (val) => setState(() => _showBadge = val),
+                      ),
+                    ],
+                  ),
+                  if (_showBadge) ...[
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _badgeController,
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      decoration: InputDecoration(
+                        hintText: 'SCAN ME, FOR MENU, WI-FI',
+                        hintStyle: const TextStyle(color: Color(0xFF64748B)),
+                        prefixIcon: const Icon(Icons.edit_rounded, color: Color(0xFF6366F1), size: 18),
+                        filled: true,
+                        fillColor: const Color(0xFF090D16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Color(0xFF1E293B)),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      ),
+                      onChanged: (_) => setState(() {}),
+                    ),
+                    const SizedBox(height: 10),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: ['SCAN ME', 'SCAN FOR MENU', 'CONNECT WI-FI', 'ORDER HERE', 'PAY HERE'].map((text) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ActionChip(
+                              label: Text(text),
+                              backgroundColor: const Color(0xFF090D16),
+                              side: const BorderSide(color: Color(0xFF1E293B)),
+                              labelStyle: const TextStyle(color: Color(0xFFCBD5E1), fontSize: 11, fontWeight: FontWeight.w600),
+                              onPressed: () {
+                                setState(() => _badgeController.text = text);
+                              },
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Row(
+                      children: [
+                        _buildBadgeStyleOption('pill', 'Pill Badge'),
+                        const SizedBox(width: 8),
+                        _buildBadgeStyleOption('outline', 'Outline'),
+                        const SizedBox(width: 8),
+                        _buildBadgeStyleOption('clean', 'Clean Text'),
+                      ],
+                    ),
+                  ],
+                ],
+              ),
+            ),
             const SizedBox(height: 24),
 
             // Live QR Preview
@@ -364,63 +451,70 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
                 child: RepaintBoundary(
                   key: _qrRepaintKey,
                   child: Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
                     decoration: BoxDecoration(
                       color: _bgColor,
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    child: Stack(
-                      alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        QrImageView(
-                          data: _currentPayload,
-                          version: QrVersions.auto,
-                          size: 210,
-                          backgroundColor: Colors.transparent,
-                          eyeStyle: QrEyeStyle(
-                            eyeShape: QrEyeShape.square,
-                            color: _qrColor,
-                          ),
-                          dataModuleStyle: QrDataModuleStyle(
-                            dataModuleShape: QrDataModuleShape.square,
-                            color: _qrColor,
-                          ),
-                          errorCorrectionLevel: QrErrorCorrectLevel.Q,
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            QrImageView(
+                              data: _currentPayload,
+                              version: QrVersions.auto,
+                              size: 210,
+                              backgroundColor: Colors.transparent,
+                              eyeStyle: QrEyeStyle(
+                                eyeShape: QrEyeShape.square,
+                                color: _qrColor,
+                              ),
+                              dataModuleStyle: QrDataModuleStyle(
+                                dataModuleShape: QrDataModuleShape.square,
+                                color: _qrColor,
+                              ),
+                              errorCorrectionLevel: QrErrorCorrectLevel.Q,
+                            ),
+                            if (_customLogoFile != null)
+                              Container(
+                                width: 48,
+                                height: 48,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 6),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.file(_customLogoFile!, fit: BoxFit.cover),
+                                ),
+                              )
+                            else
+                              Container(
+                                width: 44,
+                                height: 44,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 5),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(7),
+                                  child: Image.asset('assets/logo.png', fit: BoxFit.cover),
+                                ),
+                              ),
+                          ],
                         ),
-                        if (_customLogoFile != null)
-                          Container(
-                            width: 48,
-                            height: 48,
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 6),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.file(_customLogoFile!, fit: BoxFit.cover),
-                            ),
-                          )
-                        else
-                          Container(
-                            width: 44,
-                            height: 44,
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(color: Colors.black.withValues(alpha: 0.2), blurRadius: 5),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(7),
-                              child: Image.asset('assets/logo.png', fit: BoxFit.cover),
-                            ),
-                          ),
+                        if (_showBadge && _badgeController.text.trim().isNotEmpty)
+                          _buildScanMeBadge(),
                       ],
                     ),
                   ),
@@ -460,6 +554,98 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildBadgeStyleOption(String style, String label) {
+    final isSelected = _badgeStyle == style;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _badgeStyle = style),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 9),
+          decoration: BoxDecoration(
+            color: isSelected ? const Color(0xFF4F46E5).withValues(alpha: 0.35) : const Color(0xFF090D16),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: isSelected ? const Color(0xFF6366F1) : const Color(0xFF1E293B),
+              width: 1.2,
+            ),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: isSelected ? Colors.white : const Color(0xFF94A3B8),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildScanMeBadge() {
+    final text = _badgeController.text.trim().toUpperCase();
+    if (text.isEmpty) return const SizedBox.shrink();
+
+    if (_badgeStyle == 'pill') {
+      return Container(
+        margin: const EdgeInsets.only(top: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
+        decoration: BoxDecoration(
+          color: _qrColor,
+          borderRadius: BorderRadius.circular(99),
+          boxShadow: [
+            BoxShadow(
+              color: _qrColor.withValues(alpha: 0.25),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w800,
+            fontSize: 13,
+            letterSpacing: 2.0,
+          ),
+        ),
+      );
+    } else if (_badgeStyle == 'outline') {
+      return Container(
+        margin: const EdgeInsets.only(top: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        decoration: BoxDecoration(
+          border: Border.all(color: _qrColor, width: 2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: _qrColor,
+            fontWeight: FontWeight.w800,
+            fontSize: 13,
+            letterSpacing: 2.0,
+          ),
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.only(top: 12),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: _qrColor,
+            fontWeight: FontWeight.w800,
+            fontSize: 14,
+            letterSpacing: 2.5,
+          ),
+        ),
+      );
+    }
   }
 
   Widget _buildTypeChip(String type, IconData icon) {
