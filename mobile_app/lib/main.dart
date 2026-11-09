@@ -1315,7 +1315,7 @@ class AboutSettingsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // Navigation Links
+            // Developer & Engineering Profile Card
             Container(
               decoration: BoxDecoration(
                 color: const Color(0xFF131B2E),
@@ -1324,19 +1324,65 @@ class AboutSettingsScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: const Icon(Icons.person_outline_rounded, color: Colors.white, size: 24),
+                        ),
+                        const SizedBox(width: 14),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Shahrukh Ahmad (SRK AMD)',
+                                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15, color: Colors.white),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                'Lead Engineer & Systems Architect',
+                                style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(color: Color(0xFF1E293B), height: 1),
                   ListTile(
                     leading: const Icon(Icons.language_rounded, color: Color(0xFF818CF8)),
                     title: const Text('Official Website', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
                     subtitle: const Text('https://mylogoqr.com', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12)),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF64748B)),
+                    trailing: const Icon(Icons.open_in_new_rounded, size: 16, color: Color(0xFF64748B)),
                     onTap: () => launchUrl(Uri.parse('https://mylogoqr.com'), mode: LaunchMode.externalApplication),
+                  ),
+                  const Divider(color: Color(0xFF1E293B), height: 1),
+                  ListTile(
+                    leading: const Icon(Icons.code_rounded, color: Color(0xFF38BDF8)),
+                    title: const Text('GitHub Profile', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
+                    subtitle: const Text('https://github.com/srkamd', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12)),
+                    trailing: const Icon(Icons.open_in_new_rounded, size: 16, color: Color(0xFF64748B)),
+                    onTap: () => launchUrl(Uri.parse('https://github.com/srkamd'), mode: LaunchMode.externalApplication),
                   ),
                   const Divider(color: Color(0xFF1E293B), height: 1),
                   ListTile(
                     leading: const Icon(Icons.star_rate_rounded, color: Colors.amber),
                     title: const Text('Rate on Google Play', style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white)),
                     subtitle: const Text('com.mylogoqr.app', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12)),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF64748B)),
+                    trailing: const Icon(Icons.open_in_new_rounded, size: 16, color: Color(0xFF64748B)),
                     onTap: () => launchUrl(
                       Uri.parse('https://play.google.com/store/apps/details?id=com.mylogoqr.app'),
                       mode: LaunchMode.externalApplication,
@@ -1347,8 +1393,13 @@ class AboutSettingsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             const Text(
-              'Crafted by SRK AMD • 100% Free Forever',
+              'Engineered with ❤️ by Shahrukh Ahmad (SRK AMD)',
               style: TextStyle(color: Color(0xFF64748B), fontSize: 12, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              '100% Free Forever • Zero Subscription Traps',
+              style: TextStyle(color: Color(0xFF475569), fontSize: 11),
             ),
           ],
         ),
