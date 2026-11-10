@@ -74,17 +74,25 @@
   RewriteCond %{REQUEST_URI} (.+)/$
   RewriteRule ^ %1 [L,R=301]
 
-    # 2d. Redirect explicit .html URLs to clean URLs (prevents duplicate content)
+  # 2d. Redirect explicit .html URLs to clean URLs (prevents duplicate content)
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+)\.html\ HTTP/
   RewriteRule ^([^/]+)\.html$ https://mylogoqr.com/$1 [R=301,L]
 
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /blog/([^/]+)\.html\ HTTP/
   RewriteRule ^blog/([^/]+)\.html$ https://mylogoqr.com/blog/$1 [R=301,L]
 
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([a-z]{2})/blog/([^/]+)\.html\ HTTP/
+  RewriteRule ^([a-z]{2})/blog/([^/]+)\.html$ https://mylogoqr.com/$1/blog/$2 [R=301,L]
+
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([a-z]{2})/([^/]+)\.html\ HTTP/
   RewriteRule ^([a-z]{2})/([^/]+)\.html$ https://mylogoqr.com/$1/$2 [R=301,L]
 
   # 2e. Internal rewrite: serve clean URLs from physical .html files
+  # Language blog subfolders (e.g. es/blog/slug)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1/blog/$2.html -f
+  RewriteRule ^([a-z]{2})/blog/([^/]+)/?$ $1/blog/$2.html [L]
+
   # Language subfolders (es, it, pt, ru, de, fr)
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
