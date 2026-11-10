@@ -59,6 +59,48 @@
 </script>
 <!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="CqGKQ5hsgj9vsZ6D6Lljl-dE8-BGeGRfStHqAO21n2s">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can one QR ticket be used twice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The code itself will scan as many times as it is shown. Preventing re-entry is the check-in workflow's job: record each unique ticket ID when it is first presented and refuse IDs already marked as used."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do ticket QR codes need an internet connection at the door?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if the ticket ID is encoded as plain text. The ID is read from the pattern itself, so staff can check it against a local list completely offline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should event tickets use static or dynamic codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Static codes are free, never expire and are usually enough for a single event with fixed details. Dynamic codes only earn their subscription when you must change the destination after printing or need per-scan analytics."
+      }
+    }
+  ]
+}
+</script>
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mylogoqr.com/blog/qr-code-event-ticketing-system-guide">
+<meta property="og:title" content="QR Code Event Ticketing &amp; Pass System Guide | MyLogoQR">
+<meta property="og:description" content="Explore how QR code event tickets eliminate counterfeit passes, prevent duplicate scans, and speed up door admissions at conferences and concerts.">
+<meta property="og:image" content="https://mylogoqr.com/app_icon.jpg">
+<meta property="og:site_name" content="MyLogoQR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Event Ticketing &amp; Pass System Guide | MyLogoQR">
+<meta name="twitter:description" content="Explore how QR code event tickets eliminate counterfeit passes, prevent duplicate scans, and speed up door admissions at conferences and concerts.">
+<meta name="twitter:image" content="https://mylogoqr.com/app_icon.jpg">
 </head>
 <body>
 <a href="#generator" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;">Skip to main content</a>
@@ -124,6 +166,39 @@
     <li><a href="/blog/how-to-make-a-qr-code-with-a-logo-in-the-middle" style="color:#2563EB;text-decoration:none;font-weight:500;">&bull; How to Place Logos in QR Codes with Level H Correction</a></li>
   </ul>
 </div>
+
+
+<h2>What to encode in a ticket QR code</h2>
+<p>A ticket code has one job: prove, at the door, that this person may enter. The safest payload is a unique ticket ID — a short string such as EVT26-00417 — that your entry list can check off. Encoding the ID as plain text keeps the whole system offline-friendly: the ID is inside the pattern, so a scanner app or a simple list on a phone can verify it without a venue network. MyLogoQR's free <a href="/text-qr-code-generator">text QR code generator</a> is ideal for IDs, while codes that should open a booking page, a seating map or an event programme belong in the main <a href="/">QR code generator</a> as URL codes. Compare the formats side by side on the <a href="/qr-code-types">QR code types</a> page before you commit to a print run.</p>
+<h2>Entry workflow: duplicates, speed and offline checks</h2>
+<p>Most ticketing failures are workflow failures, not code failures. A screenshot of a valid ticket can be shared with five friends, so the door system — even a paper list — must mark each ID as used the first time it is presented. Keep one entry list per gate, sync gates during breaks, and brief staff that a code which scans fine can still be refused if its ID is already checked in. Speed matters too: a queue forms when codes are small, glossy or badly lit, so print tickets with a clear quiet zone, a matte finish where possible, and a code at least 2.5&nbsp;cm wide for arm's-length scanning.</p>
+<ul>
+<li><strong>One ID, one entry.</strong> Generate a unique code per ticket, never one shared code for a whole event.</li>
+<li><strong>Test the worst ticket.</strong> Print the longest ID, crumple it lightly, and scan it in the venue's real lighting before doors open.</li>
+<li><strong>Plan for dead batteries and no signal.</strong> Text-based IDs plus a printed backup list keep entry moving when the network does not.</li>
+<li><strong>Brand the ticket.</strong> Your event logo in the centre (20–25%, error correction H) makes screenshots easier to spot and tickets harder to forge casually.</li>
+</ul>
+
+<h2>Common event ticketing mistakes</h2>
+<p>The classic disaster is one shared QR code for the whole event: it looks tidy on the poster, but it proves nothing at the door because it cannot distinguish one guest from the next. Every ticket needs its own unique ID. The second mistake is trusting the scan alone — a scanner only reports that a code is readable, not that it is unused, so without a checked-off list (app, spreadsheet or paper) the same screenshot walks in five times. Third, organisers test codes on their own new phones under office lights, then discover at the venue that stage glare, glossy ticket stock and older devices slow the queue to a crawl; proof tickets on the real stock, in the real space, with a mid-range phone. Finally, do not bury the code in artwork. Tickets need a clean quiet zone and strong contrast more than they need decoration — brand them with the logo and label features, then leave the pattern itself alone.</p>
+
+
+<h2>Quick start checklist</h2>
+<ul>
+<li>Decide the payload first: a unique plain-text ID for offline door checks, or a URL when the ticket must open a page.</li>
+<li>Generate one code per ticket — never one code for the whole guest list — and keep a master list of every ID issued.</li>
+<li>Brand each ticket with the event logo at error correction H, and label it clearly as the entry pass.</li>
+<li>Proof-print the longest ID on the real ticket stock and scan it in the venue's lighting with a mid-range phone.</li>
+<li>Brief door staff on the one rule that matters: an ID is admitted once, then marked used — no exceptions for screenshots.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<h3>Can one QR ticket be used twice?</h3>
+<p>The code itself will scan as many times as it is shown. Preventing re-entry is the check-in workflow's job: record each unique ticket ID when it is first presented and refuse IDs already marked as used.</p>
+<h3>Do ticket QR codes need an internet connection at the door?</h3>
+<p>Not if the ticket ID is encoded as plain text. The ID is read from the pattern itself, so staff can check it against a local list completely offline.</p>
+<h3>Should event tickets use static or dynamic codes?</h3>
+<p>Static codes are free, never expire and are usually enough for a single event with fixed details. Dynamic codes only earn their subscription when you must change the destination after printing or need per-scan analytics.</p>
 
 </article>
 </main>

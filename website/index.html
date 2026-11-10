@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Free QR Code Generator with Logo, Colors & Shapes | MyLogoQR</title>
-<meta name="description" content="Create QR codes for links, WhatsApp, Wi-Fi, text and contacts. Add your logo, gradients and custom shapes. Runs in your browser, nothing is uploaded.">
+<title>Free QR Code Generator with Logo &amp; Custom Colors | MyLogoQR</title>
+<meta name="description" content="Create free custom QR codes with your logo, colors, and styles. Generate Link, WhatsApp, WiFi, Text, and Contact QR codes. Download PNG or SVG instantly.">>
 <link rel="canonical" href="https://mylogoqr.com/">
 <link rel="icon" type="image/jpeg" href="/app_icon.jpg">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -42,8 +42,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
 
 <!-- Structured Schema Data -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -84,34 +83,82 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Can I change a QR code after printing it?",
+          "name": "Can I change or edit a QR code after printing it?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. These are static codes, so the data is part of the pattern. If your link or number changes, create a new code and reprint."
+            "text": "No. Codes generated on MyLogoQR are permanent static QR codes. The encoded data (such as your website URL, contact information, or Wi-Fi password) is directly compiled into the physical matrix module pattern. Because there is no intermediary redirect server or database lookup, the destination cannot be altered once printed. If your URL or phone number changes in the future, you simply generate a fresh code and reprint."
           }
         },
         {
           "@type": "Question",
-          "name": "Do the codes expire or have a scan limit?",
+          "name": "Do these QR codes ever expire or have scan limits?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. There is no redirect server, so nothing can expire and nothing needs a subscription."
+            "text": "No. MyLogoQR codes never expire, have zero scan limits, and require no recurring subscriptions. Traditional dynamic QR vendors force links through proprietary redirect servers that shut off after free trials expire. Our client-side static codes connect mobile camera scanners directly to your target destination forever."
           }
         },
         {
           "@type": "Question",
-          "name": "What logo size is safe?",
+          "name": "What logo size and contrast ratio is safe to prevent scan failures?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Stay at 20 to 25 percent, keep strong contrast and test with a real phone before printing."
+            "text": "We recommend keeping your logo size slider between 20% and 25% of the total matrix area while selecting Error Correction Level Q (25% recovery) or Level H (30% recovery). Always ensure your logo has a clean outline or border that separates it from the surrounding QR dots, and test scan the live on-screen preview with both iOS and Android cameras before submitting files to physical print."
           }
         },
         {
           "@type": "Question",
-          "name": "Is my data stored anywhere?",
+          "name": "Is my data or Wi-Fi password stored on an external server?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Everything is generated entirely in your browser. Nothing touches an external server."
+            "text": "No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All cryptographic encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Nothing touches an external server, database, or analytics tracker. See our Privacy Policy for full architecture verification."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the new \"Label under QR\" feature for brands and restaurants?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our optional Label under QR feature allows hospitality venues, fast food chains, retail stores, and corporate brands to add a clean, readable text label (such as \"SCAN ME\", \"MENU\", \"CONNECT WI-FI\", \"ORDER HERE\", or \"PAY HERE\") directly beneath the QR code. You can choose between a modern rounded Pill badge, clean typography with letter tracking, or a solid rectangular banner. When downloaded, the badge is seamlessly embedded into your high-resolution PNG or vector SVG export."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use these QR codes for commercial products and business marketing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100%. All QR codes, vector SVG graphics, and high-resolution PNG files generated on MyLogoQR are completely free for commercial, retail, educational, and personal use without copyright royalties, licensing fees, or attribution requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do Wi-Fi QR codes connect guest devices automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our Wi-Fi tool structures network credentials into the standardized MECARD format (WIFI:T:WPA;S:NetworkName;P:Password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking \"Join [Network Name]?\". Tapping Join automatically authenticates the device without typing passwords manually."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which download format should I choose: PNG or SVG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use PNG (1000 x 1000 px) for digital presentations, social media, email signatures, website graphics, and standard office desktop printers. Choose SVG (Scalable Vector Graphics) for professional print shops, commercial packaging, restaurant acrylic stands, signage, and vector software like Adobe Illustrator or Figma."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Reed-Solomon Error Correction work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects up to 7% of missing data, Level M corrects up to 15%, Level Q corrects up to 25%, and Level H corrects up to 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is mathematically necessary to restore readability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does MyLogoQR comply with Google AdSense and web quality standards?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MyLogoQR complies with Google AdSense Program Policies, Google Webmaster Quality Guidelines, GDPR, and CCPA standards. We deliver original engineering utility, transparent authorship by a verified Systems Architect, zero malware or tracking bloatware, comprehensive educational documentation, and full cookie disclosure policies."
           }
         }
       ]
@@ -145,8 +192,7 @@
       ]
     }
   ]
-}
-</script>
+}</script>
 
 <style>
 :root{--ink:#0A0F1D;--ink2:#1E293B;--ink3:#475569;--bg:#F8FAFC;--card:#fff;--line:#E2E8F0;--p:#4F46E5;--t:#0D9488;--a:#F59E0B;--r:18px;--g:linear-gradient(135deg,#4F46E5,#06B6D4);--h:'Bricolage Grotesque',system-ui,sans-serif;--b:'Inter',system-ui,sans-serif}
@@ -320,7 +366,7 @@ footer p{color:#94A3B8;line-height:1.6}
 
 <main>
 <div class="hero"><div class="wrap">
- <h1>QR codes that look like your brand</h1>
+ <h1>Free QR Code Generator with Logo and Customization</h1>
  <p>Add your logo, pick a style and download in seconds. Free, private and no sign-up.</p>
  <ul class="chips"><li><a href="https://play.google.com/store/apps/details?id=com.mylogoqr.app" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">📱 Android App Live</a></li></ul>
 <div style="margin-top:22px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:center;"><a href="https://chromewebstore.google.com/detail/mylogoqr-free-qr-code-ge/bbmhigcaadcenfjalbjcakbamgpgjlke" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#0B0F19;padding:10px 22px;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:transform 0.15s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#4285F4"/><circle cx="12" cy="12" r="4.5" fill="#FFFFFF"/><circle cx="12" cy="12" r="3" fill="#1A73E8"/><path d="M12 2a10 10 0 0 1 8.66 5H12z" fill="#EA4335"/><path d="M20.66 7A10 10 0 0 1 12 22l4.33-7.5z" fill="#FBBC05"/><path d="M12 22A10 10 0 0 1 3.34 7H12z" fill="#34A853"/></svg><span>Add to Chrome <span style="font-size:0.75rem;background:#EEF2FF;color:#4F46E5;padding:2px 7px;border-radius:6px;font-weight:800;margin-left:4px">FREE</span></span></a><a href="https://play.google.com/store/apps/details?id=com.mylogoqr.app" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;background:#000000;color:#FFFFFF;border:1px solid rgba(255,255,255,0.25);padding:10px 22px;border-radius:12px;font-weight:700;font-size:0.95rem;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);transition:transform 0.15s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'"><svg width="18" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.6 1.8L13.8 12 3.6 22.2C3.2 21.8 3 21.1 3 20.3V3.7C3 2.9 3.2 2.2 3.6 1.8Z" fill="#2196F3"/><path d="M17.2 8.6L13.8 12 3.6 1.8C4 1.5 4.6 1.4 5.3 1.8L17.2 8.6Z" fill="#4CAF50"/><path d="M17.2 15.4L5.3 22.2C4.6 22.6 4 22.5 3.6 22.2L13.8 12 17.2 15.4Z" fill="#F44336"/><path d="M21.2 10.3L17.2 8.6 13.8 12 17.2 15.4 21.2 13.7C22.3 13.1 22.3 10.9 21.2 10.3Z" fill="#FFEB3B"/></svg><span>Google Play <span style="font-size:0.75rem;background:rgba(16,185,129,0.2);color:#34D399;padding:2px 7px;border-radius:6px;font-weight:800;margin-left:4px">LIVE</span></span></a></div>
@@ -526,6 +572,20 @@ footer p{color:#94A3B8;line-height:1.6}
  <p>It takes less than a minute and costs nothing.</p>
  <a href="#generator">Create your QR code</a>
 </div></div>
+
+<section><div class="wrap">
+<h2>Popular guides and new generators</h2>
+<ul>
+<li><a href="/blog/how-to-make-a-qr-code-with-a-logo-in-the-middle">How to make a QR code with a logo in the middle</a></li>
+<li><a href="/blog/how-to-use-whatsapp-qr-code-for-business">WhatsApp QR codes for business</a></li>
+<li><a href="/blog/qr-codes-for-restaurants-and-cafes-digital-menu-guide">Restaurant and cafe QR codes</a></li>
+<li><a href="/blog/wifi-qr-code-generator-with-logo-setup-guide">Wi-Fi QR code setup guide</a></li>
+<li><a href="/google-forms-qr-code-generator">Google Forms QR code generator</a></li>
+<li><a href="/wedding-photo-sharing-qr-code-generator">Wedding photo sharing QR code generator</a></li>
+<li><a href="/zoom-meeting-qr-code-generator">Zoom meeting QR code generator</a></li>
+<li><a href="/link-in-bio-qr-code-generator">Link in bio QR code generator</a></li>
+</ul>
+</div></section>
 </main>
 
 <footer><div class="wrap">
@@ -539,6 +599,7 @@ footer p{color:#94A3B8;line-height:1.6}
     The leading free, 100% client-side QR code generator with custom logos, brand color styling, and high-res vector export. Private, permanent barcodes with zero scan limits or sign-up required.
    </p>
    <div style="margin-top:16px">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
     <a id="play-store-badge" href="https://play.google.com/store/apps/details?id=com.mylogoqr.app" target="_blank" rel="noopener noreferrer" aria-label="Get MyLogoQR on Google Play Store" style="display:inline-flex;align-items:center;gap:10px;background:#000000;color:#fff;border:1px solid rgba(255,255,255,0.22);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
      <svg width="22" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3.6 1.8L13.8 12 3.6 22.2C3.2 21.8 3 21.1 3 20.3V3.7C3 2.9 3.2 2.2 3.6 1.8Z" fill="#2196F3"/>
@@ -551,6 +612,16 @@ footer p{color:#94A3B8;line-height:1.6}
       <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">Google Play</div>
      </div>
     </a>
+    <a id="chatgpt-plugin-badge" href="https://chatgpt.com/plugins/plugin_asdk_app_6ae1cdc24f2c819195d2f1f344b4dd3a" target="_blank" rel="noopener noreferrer" aria-label="Use MyLogoQR on ChatGPT Plugin Store" style="display:inline-flex;align-items:center;gap:10px;background:#10A37F;color:#ffffff;border:1px solid rgba(255,255,255,0.25);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.28 9.37a5.55 5.55 0 0 0-.47-4.48 5.68 5.68 0 0 0-4.04-2.8 5.59 5.59 0 0 0-4.57.85 5.6 5.6 0 0 0-3.62-1.39 5.67 5.67 0 0 0-5.38 3.9 5.56 5.56 0 0 0-3.6 2.65 5.65 5.65 0 0 0-.74 4.54 5.58 5.58 0 0 0 .47 4.49 5.68 5.68 0 0 0 4.04 2.8 5.6 5.6 0 0 0 4.57-.85 5.6 5.6 0 0 0 3.62 1.39 5.67 5.67 0 0 0 5.38-3.9 5.56 5.56 0 0 0 3.6-2.65 5.65 5.65 0 0 0 .74-4.55zM12 21.05a4.15 4.15 0 0 1-2.5-.83l.13-.08 4.16-2.4a.8.8 0 0 0 .4-.69v-5.87l1.76 1.02a.08.08 0 0 1 .04.06v4.83a4.17 4.17 0 0 1-3.99 3.96zm-7.7-4.44a4.13 4.13 0 0 1-.54-2.58c0-.6.13-1.19.38-1.74l.13.08 4.16 2.4a.78.78 0 0 0 .8 0l5.08-2.94v2.03a.08.08 0 0 1-.03.07l-4.18 2.42a4.17 4.17 0 0 1-5.8-1.74zm-1.07-8.91a4.14 4.14 0 0 1 1.96-1.75v4.95a.78.78 0 0 0 .4.69l5.08 2.93-1.76 1.02a.08.08 0 0 1-.08 0L4.65 13a4.17 4.17 0 0 1-1.42-5.3zm13.79 3.23l-5.08-2.93 1.76-1.02a.08.08 0 0 1 .08 0l4.18 2.42a4.17 4.17 0 0 1-.94 7.48v-4.96a.78.78 0 0 0-.4-.69zm2.46-2.73a4.13 4.13 0 0 1 .54 2.58 4.19 4.19 0 0 1-.38 1.74l-.13-.08-4.16-2.4a.78.78 0 0 0-.8 0l-5.08 2.94v-2.03a.08.08 0 0 1 .03-.07l4.18-2.42a4.17 4.17 0 0 1 5.8 1.74zM8.36 12.87l2.2-1.27 2.2 1.27v2.54l-2.2 1.27-2.2-1.27v-2.54z"/>
+     </svg>
+     <div style="line-height:1.2">
+      <div style="font-size:0.62rem;text-transform:uppercase;color:rgba(255,255,255,0.85);letter-spacing:0.04em">AVAILABLE ON</div>
+      <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">ChatGPT Store</div>
+     </div>
+    </a>
+   </div>
    </div>
   </div>
   <div>
