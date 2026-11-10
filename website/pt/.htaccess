@@ -1,0 +1,16 @@
+# ----------------------------------------------------------------------
+# Clean URL Rewriting for /pt/ Language Tools on LiteSpeed / Apache
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /pt/
+
+  # Redirect explicit .html requests to clean URLs
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /pt/([^/]+)\.html\ HTTP/
+  RewriteRule ^([^/]+)\.html$ https://mylogoqr.com/pt/$1 [R=301,L]
+
+  # Internal rewrite: serve clean URL from physical .html file
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^([^/]+)/?$ $1.html [L]
+</IfModule>
