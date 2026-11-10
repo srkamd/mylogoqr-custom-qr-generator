@@ -1,37 +1,53 @@
 import http.server
+import socketserver
 import os
+import urllib.parse
+import sys
 
 PORT = 8080
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
-    def address_string(self):
-        return self.client_address[0]
-    def translate_path(self, path):
-        clean = path.split('?')[0].split('#')[0]
-        
-        if clean == '/':
-            clean = '/index.html'
-        elif clean in ['/blog', '/blog/']:
-            clean = '/blog.html'
-        elif clean.startswith('/blog/'):
-            sub = clean[len('/blog/'):].strip('/')
-            if not any(sub.endswith(ext) for ext in ['.svg', '.png', '.jpg', '.jpeg', '.css', '.js']):
-                if os.path.exists(os.path.join('blog', f'{sub}.html')):
-                    clean = f'/blog/{sub}.html'
-        elif not os.path.exists('.' + clean) and os.path.exists('.' + clean.rstrip('/') + '.html'):
-            clean = clean.rstrip('/') + '.html'
-            
-        return super().translate_path(clean)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
 
-    def end_headers(self):
-        self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-        self.send_header('Pragma', 'no-cache')
-        self.send_header('Expires', '0')
-        super().end_headers()
+    def do_GET(self):
+        parsed = urllib.parse.urlparse(self.path)
+        clean_path = urllib.parse.unquote(parsed.path).strip('/')
+        
+        if clean_path == '':
+            return super().do_GET()
+
+        local_target = os.path.join(DIRECTORY, clean_path.replace('/', os.sep))
+
+        if os.path.isdir(local_target):
+            idx_file = os.path.join(local_target, 'index.html')
+            if os.path.exists(idx_file):
+                if not parsed.path.endswith('/'):
+                    self.send_response(301)
+                    new_loc = parsed.path + '/'
+                    if parsed.query:
+                        new_loc += '?' + parsed.query
+                    self.send_header('Location', new_loc)
+                    self.end_headers()
+                    return
+                return super().do_GET()
+
+        if not os.path.exists(local_target):
+            if os.path.exists(local_target + '.html'):
+                self.path = '/' + clean_path + '.html'
+                if parsed.query:
+                    self.path += '?' + parsed.query
+
+        return super().do_GET()
 
 if __name__ == '__main__':
-    web_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(web_dir)
-    print(f"Starting MyLogoQR Local Dev Server on port {PORT} from {web_dir}...", flush=True)
-    server = http.server.ThreadingHTTPServer(('0.0.0.0', PORT), CleanURLHandler)
-    server.serve_forever()
+    socketserver.TCPServer.allow_reuse_address = True
+    # Bind to 0.0.0.0 so localhost, 127.0.0.1 and LAN IP all work
+    with socketserver.TCPServer(('0.0.0.0', PORT), CleanURLHandler) as httpd:
+        print(f'Server running at http://localhost:{PORT}/ (Press Ctrl+C to stop)')
+        sys.stdout.flush()
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass

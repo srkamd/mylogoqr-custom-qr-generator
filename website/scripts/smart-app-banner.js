@@ -97,6 +97,13 @@
     .sab-close:hover {
       color: #FFFFFF;
     }
+    
+    @media (min-width: 769px) {
+      #smart-app-banner {
+        display: none !important;
+      }
+    }
+
     @media print {
       #smart-app-banner {
         display: none !important;

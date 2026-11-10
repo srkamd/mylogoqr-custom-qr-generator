@@ -251,9 +251,36 @@ footer a:hover { color: #ffffff; text-decoration: none; }
 footer p { color: #94A3B8; line-height: 1.65; }
 .fgrid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
   gap: 32px;
   align-items: start;
+  width: 100%;
+}
+footer .wrap {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 1080px) {
+  .fgrid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 768px) {
+  .fgrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .fgrid > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 480px) {
+  .fgrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 @media (max-width: 960px) {
   .fgrid {
