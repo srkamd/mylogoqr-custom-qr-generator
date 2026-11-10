@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Make a QR Code with Logo in the Middle Guide | MyLogoQR</title>
 <meta name="description" content="Learn how to generate a custom QR code with your brand logo in the center. Error correction tips, safe logo sizing, and high-resolution vector exports.">
+<meta name="keywords" content="QR code with a logo in the middle, how to add logo to QR code, center logo QR code, QR code logo size limit, logo in QR code not scanning">
 <link rel="canonical" href="https://mylogoqr.com/blog/how-to-make-a-qr-code-with-a-logo-in-the-middle">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#12163A">
@@ -13,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
   <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/app_icon.jpg">
-<link rel="stylesheet" href="/styles.css?v=10.3">
+<link rel="stylesheet" href="/styles.css?v=12.0">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,12 +54,12 @@
 <meta property="og:url" content="https://mylogoqr.com/blog/how-to-make-a-qr-code-with-a-logo-in-the-middle">
 <meta property="og:title" content="Make a QR Code with Logo in the Middle Guide | MyLogoQR">
 <meta property="og:description" content="Learn how to generate a custom QR code with your brand logo in the center. Error correction tips, safe logo sizing, and high-resolution vector exports.">
-<meta property="og:image" content="https://mylogoqr.com/app_icon.jpg">
+<meta property="og:image" content="https://mylogoqr.com/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle.svg">
 <meta property="og:site_name" content="MyLogoQR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Make a QR Code with Logo in the Middle Guide | MyLogoQR">
 <meta name="twitter:description" content="Learn how to generate a custom QR code with your brand logo in the center. Error correction tips, safe logo sizing, and high-resolution vector exports.">
-<meta name="twitter:image" content="https://mylogoqr.com/app_icon.jpg">
+<meta name="twitter:image" content="https://mylogoqr.com/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle.svg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -87,6 +88,22 @@
         "@type": "Answer",
         "text": "Yes. A clean white or light pad behind the logo separates it from the modules and noticeably improves first-time scan success."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my QR code with a logo stop scanning when the logo gets bigger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The logo covers data modules. Error correction can rebuild a limited share (up to about 30% at level H); beyond that, too much information is missing and scanners fail. Shrink the logo to 20-25% of the code width."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put a logo anywhere else in a QR code besides the middle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The corners hold the finder and alignment patterns the scanner uses to locate and orient the code. Covering them breaks scanning immediately; the centre is the only safe zone."
+      }
     }
   ]
 }
@@ -114,6 +131,10 @@
  <div class="by"><i>M</i><span>Written by MyLogoQR Technical Team &mdash; Updated October 2026</span></div>
  
  <p>Putting a brand logo in the center of a QR code turns a generic barcode into a recognizable, trusted marketing asset. However, if done incorrectly, the logo can cover vital data modules and make the QR code unscannable on older smartphones.</p>
+<figure class="blog-hero"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle.svg?v=3" alt="QR code with a logo in the middle — illustrated guide cover by MyLogoQR" width="1200" height="630" loading="eager"><figcaption>QR code with a logo in the middle — the complete illustrated guide from MyLogoQR, with steps, examples and pro tips.</figcaption></figure>
+<div class="key-takeaways"><div class="kt-title">Key takeaways</div><ul><li>The centre is the only safe logo position — finder patterns in the corners must stay untouched.</li><li>Keep the logo between 20% and 25% of the code's width and always add a clean white halo around it.</li><li>Error correction level H rebuilds up to 30% of covered data; set it before exporting, not after.</li><li>Test in daylight and low light, on an older phone, before anything goes to print.</li></ul></div>
+
+
  
  
 <div class="tool-banner" style="background:linear-gradient(135deg, #0F172A, #1E1B4B);border:1px solid rgba(99,102,241,0.3);border-radius:18px;padding:26px 30px;margin:38px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 12px 30px rgba(0,0,0,0.12)">
@@ -125,7 +146,10 @@
   <a href="/#generator" style="background:linear-gradient(135deg, #4F46E5, #06B6D4);color:#fff;padding:13px 26px;border-radius:12px;font-weight:700;text-decoration:none;white-space:nowrap;display:inline-block;box-shadow:0 6px 16px rgba(79,70,229,0.35);transition:transform .15s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">Open Generator ↗</a>
 </div>
 
-<h2>Why You Can Put a Logo in the Center (Reed-Solomon Error Correction)</h2>
+
+<nav class="blog-toc" aria-label="Table of contents"><div class="toc-title">In this guide</div><ol><li><a href="#why-you-can-put-a-logo-in-the-center-reed-solomon-error-correction">Why You Can Put a Logo in the Center (Reed-Solomon Error Correction)</a></li><li><a href="#rule-1-keep-central-logo-size-between-20-and-25">Rule 1: Keep Central Logo Size Between 20% and 25%</a></li><li><a href="#rule-2-add-a-clean-white-border-around-the-logo">Rule 2: Add a Clean White Border Around the Logo</a></li><li><a href="#rule-3-test-scan-under-daylight-and-low-light">Rule 3: Test Scan Under Daylight and Low Light</a></li><li><a href="#why-the-middle-is-the-only-safe-place-for-a-logo">Why the middle is the only safe place for a logo</a></li><li><a href="#troubleshooting-a-logo-code-that-will-not-scan">Troubleshooting a logo code that will not scan</a></li><li><a href="#logo-file-preparation-the-two-minute-version">Logo file preparation: the two-minute version</a></li><li><a href="#choosing-the-right-logo-file-for-the-centre-of-a-qr-code">Choosing the right logo file for the centre of a QR code</a></li><li><a href="#the-two-minute-workflow-start-to-finish">The two-minute workflow, start to finish</a></li><li><a href="#frequently-asked-questions">Frequently asked questions</a></li></ol></nav>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-1.svg" alt="Why You Can Put a Logo in the Center (Reed-Solomon Error Correction) — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="why-you-can-put-a-logo-in-the-center-reed-solomon-error-correction">Why You Can Put a Logo in the Center (Reed-Solomon Error Correction)</h2>
  <p>QR codes have built-in redundancy called <b>Reed-Solomon Error Correction</b>. This mathematical algorithm reconstructs missing or obscured pixels. There are four error correction levels:</p>
  <ul>
   <li><b>Level L (Low):</b> Recovers up to 7% of damaged or covered data. (Never use with logos).</li>
@@ -134,13 +158,17 @@
   <li><b>Level H (High):</b> Recovers up to 30% of data. (Best for larger logos or outdoor print signs).</li>
  </ul>
 
- <h2>Rule 1: Keep Central Logo Size Between 20% and 25%</h2>
+ <figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-2.svg" alt="Rule 1: Keep Central Logo Size Between 20% and 25% — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="rule-1-keep-central-logo-size-between-20-and-25">Rule 1: Keep Central Logo Size Between 20% and 25%</h2>
  <p>A logo covering 20% to 25% of the QR code's total area is the sweet spot. It provides high brand recognition while leaving 75%+ of data modules intact for instant camera reading.</p>
 
- <h2>Rule 2: Add a Clean White Border Around the Logo</h2>
+ <figure class="blog-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-scene-1.svg" alt="The safe centre zone — QR code with a logo in the middle illustrated example by MyLogoQR" width="1200" height="680" loading="lazy"><figcaption>The safe centre zone — QR code with a logo in the middle in practice.</figcaption></figure>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-3.svg" alt="Rule 2: Add a Clean White Border Around the Logo — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="rule-2-add-a-clean-white-border-around-the-logo">Rule 2: Add a Clean White Border Around the Logo</h2>
  <p>Never let the edges of your logo blend directly into the dark data modules. Adding a 4px to 6px circular or square white padding creates contrast that prevents scanner confusion.</p>
 
- <h2>Rule 3: Test Scan Under Daylight and Low Light</h2>
+ <figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-4.svg" alt="Rule 3: Test Scan Under Daylight and Low Light — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="rule-3-test-scan-under-daylight-and-low-light">Rule 3: Test Scan Under Daylight and Low Light</h2>
  <p>Before sending your design to commercial printing, scan the preview on at least two different smartphones: once under direct light and once in a dim room.</p>
 
  <div class="tip">
@@ -164,17 +192,31 @@
 </div>
 
 
-<h2>Why the middle is the only safe place for a logo</h2>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-5.svg" alt="Why the middle is the only safe place for a logo — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="why-the-middle-is-the-only-safe-place-for-a-logo">Why the middle is the only safe place for a logo</h2>
 <p>A QR code's corners are its steering system: the three large finder patterns tell the scanner where the code begins, ends and which way up it is. Cover a corner and the code is blind. The centre, by contrast, is protected by design — error correction data is spread through the pattern precisely so that a missing middle can be rebuilt mathematically. That is why every professional logo code puts the brand mark in the centre and leaves the corners untouched. When you build yours in the <a href="/">free QR code generator with logo</a>, the logo is placed centrally on a clean background patch, and error correction is doing the invisible work that keeps the code honest.</p>
-<h2>Troubleshooting a logo code that will not scan</h2>
+<figure class="blog-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-scene-2.svg" alt="Logo too big: what failure looks like — QR code with a logo in the middle illustrated example by MyLogoQR" width="1200" height="680" loading="lazy"><figcaption>Logo too big: what failure looks like — QR code with a logo in the middle in practice.</figcaption></figure>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-6.svg" alt="Troubleshooting a logo code that will not scan — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="troubleshooting-a-logo-code-that-will-not-scan">Troubleshooting a logo code that will not scan</h2>
 <p>Work through the failures in order. First, shrink the logo: above roughly 30% of the code's width, even level H correction runs out of spare data. Second, raise the error correction to H and regenerate — codes made at L or M have almost no budget for a logo. Third, check contrast: a pale logo is fine, but pale modules on a light background are not, so keep the pattern itself dark. Fourth, give the logo a border or background pad so its edges do not merge with the modules around it. Finally, test the exported file at its real print size, not zoomed on a monitor — most stubborn failures turn out to be size and material problems, not design ones. The deeper design rules live in our guide to <a href="/blog/custom-qr-codes-with-logos-and-frames-guide">custom QR codes with logos and frames</a>.</p>
 
-<h2>Logo file preparation: the two-minute version</h2>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-7.svg" alt="Logo file preparation: the two-minute version — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="logo-file-preparation-the-two-minute-version">Logo file preparation: the two-minute version</h2>
 <p>Start with the cleanest version of your mark: a PNG or SVG with a transparent or solid light background, exported at least 500 pixels wide so it stays crisp inside a 1000-pixel code. Simplify busy logos first — thin lines, tiny taglines and photographic detail all dissolve at code scale, so use the icon or monogram version of the brand, not the full lockup. If your logo is very wide, stack or crop it toward a squarer shape; a wide banner forced into a square centre ends up too small to recognise. Match the code's colours to the brand palette after the logo is placed, not before, and always judge the result at final size: what reads clearly on a designer's monitor may vanish on a coffee-cup sleeve, which is the only review that counts.</p>
 
 <p><strong>The bottom line:</strong> a centred logo works because the format was engineered for it — error correction rebuilds what the logo covers. Respect the three numbers (logo near 20–25%, correction at H, contrast kept strong), prepare a clean square version of your mark, and a logo code becomes the most reliable piece of branding you own.</p>
 
-<h2>Frequently asked questions</h2>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-8.svg" alt="Choosing the right logo file for the centre of a QR code — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="choosing-the-right-logo-file-for-the-centre-of-a-qr-code">Choosing the right logo file for the centre of a QR code</h2>
+<p>Not every logo survives being shrunk into the middle of a QR code. Wide wordmarks collapse into an unreadable smear at 20% width, while compact marks — an icon, a monogram, initials in a badge — stay recognisable at small sizes. If your full logo is horizontal, extract its icon element for QR use and keep the full lockup for letterheads; most strong brands already maintain exactly such a compact version for social avatars and favicons, and that file is the one to use. Prepare it as a PNG with a transparent or white background, cropped tight to the artwork with no extra padding, so the generator's sizing is honest.</p>
+<p>Contrast inside the logo matters less than people fear: the halo of white space around it separates the artwork from the data modules, so a colourful logo is fine. What does matter is fine detail — thin lines and tiny text inside the logo will blur in print. Simplify first, and the QR code with a logo in the middle will look deliberate instead of squeezed.</p>
+<figure class="blog-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-diagram.svg" alt="QR code with a logo in the middle — step-by-step diagram: Logo in the middle, step by step" width="1200" height="760" loading="lazy"><figcaption>Logo in the middle, step by step — a quick visual summary of QR code with a logo in the middle.</figcaption></figure>
+<figure class="blog-sec-fig"><img src="/blog/images/how-to-make-a-qr-code-with-a-logo-in-the-middle-sec-9.svg" alt="The two-minute workflow, start to finish — QR code with a logo in the middle section illustration by MyLogoQR" width="1200" height="260" loading="lazy"></figure>
+<h2 id="the-two-minute-workflow-start-to-finish">The two-minute workflow, start to finish</h2>
+<p>Making a QR code with a logo in the middle takes less time than the coffee beside your keyboard when the order of operations is right. The sequence matters because error correction and logo size interact: set them in the wrong order and the generator quietly rebuilds the code around new assumptions.</p>
+<ol class="steps"><li>Open the <a href="/">QR code generator with logo</a> and enter your destination link</li><li>Set error correction to level H before adding any artwork</li><li>Upload the compact logo file and scale it to 20-25% of the code width</li><li>Choose brand colours that stay darker than the background</li><li>Download the SVG for print or PNG for screens — then test-scan both an iPhone and an Android</li></ol>
+<p>If the scan hesitates, shrink the logo by a few percent before touching anything else. In nine cases out of ten, size — not colour, not shape — is the variable that was slightly over the line.</p>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
 <h3>How large can the centre logo be before scanning fails?</h3>
 <p>Keep it near 20–25% of the code's width. Around 30% is the practical ceiling even with error correction H, and older phones will fail sooner.</p>
 <h3>Which error correction level is best for a logo QR code?</h3>
@@ -182,6 +224,10 @@
 <h3>Should the logo have a background behind it?</h3>
 <p>Yes. A clean white or light pad behind the logo separates it from the modules and noticeably improves first-time scan success.</p>
 
+<h3>Why does my QR code with a logo stop scanning when the logo gets bigger?</h3>
+<p>The logo covers data modules. Error correction can rebuild a limited share (up to about 30% at level H); beyond that, too much information is missing and scanners fail. Shrink the logo to 20-25% of the code width.</p>
+<h3>Can I put a logo anywhere else in a QR code besides the middle?</h3>
+<p>No. The corners hold the finder and alignment patterns the scanner uses to locate and orient the code. Covering them breaks scanning immediately; the centre is the only safe zone.</p>
 </article>
 </main>
 
