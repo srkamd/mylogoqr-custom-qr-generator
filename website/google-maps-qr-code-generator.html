@@ -750,8 +750,10 @@ document.querySelectorAll('[data-ext]').forEach(function(b){
     r.onload=function(){
      var s=r.result;
      var extraH=180,newH=1000+extraH;
-     s=s.replace(/viewBox="0 0 (\d+) (\d+)"/,'viewBox="0 0 1000 '+newH+'"');
-     s=s.replace(/height="(\d+)"/,'height="'+newH+'"');
+     var vbRe = new RegExp('viewBox="0 0 (\\d+) (\\d+)"');
+     s = s.replace(vbRe, 'viewBox="0 0 1000 ' + newH + '"');
+     var hRe = new RegExp('height="(\\d+)"');
+     s = s.replace(hRe, 'height="' + newH + '"');
      var esc=ctaText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
      var svgAdd='';
      if(style==='pill'){

@@ -56,6 +56,9 @@
 # ----------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # 301 Redirect old / malformed crawler URLs to 200 OK endpoints
+  RewriteRule ^,'?(viewBox|height)=.*$ / [R=301,L]
+  RewriteRule ^blog/ethics-and-dangers-of-deepfakes-ai-voice-cloning/?$ /blog/ [R=301,L]
   RewriteBase /
 
   # 2a. Force HTTPS
