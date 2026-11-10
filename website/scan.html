@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Online QR Code Scanner | Camera &amp; Image Upload | MyLogoQR</title>
+<meta name="description" content="Scan QR codes instantly using your device camera or upload an image. Fast, free, and 100% private in-browser QR code reader with zero server uploads.">
+<link rel="canonical" href="https://mylogoqr.com/scan">
+<link rel="icon" type="image/jpeg" href="/app_icon.jpg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/app_icon.jpg">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#12163A">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mylogoqr.com/scan">
+<meta property="og:title" content="Free Online QR Code Scanner | MyLogoQR">
+<meta property="og:description" content="Scan QR codes instantly with your webcam, phone camera, or image upload. 100% client-side privacy.">
+<meta property="og:image" content="https://mylogoqr.com/app_icon.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+
+<!-- Google AdSense -->
+<meta name="google-adsense-account" content="ca-pub-9504324837751358">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
+
+<style>
+.scanner-card {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  padding: 28px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.scan-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  background: #F1F5F9;
+  padding: 6px;
+  border-radius: 12px;
+}
+.scan-tab-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  background: transparent;
+  color: #64748B;
+  transition: all .15s ease;
+}
+.scan-tab-btn.active {
+  background: #FFFFFF;
+  color: #0F172A;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.viewfinder {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 330px;
+  margin: 0 auto 20px;
+  background: #0F172A;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.viewfinder video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.laser {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(239,68,68,0) 0%, #EF4444 50%, rgba(239,68,68,0) 100%);
+  box-shadow: 0 0 10px #EF4444;
+  animation: scanLine 2s infinite ease-in-out;
+  display: none;
+}
+@keyframes scanLine {
+  0% { top: 10%; }
+  50% { top: 85%; }
+  100% { top: 10%; }
+}
+.scan-frame {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 2px dashed rgba(255,255,255,0.4);
+  border-radius: 16px;
+  pointer-events: none;
+}
+.dropzone {
+  border: 2px dashed #CBD5E1;
+  border-radius: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  background: #F8FAFC;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+.dropzone:hover {
+  border-color: #4F46E5;
+}
+.result-card {
+  margin-top: 24px;
+  padding: 20px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 14px;
+  display: none;
+}
+</style>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "MyLogoQR Online Scanner",
+      "url": "https://mylogoqr.com/scan",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilityApplication",
+      "description": "Free online QR code scanner for camera and image files with zero server storage.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header><div class="wrap bar">
+ <a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></i>MyLogoQR</a>
+ <button class="menu" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">Menu</button>
+ <nav id="nav" aria-label="Main"><ul>
+  <li><a href="/scan" style="color:#4F46E5;font-weight:700">📷 Scan QR</a></li>
+  <li><a href="/qr-code-types">Generators</a></li>
+  <li><a href="/how-to-use">How to Use</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li><a class="cta" href="/#generator">Create QR</a></li>
+ <li class="lang-item" style="margin-left:6px;"><div class="lang-picker" style="display:inline-flex;align-items:center;"><select onchange="if(this.value) window.location.href=this.value;" style="background:#F1F5F9;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:0.84rem;font-weight:600;cursor:pointer;outline:none;" aria-label="Select Language"><option value="/scan" selected>🌐 English</option></select></div></li></ul></nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap">
+ <h1>Free Online QR Code Scanner</h1>
+ <p>Scan QR codes instantly using your device camera or upload any image file. 100% private, client-side decoding with zero server uploads.</p>
+</div></div>
+
+<div class="wrap" style="margin-top:-20px;margin-bottom:60px">
+  <div class="scanner-card">
+    <div class="scan-tabs">
+      <button class="scan-tab-btn active" id="tab-cam" onclick="switchScanMode('cam')">📷 Live Camera</button>
+      <button class="scan-tab-btn" id="tab-file" onclick="switchScanMode('file')">📁 Upload Image</button>
+    </div>
+
+    <!-- Mode 1: Camera Viewfinder -->
+    <div id="mode-cam">
+      <div class="viewfinder" id="vf-box">
+        <video id="scan-video" playsinline></video>
+        <div class="scan-frame" id="vf-frame"></div>
+        <div class="laser" id="vf-laser"></div>
+        <div id="cam-status" style="color:#94A3B8;font-size:0.9rem;text-align:center;padding:20px">Click Start Camera to begin scanning</div>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button id="btn-start-cam" class="btn p" style="background:#4F46E5;color:#fff;border:none;padding:10px 22px;border-radius:10px;font-weight:600;cursor:pointer">Start Camera</button>
+        <button id="btn-switch-cam" class="btn s" style="display:none;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer">🔄 Flip Camera</button>
+      </div>
+    </div>
+
+    <!-- Mode 2: File Upload Dropzone -->
+    <div id="mode-file" style="display:none">
+      <div class="dropzone" id="drop-area" onclick="document.getElementById('file-input').click()">
+        <div style="font-size:2.5rem;margin-bottom:8px">📁</div>
+        <strong style="color:#0F172A;font-size:1.05rem;display:block">Upload or Drag a QR Code Image</strong>
+        <span style="color:#64748B;font-size:0.88rem">Supports PNG, JPG, WEBP, or SVG screenshot</span>
+        <input type="file" id="file-input" accept="image/*" style="display:none">
+      </div>
+    </div>
+
+    <!-- Result Display Card -->
+    <div class="result-card" id="scan-result-card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:1.2rem">✅</span>
+        <strong style="color:#166534;font-size:1.05rem">Decoded Content:</strong>
+        <span id="badge-type" style="background:#DCFCE7;color:#15803D;font-size:0.75rem;font-weight:700;padding:2px 8px;border-radius:12px">TEXT</span>
+      </div>
+      <div id="result-text" style="background:#FFFFFF;border:1px solid #BBF7D0;padding:12px 14px;border-radius:8px;font-family:monospace;font-size:0.92rem;word-break:break-all;color:#0F172A;max-height:160px;overflow-y:auto;margin-bottom:14px"></div>
+      
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="btn-copy-result" style="background:#166534;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.88rem">📋 Copy Result</button>
+        <a id="btn-open-link" href="#" target="_blank" rel="noopener noreferrer" style="display:none;background:#2563EB;color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:600;font-size:0.88rem">🔗 Open Link</a>
+        <a id="btn-make-qr" href="#" style="background:#0F172A;color:#fff;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:600;font-size:0.88rem">✨ Re-create with Logo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section style="background:#FFFFFF;border-top:1px solid var(--line);padding:60px 0"><div class="wrap">
+ <article class="prose" style="max-width:820px;margin:0 auto">
+  <h2>How to scan a QR code online without installing an app</h2>
+  <p>Modern mobile phones and desktop computers do not require third-party app installations to decode QR codes. MyLogoQR provides a zero-installation, 100% in-browser decoder that accesses your camera hardware or image files directly via local JavaScript APIs.</p>
+
+  <h2>Client-Side Security &amp; Zero Server Storage</h2>
+  <p>Traditional online scanners transmit your uploaded photos or camera frames to remote cloud servers for optical character recognition. MyLogoQR operates under a strict zero-knowledge architecture: camera frames are processed directly inside your browser memory using the Canvas API. No photos, URLs, Wi-Fi credentials, or contact details are ever sent to an external server.</p>
+
+  <h2>Supported Formats</h2>
+  <ul>
+   <li><strong>Website URLs:</strong> Instant link preview with secure https verification.</li>
+   <li><strong>Wi-Fi Networks:</strong> Automatically parses SSID, encryption type (WPA/WPA2/WPA3), and network passwords.</li>
+   <li><strong>Digital vCards:</strong> Decodes names, phone numbers, email addresses, and job titles.</li>
+   <li><strong>WhatsApp Links:</strong> Direct chat phone numbers and prefilled messages.</li>
+  </ul>
+ </article>
+</div></section>
+
+<!-- Comprehensive Internal Linking Mesh -->
+<section class="tools-mesh-section" style="background:#F8FAFC;border-top:1px solid #E2E8F0;padding:48px 0">
+ <div class="wrap">
+  <div style="text-align:center;max-width:720px;margin:0 auto 36px">
+   <span style="display:inline-block;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#4F46E5;background:#EEF2FF;padding:4px 12px;border-radius:20px;margin-bottom:10px">Ecosystem Hub</span>
+   <h2 style="font-size:1.8rem;margin:0 0 10px;color:#0F172A">Explore More Free QR Code Generators</h2>
+   <p style="color:#64748B;font-size:0.95rem;margin:0">Create customized, permanent QR codes with logos and colors for any business or personal use case.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px">
+   <!-- Category 1: Business & Payments -->
+   <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,0.04)">
+    <h3 style="font-size:1.05rem;color:#0F172A;margin:0 0 14px;display:flex;align-items:center;gap:8px">💼 Business &amp; Contact</h3>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:0.9rem">
+     <li><a href="/vcard-qr-code-generator" style="color:#334155;text-decoration:none">📇 Digital vCard Contact</a></li>
+     <li><a href="/business-card-qr-code-generator" style="color:#334155;text-decoration:none">💳 Business Card QR</a></li>
+     <li><a href="/google-reviews-qr-code-generator" style="color:#334155;text-decoration:none">⭐ Google Reviews QR</a></li>
+     <li><a href="/google-maps-qr-code-generator" style="color:#334155;text-decoration:none">📍 Google Maps Location</a></li>
+     <li><a href="/restaurant-menu-qr-code-generator" style="color:#334155;text-decoration:none">🍽️ Restaurant Menu QR</a></li>
+     <li><a href="/real-estate-qr-code-generator" style="color:#334155;text-decoration:none">🏡 Real Estate Listings</a></li>
+     <li><a href="/upi-payment-qr-code-generator" style="color:#334155;text-decoration:none">💸 UPI &amp; Mobile Payments</a></li>
+     <li><a href="/paypal-qr-code-generator" style="color:#334155;text-decoration:none">💳 PayPal Tips &amp; Pay</a></li>
+    </ul>
+   </div>
+
+   <!-- Category 2: Social Media & Channels -->
+   <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,0.04)">
+    <h3 style="font-size:1.05rem;color:#0F172A;margin:0 0 14px;display:flex;align-items:center;gap:8px">💬 Social &amp; Messaging</h3>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:0.9rem">
+     <li><a href="/whatsapp-qr-code-generator" style="color:#334155;text-decoration:none">🟢 WhatsApp Direct Chat</a></li>
+     <li><a href="/instagram-qr-code-generator" style="color:#334155;text-decoration:none">📸 Instagram Profile &amp; Reels</a></li>
+     <li><a href="/youtube-qr-code-generator" style="color:#334155;text-decoration:none">▶️ YouTube Channel &amp; Video</a></li>
+     <li><a href="/tiktok-qr-code-generator" style="color:#334155;text-decoration:none">🎵 TikTok Profile</a></li>
+     <li><a href="/link-in-bio-qr-code-generator" style="color:#334155;text-decoration:none">🔗 Link in Bio Multi-Link</a></li>
+     <li><a href="/telegram-qr-code-generator" style="color:#334155;text-decoration:none">✈️ Telegram Channel</a></li>
+     <li><a href="/facebook-qr-code-generator" style="color:#334155;text-decoration:none">📘 Facebook Page</a></li>
+     <li><a href="/linkedin-qr-code-generator" style="color:#334155;text-decoration:none">💼 LinkedIn Profile</a></li>
+     <li><a href="/spotify-qr-code-generator" style="color:#334155;text-decoration:none">🎧 Spotify Playlist &amp; Track</a></li>
+    </ul>
+   </div>
+
+   <!-- Category 3: Everyday Utilities & Events -->
+   <div style="background:#FFFFFF;border:1px solid #E2E8F0;border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,0.04)">
+    <h3 style="font-size:1.05rem;color:#0F172A;margin:0 0 14px;display:flex;align-items:center;gap:8px">⚡ Utilities &amp; Events</h3>
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:0.9rem">
+     <li><a href="/wifi-qr-code-generator" style="color:#334155;text-decoration:none">📶 Wi-Fi Password Connect</a></li>
+     <li><a href="/google-forms-qr-code-generator" style="color:#334155;text-decoration:none">📋 Google Forms &amp; Surveys</a></li>
+     <li><a href="/zoom-meeting-qr-code-generator" style="color:#334155;text-decoration:none">📹 Zoom Meeting &amp; Video Call</a></li>
+     <li><a href="/wedding-photo-sharing-qr-code-generator" style="color:#334155;text-decoration:none">💍 Wedding Photo Sharing</a></li>
+     <li><a href="/calendar-event-qr-code-generator" style="color:#334155;text-decoration:none">📅 Calendar Event Invite</a></li>
+     <li><a href="/pdf-qr-code-generator" style="color:#334155;text-decoration:none">📄 PDF Document Download</a></li>
+     <li><a href="/photo-qr-code-generator" style="color:#334155;text-decoration:none">🖼️ Photo &amp; Image Gallery</a></li>
+     <li><a href="/audio-qr-code-generator" style="color:#334155;text-decoration:none">🎙️ Audio &amp; Voice Note</a></li>
+     <li><a href="/app-store-qr-code-generator" style="color:#334155;text-decoration:none">📱 App Store &amp; Play Store</a></li>
+     <li><a href="/text-qr-code-generator" style="color:#334155;text-decoration:none">📝 Plain Text Offline Code</a></li>
+    </ul>
+   </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px">
+   <a href="/qr-code-types" style="display:inline-flex;align-items:center;gap:8px;background:#4F46E5;color:#ffffff;font-weight:600;padding:12px 24px;border-radius:10px;text-decoration:none">
+    Explore All 30+ QR Code Generators &rarr;
+   </a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div>
+    <a class="logo" href="/" style="color:#ffffff;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+     <i aria-hidden="true" style="width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:2px;padding:6px;flex-shrink:0"><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b><b></b><b style="background:#fff;border-radius:1px"></b></i>
+     <span style="font-family:var(--h);font-size:1.3rem;font-weight:800;color:#ffffff">MyLogoQR</span>
+    </a>
+    <p style="font-size:0.92rem;line-height:1.65;color:#94A3B8;max-width:320px;margin-top:8px">
+     The leading free, 100% client-side QR code generator with custom logos, brand color styling, and high-res vector export. Private, permanent barcodes with zero scan limits or sign-up required.
+    </p>
+    <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+     <a id="play-store-badge" href="https://play.google.com/store/apps/details?id=com.mylogoqr.app" target="_blank" rel="noopener noreferrer" aria-label="Get MyLogoQR on Google Play Store" style="display:inline-flex;align-items:center;gap:10px;background:#000000;color:#fff;border:1px solid rgba(255,255,255,0.22);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s;min-width:170px" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <svg width="22" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M3.6 1.8L13.8 12 3.6 22.2C3.2 21.8 3 21.1 3 20.3V3.7C3 2.9 3.2 2.2 3.6 1.8Z" fill="#2196F3"/>
+       <path d="M17.2 8.6L13.8 12 3.6 1.8C4 1.5 4.6 1.4 5.3 1.8L17.2 8.6Z" fill="#4CAF50"/>
+       <path d="M17.2 15.4L5.3 22.2C4.6 22.6 4 22.5 3.6 22.2L13.8 12 17.2 15.4Z" fill="#F44336"/>
+       <path d="M21.2 10.3L17.2 8.6 13.8 12 17.2 15.4 21.2 13.7C22.3 13.1 22.3 10.9 21.2 10.3Z" fill="#FFEB3B"/>
+      </svg>
+      <div style="line-height:1.2">
+       <div style="font-size:0.62rem;text-transform:uppercase;color:#94A3B8;letter-spacing:0.04em">GET IT ON</div>
+       <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">Google Play</div>
+      </div>
+     </a>
+     <a id="chatgpt-plugin-badge" href="https://chatgpt.com/plugins/plugin_asdk_app_6ae1cdc24f2c819195d2f1f344b4dd3a" target="_blank" rel="noopener noreferrer" aria-label="Use MyLogoQR on ChatGPT Plugin Store" style="display:inline-flex;align-items:center;gap:10px;background:#10A37F;color:#ffffff;border:1px solid rgba(255,255,255,0.25);padding:7px 14px;border-radius:10px;text-decoration:none;transition:transform .15s;min-width:170px" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+       <path d="M22.28 9.37a5.55 5.55 0 0 0-.47-4.48 5.68 5.68 0 0 0-4.04-2.8 5.59 5.59 0 0 0-4.57.85 5.6 5.6 0 0 0-3.62-1.39 5.67 5.67 0 0 0-5.38 3.9 5.56 5.56 0 0 0-3.6 2.65 5.65 5.65 0 0 0-.74 4.54 5.58 5.58 0 0 0 .47 4.49 5.68 5.68 0 0 0 4.04 2.8 5.6 5.6 0 0 0 4.57-.85 5.6 5.6 0 0 0 3.62 1.39 5.67 5.67 0 0 0 5.38-3.9 5.56 5.56 0 0 0 3.6-2.65 5.65 5.65 0 0 0 .74-4.55zM12 21.05a4.15 4.15 0 0 1-2.5-.83l.13-.08 4.16-2.4a.8.8 0 0 0 .4-.69v-5.87l1.76 1.02a.08.08 0 0 1 .04.06v4.83a4.17 4.17 0 0 1-3.99 3.96zm-7.7-4.44a4.13 4.13 0 0 1-.54-2.58c0-.6.13-1.19.38-1.74l.13.08 4.16 2.4a.78.78 0 0 0 .8 0l5.08-2.94v2.03a.08.08 0 0 1-.03.07l-4.18 2.42a4.17 4.17 0 0 1-5.8-1.74zm-1.07-8.91a4.14 4.14 0 0 1 1.96-1.75v4.95a.78.78 0 0 0 .4.69l5.08 2.93-1.76 1.02a.08.08 0 0 1-.08 0L4.65 13a4.17 4.17 0 0 1-1.42-5.3zm13.79 3.23l-5.08-2.93 1.76-1.02a.08.08 0 0 1 .08 0l4.18 2.42a4.17 4.17 0 0 1-.94 7.48v-4.96a.78.78 0 0 0-.4-.69zm2.46-2.73a4.13 4.13 0 0 1 .54 2.58 4.19 4.19 0 0 1-.38 1.74l-.13-.08-4.16-2.4a.78.78 0 0 0-.8 0l-5.08 2.94v-2.03a.08.08 0 0 1 .03-.07l4.18-2.42a4.17 4.17 0 0 1 5.8 1.74zM8.36 12.87l2.2-1.27 2.2 1.27v2.54l-2.2 1.27-2.2-1.27v-2.54z"/>
+      </svg>
+      <div style="line-height:1.2">
+       <div style="font-size:0.62rem;text-transform:uppercase;color:rgba(255,255,255,0.85);letter-spacing:0.04em">AVAILABLE ON</div>
+       <div style="font-size:0.92rem;font-weight:700;color:#FFFFFF">ChatGPT Store</div>
+      </div>
+     </a>
+    </div>
+   </div>
+
+   <div>
+    <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:12px">Generators</h3>
+    <a href="/qr-code-types">All Generators Hub</a>
+    <a href="/whatsapp-qr-code-generator">WhatsApp QR Code</a>
+    <a href="/wifi-qr-code-generator">Wi-Fi Password QR</a>
+    <a href="/instagram-qr-code-generator">Instagram QR Code</a>
+    <a href="/google-reviews-qr-code-generator">Google Reviews QR</a>
+    <a href="/vcard-qr-code-generator">Digital Business Card</a>
+    <a href="/restaurant-menu-qr-code-generator">Restaurant Menu QR</a>
+   </div>
+
+   <div>
+    <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:12px">Resources</h3>
+    <a href="/blog">Guides &amp; Blog</a>
+    <a href="/how-to-use">How to Use</a>
+    <a href="/faq">FAQ</a>
+    <a href="/author">Author &amp; Editorial</a>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact Support</a>
+   </div>
+
+   <div>
+    <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:12px">Trust &amp; Legal</h3>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/cookie-policy">Cookie Policy</a>
+    <a href="/chatgpt-privacy">ChatGPT Privacy</a>
+    <a href="/disclaimer">Disclaimer</a>
+   </div>
+  </div>
+
+  <div class="ask-ai-widget" style="margin-top:28px;margin-bottom:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;">
+    <p style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#94A3B8;margin-bottom:10px;">Ask AI about MyLogoQR</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;">
+      <a href="https://chatgpt.com/?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:5px 12px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 10.37a5.53 5.53 0 0 0-.46-4.42 5.6 5.6 0 0 0-5.83-2.67 5.54 5.54 0 0 0-4.14-1.85 5.62 5.62 0 0 0-5.32 3.86 5.54 5.54 0 0 0-3.6 2.61 5.6 5.6 0 0 0 .74 6.36 5.53 5.53 0 0 0 .46 4.42 5.6 5.6 0 0 0 5.83 2.67 5.54 5.54 0 0 0 4.14 1.85 5.62 5.62 0 0 0 5.32-3.86 5.54 5.54 0 0 0 3.6-2.61 5.6 5.6 0 0 0-.74-6.37zM13 20.23a4.13 4.13 0 0 1-2.48-.82l.13-.07 4.1-2.37a.74.74 0 0 0 .37-.64v-5.78l1.73 1a.7.7 0 0 1 .37.6v4.75a4.15 4.15 0 0 1-4.22 3.33zm-7.6-3.4a4.13 4.13 0 0 1-.54-2.56 4.15 4.15 0 0 1 1.4-3.15l.1.06 4.1 2.37a.73.73 0 0 0 .74 0l5-2.89v2a.73.73 0 0 1-.37.64l-4.11 2.37a4.16 4.16 0 0 1-6.32 1.16zm-1.1-9.42a4.14 4.14 0 0 1 1.94-1.74 4.15 4.15 0 0 1 3.44.25l-.1.08-4.1 2.37a.73.73 0 0 0-.37.64v5.78l-1.73-1a.73.73 0 0 1-.37-.64v-4.74a4.14 4.14 0 0 1 1.29-1zm14.73 3.65l-5 2.89v-2a.73.73 0 0 1 .37-.64l4.11-2.37a4.16 4.16 0 0 1 6.32-1.16 4.13 4.13 0 0 1 .54 2.56 4.15 4.15 0 0 1-1.4 3.15l-.1-.06-4.1-2.37a.73.73 0 0 0-.74 0zm2.2 4.4a4.15 4.15 0 0 1-1.94 1.74 4.15 4.15 0 0 1-3.44-.25l.1-.08 4.1-2.37a.74.74 0 0 0 .37-.64v-5.78l1.73 1a.74.74 0 0 1 .37.64v4.74zm-9.36-2.58l-2-1.16 2-1.15 2 1.15z"/></svg>
+        <span>Ask ChatGPT</span>
+      </a>
+      <a href="https://claude.ai/new?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:5px 12px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#D97706"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" stroke="#FFF" stroke-width="2"/></svg>
+        <span>Ask Claude</span>
+      </a>
+      <a href="https://www.perplexity.ai/search?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:5px 12px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#20B2AA" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M5 19L19 5"/></svg>
+        <span>Ask Perplexity</span>
+      </a>
+      <a href="https://x.com/i/grok?text=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:5px 12px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <span>Ask Grok</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="lang-bar" style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;font-size:0.86rem;color:#94A3B8">
+   <span style="color:#CBD5E1;font-weight:600;margin-right:8px">🌍 International Versions:</span>
+   <a href="/" onclick="localStorage.setItem('preferred_lang', 'en')" style="display:inline;padding:0 6px;text-decoration:none;font-weight:700;color:#FFFFFF">English</a> &bull; <a href="/es" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Español</a> &bull; <a href="/pt" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Português</a> &bull; <a href="/ru" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Русский</a> &bull; <a href="/it" style="display:inline;padding:0 6px;text-decoration:none;color:#94A3B8">Italiano</a>
+  </div>
+  <div class="copy" style="margin-top:14px">&copy; 2026 MyLogoQR &mdash; Free, Private QR Code Generator. All rights reserved.</div>
+ </div>
+</footer>
+
+<script src="/scripts/jsqr.min.js"></script>
+<script>
+(function() {
+  var video = document.getElementById('scan-video');
+  var btnStart = document.getElementById('btn-start-cam');
+  var btnSwitch = document.getElementById('btn-switch-cam');
+  var statusTxt = document.getElementById('cam-status');
+  var laser = document.getElementById('vf-laser');
+  var resCard = document.getElementById('scan-result-card');
+  var resText = document.getElementById('result-text');
+  var badgeType = document.getElementById('badge-type');
+  var btnOpen = document.getElementById('btn-open-link');
+  var btnMake = document.getElementById('btn-make-qr');
+  var btnCopy = document.getElementById('btn-copy-result');
+  var dropArea = document.getElementById('drop-area');
+  var fileInput = document.getElementById('file-input');
+
+  var currentStream = null;
+  var currentFacing = 'environment';
+  var animFrameId = null;
+  var scanningCanvas = document.createElement('canvas');
+  var scanCtx = scanningCanvas.getContext('2d', { willReadFrequently: true });
+
+  window.switchScanMode = function(mode) {
+    document.getElementById('tab-cam').classList.toggle('active', mode === 'cam');
+    document.getElementById('tab-file').classList.toggle('active', mode === 'file');
+    document.getElementById('mode-cam').style.display = mode === 'cam' ? 'block' : 'none';
+    document.getElementById('mode-file').style.display = mode === 'file' ? 'block' : 'none';
+    if (mode === 'file' && currentStream) {
+      stopCamera();
+    }
+  };
+
+  btnStart.onclick = function() {
+    if (currentStream) {
+      stopCamera();
+    } else {
+      startCamera(currentFacing);
+    }
+  };
+
+  btnSwitch.onclick = function() {
+    currentFacing = (currentFacing === 'environment') ? 'user' : 'environment';
+    stopCamera();
+    startCamera(currentFacing);
+  };
+
+  function startCamera(facing) {
+    statusTxt.innerText = 'Requesting camera access...';
+    navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: facing }, width: { ideal: 1280 }, height: { ideal: 720 } }
+    }).then(function(stream) {
+      currentStream = stream;
+      video.srcObject = stream;
+      video.setAttribute('playsinline', true);
+      video.play();
+      btnStart.innerText = '⏹️ Stop Camera';
+      btnStart.style.background = '#EF4444';
+      btnSwitch.style.display = 'inline-block';
+      laser.style.display = 'block';
+      statusTxt.style.display = 'none';
+      requestAnimationFrame(tick);
+    }).catch(function(err) {
+      statusTxt.innerText = 'Camera access denied or unavailable: ' + err.message;
+      statusTxt.style.display = 'block';
+    });
+  }
+
+  function stopCamera() {
+    if (currentStream) {
+      currentStream.getTracks().forEach(function(t) { t.stop(); });
+      currentStream = null;
+    }
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+    video.srcObject = null;
+    btnStart.innerText = 'Start Camera';
+    btnStart.style.background = '#4F46E5';
+    btnSwitch.style.display = 'none';
+    laser.style.display = 'none';
+    statusTxt.innerText = 'Camera stopped.';
+    statusTxt.style.display = 'block';
+  }
+
+  function tick() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      scanningCanvas.width = video.videoWidth;
+      scanningCanvas.height = video.videoHeight;
+      scanCtx.drawImage(video, 0, 0, scanningCanvas.width, scanningCanvas.height);
+      var imgData = scanCtx.getImageData(0, 0, scanningCanvas.width, scanningCanvas.height);
+      if (window.jsQR) {
+        var code = jsQR(imgData.data, imgData.width, imgData.height, {
+          inversionAttempts: 'dontInvert'
+        });
+        if (code && code.data) {
+          handleDecoded(code.data);
+          stopCamera();
+          return;
+        }
+      }
+    }
+    animFrameId = requestAnimationFrame(tick);
+  }
+
+  // File Upload Handling
+  fileInput.onchange = function(e) {
+    if (!e.target.files || !e.target.files[0]) return;
+    decodeFile(e.target.files[0]);
+  };
+
+  dropArea.ondragover = function(e) { e.preventDefault(); dropArea.style.borderColor = '#4F46E5'; };
+  dropArea.ondragleave = function(e) { e.preventDefault(); dropArea.style.borderColor = '#CBD5E1'; };
+  dropArea.ondrop = function(e) {
+    e.preventDefault();
+    dropArea.style.borderColor = '#CBD5E1';
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      decodeFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  function decodeFile(file) {
+    var reader = new FileReader();
+    reader.onload = function(evt) {
+      var img = new Image();
+      img.onload = function() {
+        scanningCanvas.width = img.width;
+        scanningCanvas.height = img.height;
+        scanCtx.drawImage(img, 0, 0);
+        var imgData = scanCtx.getImageData(0, 0, img.width, img.height);
+        if (window.jsQR) {
+          var code = jsQR(imgData.data, imgData.width, imgData.height, {
+            inversionAttempts: 'attemptBoth'
+          });
+          if (code && code.data) {
+            handleDecoded(code.data);
+          } else {
+            alert('No QR code could be detected in this image. Ensure the image is clear and well-lit.');
+          }
+        }
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handleDecoded(data) {
+    resCard.style.display = 'block';
+    resText.innerText = data;
+
+    var isUrl = /^https?:\/\//i.test(data);
+    var isWifi = /^WIFI:/i.test(data);
+    var isVcard = /BEGIN:VCARD/i.test(data);
+
+    if (isUrl) {
+      badgeType.innerText = 'WEBSITE URL';
+      btnOpen.href = data;
+      btnOpen.style.display = 'inline-flex';
+    } else if (isWifi) {
+      badgeType.innerText = 'WI-FI CREDENTIALS';
+      btnOpen.style.display = 'none';
+    } else if (isVcard) {
+      badgeType.innerText = 'CONTACT VCARD';
+      btnOpen.style.display = 'none';
+    } else {
+      badgeType.innerText = 'TEXT';
+      btnOpen.style.display = 'none';
+    }
+
+    btnMake.href = '/#generator';
+    btnMake.onclick = function() {
+      sessionStorage.setItem('prefill_qr', data);
+    };
+
+    resCard.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  btnCopy.onclick = function() {
+    navigator.clipboard.writeText(resText.innerText).then(function() {
+      btnCopy.innerText = '✅ Copied!';
+      setTimeout(function() { btnCopy.innerText = '📋 Copy Result'; }, 2000);
+    });
+  };
+})();
+</script>
+</body>
+</html>

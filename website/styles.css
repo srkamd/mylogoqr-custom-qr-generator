@@ -249,7 +249,27 @@ footer h4 { color: #fff; font: 700 1.05rem var(--h); margin-bottom: 12px; }
 footer a { color: #94A3B8; display: block; padding: 4px 0; transition: color .15s ease; font-size: 0.91rem; }
 footer a:hover { color: #ffffff; text-decoration: none; }
 footer p { color: #94A3B8; line-height: 1.65; }
-.fgrid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 28px; }
+.fgrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .fgrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .fgrid > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+  .fgrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
 .copy { margin-top: 32px; padding-top: 0; border: none; font-size: 0.88rem; color: #8F95C4; text-align: center; }
 
 @media (max-width: 760px) {
