@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>QR Code Guides & Technical Tutorials | MyLogoQR Blog</title>
 <meta name="description" content="Explore expert guides on custom QR code generation, logo placement, error correction protocols, digital vCards, restaurant menus, and Wi-Fi security.">
-<link rel="canonical" href="https://mylogoqr.com/blog/">>
+<link rel="canonical" href="https://mylogoqr.com/blog/">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#12163A">
 <link rel="icon" type="image/jpeg" href="/app_icon.jpg">
@@ -21,14 +21,51 @@
 <!-- Google AdSense Account Verification -->
 <meta name="google-adsense-account" content="ca-pub-9504324837751358">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
-<link rel="alternate" hreflang="x-default" href="https://mylogoqr.com/" />
-<link rel="alternate" hreflang="en" href="https://mylogoqr.com/" />
-<link rel="alternate" hreflang="es" href="https://mylogoqr.com/es/" />
-<link rel="alternate" hreflang="pt" href="https://mylogoqr.com/pt/" />
-<link rel="alternate" hreflang="ru" href="https://mylogoqr.com/ru/" />
-<link rel="alternate" hreflang="it" href="https://mylogoqr.com/it/" />
+<script>
+(function() {
+  var ua = navigator.userAgent || '';
+  if (/bot|crawler|spider|googlebot|bingbot|yandex|duckduckbot/i.test(ua)) return;
+  if (localStorage.getItem('preferred_lang')) return;
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('lang') === 'en' || params.get('noredirect') === '1') {
+    localStorage.setItem('preferred_lang', 'en');
+    return;
+  }
+  var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  var target = null;
+  if (lang.startsWith('es')) target = '/es/';
+  else if (lang.startsWith('pt')) target = '/pt/';
+  else if (lang.startsWith('ru')) target = '/ru/';
+  else if (lang.startsWith('it')) target = '/it/';
+  if (!target) return;
+
+  var path = window.location.pathname.replace(/^\/|\/$/g, '');
+  if (!path || path === 'index.html') {
+    window.location.replace(target);
+  } else {
+    var supported = [
+      'qr-code-types', 'whatsapp-qr-code-generator', 'wifi-qr-code-generator',
+      'instagram-qr-code-generator', 'google-reviews-qr-code-generator',
+      'google-maps-qr-code-generator', 'restaurant-menu-qr-code-generator',
+      'vcard-qr-code-generator', 'business-card-qr-code-generator',
+      'youtube-qr-code-generator', 'facebook-qr-code-generator',
+      'tiktok-qr-code-generator', 'telegram-qr-code-generator',
+      'spotify-qr-code-generator', 'linkedin-qr-code-generator',
+      'paypal-qr-code-generator', 'pdf-qr-code-generator',
+      'email-qr-code-generator', 'sms-qr-code-generator',
+      'text-qr-code-generator', 'app-store-qr-code-generator',
+      'real-estate-qr-code-generator', 'wedding-qr-code-generator'
+    ];
+    var baseSlug = path.replace('.html', '');
+    if (supported.indexOf(baseSlug) !== -1) {
+      window.location.replace(target + baseSlug);
+    }
+  }
+})();
+</script>
 <!-- Google Search Console Verification -->
 <meta name="google-site-verification" content="CqGKQ5hsgj9vsZ6D6Lljl-dE8-BGeGRfStHqAO21n2s">
+ <link rel="alternate" type="application/rss+xml" title="MyLogoQR Blog RSS" href="https://mylogoqr.com/rss.xml">
 </head>
 <body>
 <a href="#generator" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;">Skip to main content</a>
@@ -38,7 +75,7 @@
  <nav id="nav" aria-label="Main"><ul>
   <li><a href="/qr-code-types" style="color:var(--p);font-weight:600">Generators</a></li>
   <li><a href="/how-to-use">How to Use</a></li>
-  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/">Blog</a></li>
   <li><a href="/scan" style="font-weight:600;color:var(--p)">📷 Scan QR</a></li>
   <li><a href="/contact">Contact</a></li>
   <li><a class="cta" href="https://chromewebstore.google.com/detail/mylogoqr-free-qr-code-ge/bbmhigcaadcenfjalbjcakbamgpgjlke" target="_blank" rel="noopener" style="background:#2563EB;color:#fff;display:inline-flex;align-items:center;gap:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#4285F4"/><circle cx="12" cy="12" r="4.5" fill="#FFFFFF"/><circle cx="12" cy="12" r="3" fill="#1A73E8"/><path d="M12 2a10 10 0 0 1 8.66 5H12z" fill="#EA4335"/><path d="M20.66 7A10 10 0 0 1 12 22l4.33-7.5z" fill="#FBBC05"/><path d="M12 22A10 10 0 0 1 3.34 7H12z" fill="#34A853"/></svg>Extension</a></li><li><a class="cta" href="/#generator">Create QR</a></li>
@@ -278,23 +315,9 @@
       <span style="color:var(--ink3)">October 29, 2026</span>
       <a href="/blog/custom-qr-code-generator-with-logo-guide" style="font-weight:700">Read Guide &rarr;</a>
     </div>
-  <div class="tip" style="background:#F8FAFC;border-left:4px solid var(--t);padding:18px 22px;border-radius:12px;margin:28px 0">
-<b>Print Material Warning:</b> Never print QR codes on high-gloss UV varnishes or curved metallic surfaces. Camera flash and ceiling spotlight reflections create white glare over the corner markers, causing scanning vision algorithms to fail. Opt for matte cardstock or non-reflective vinyl.
+  <div class="tip" style="background:#F8FAFC;border-left:4px solid var(--p);padding:18px 22px;border-radius:12px;margin:28px 0">
+<b>Field-Tested Note:</b> We always recommend running the <i>'Two-Phone Daylight Test'</i> before sending any QR code to a commercial printer. Test scan the exported vector on both an iPhone and an older Android phone—first under direct bright sunlight, and then in a dimly lit hallway. If both open in under one second, your design is print-ready.
 </div>
-<div class="tip" style="background:#F8FAFC;border-left:4px solid var(--t);padding:18px 22px;border-radius:12px;margin:28px 0">
-<b>Print Material Warning:</b> Never print QR codes on high-gloss UV varnishes or curved metallic surfaces. Camera flash and ceiling spotlight reflections create white glare over the corner markers, causing scanning vision algorithms to fail. Opt for matte cardstock or non-reflective vinyl.
-</div>
-
-<div style="margin-top:40px;padding:24px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;">
-  <h3 style="margin-bottom:12px;font-size:1.1rem;color:#0F172A;">Related Technical Guides</h3>
-  <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
-    <li><a href="/blog/custom-qr-code-generator-with-logo-guide" style="color:#2563EB;text-decoration:none;font-weight:500;">&bull; Custom QR Code Generator with Logo: Complete Guide</a></li>
-    <li><a href="/blog/plain-text-qr-code-generator-guide" style="color:#2563EB;text-decoration:none;font-weight:500;">&bull; Offline Static Plain Text QR Codes</a></li>
-    <li><a href="/blog/how-to-use-whatsapp-qr-code-for-business" style="color:#2563EB;text-decoration:none;font-weight:500;">&bull; WhatsApp QR Codes for Modern Business</a></li>
-    <li><a href="/blog/how-to-make-a-qr-code-with-a-logo-in-the-middle" style="color:#2563EB;text-decoration:none;font-weight:500;">&bull; How to Place Logos in QR Codes with Level H Correction</a></li>
-  </ul>
-</div>
-
 </article>
   <article class="card" style="display:flex;flex-direction:column;justify-content:space-between"><a href="/blog/how-to-turn-your-logo-into-a-qr-code"><img class="blog-card-img" src="/blog/images/how-to-turn-your-logo-into-a-qr-code.svg" alt="turn your logo into a QR code — MyLogoQR guide" loading="lazy" width="1200" height="630"></a>
     <div>
@@ -562,25 +585,19 @@
       <a href="/blog/offline-static-plain-text-qr-code-use-cases" style="font-weight:700">Read Guide &rarr;</a>
     </div>
   </article>
-
-    <article class="card" style="display:flex;flex-direction:column;justify-content:space-between"><a href="/blog/future-of-qr-codes-ai-computer-vision-revolution"><img class="blog-card-img" src="/blog/images/future-of-qr-codes-ai-computer-vision-revolution.svg" alt="future of QR codes with AI and computer vision — MyLogoQR guide" loading="lazy" width="1200" height="630"></a>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;margin-bottom:12px">
-          <span style="background:rgba(59,130,246,0.1);color:#2563EB;padding:4px 10px;border-radius:99px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em">AI & Innovation</span>
-          <time datetime="2026-11-08" style="color:#64748B">Nov 8, 2026</time>
-        </div>
-        <h2 style="font-size:1.15rem;font-weight:700;line-height:1.4;margin-bottom:10px">
-          <a href="/blog/future-of-qr-codes-ai-computer-vision-revolution" style="color:#0F172A;text-decoration:none">Computer Vision Meets 2D Barcodes: AI Scanners & Smart Glasses</a>
-        </h2>
-        <p style="color:#64748B;font-size:0.88rem;line-height:1.55;margin-bottom:16px">
-          How spatial computing, AR headsets, and AI computer vision enable micro-scanning from extreme angles, distorted surfaces, and long distances.
-        </p>
-      </div>
-      <a href="/blog/future-of-qr-codes-ai-computer-vision-revolution" style="font-weight:600;font-size:0.88rem;color:var(--p);display:inline-flex;align-items:center;gap:6px">Read Article &rarr;</a>
-    </article>
-
  </div>
 </div></section>
+
+      <article style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform .2s ease,box-shadow .2s ease;"><a href="/blog/future-of-qr-codes-ai-computer-vision-revolution"><img class="blog-card-img" src="/blog/images/future-of-qr-codes-ai-computer-vision-revolution.svg" alt="future of QR codes with AI and computer vision — MyLogoQR guide" loading="lazy" width="1200" height="630"></a>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:0.85rem;">
+          <span style="background:var(--accent-light, #EEF2FF);color:var(--accent, #4F46E5);font-weight:700;padding:4px 10px;border-radius:99px;">AI & Computer Vision</span>
+          <span style="color:var(--ink2);font-weight:500">7 min read</span>
+        </div>
+        <h3 style="margin-bottom:8px;font-size:1.18rem"><a href="/blog/future-of-qr-codes-ai-computer-vision-revolution" style="color:var(--ink)">Computer Vision Meets 2D Barcodes: How AI Models Decode Distorted QR Codes</a></h3>
+        <p style="font-size:0.92rem;line-height:1.6;margin-bottom:16px;color:var(--ink2)">An in-depth look at neural network super-resolution, error correction algorithms, and how modern computer vision systems parse heavily styled QR codes.</p>
+        <a href="/blog/future-of-qr-codes-ai-computer-vision-revolution" style="font-weight:700;font-size:0.9rem;color:var(--accent, #4F46E5);text-decoration:none;">Read full guide &rarr;</a>
+      </article>
+
 </main>
 
 <footer>
@@ -629,6 +646,9 @@
     <a href="/real-estate-qr-code-generator">Real Estate Listings</a>
     <a href="/upi-payment-qr-code-generator">UPI &amp; QR Payments</a>
     <a href="/paypal-qr-code-generator">PayPal &amp; Tips</a>
+    <a href="/venmo-qr-code-generator">Venmo Payments</a>
+    <a href="/cash-app-qr-code-generator">Cash App $Cashtag</a>
+    <a href="/bitcoin-qr-code-generator">Bitcoin &amp; Crypto</a>
    </div>
 
    <div>
@@ -640,6 +660,7 @@
     <a href="/link-in-bio-qr-code-generator">Link in Bio Multi-Link</a>
     <a href="/telegram-qr-code-generator">Telegram Channel</a>
     <a href="/facebook-qr-code-generator">Facebook Page</a>
+    <a href="/snapchat-qr-code-generator">Snapchat Profile</a>
    </div>
 
    <div>
@@ -651,7 +672,9 @@
     <a href="/google-forms-qr-code-generator">Google Forms &amp; Surveys</a>
     <a href="/zoom-meeting-qr-code-generator">Zoom Meeting &amp; Video</a>
     <a href="/wedding-photo-sharing-qr-code-generator">Wedding Photo Sharing</a>
-    <a href="/qr-code-types">Explore All 32+ Tools &rarr;</a>
+    <a href="/url-qr-code-generator">URL &amp; Website Link</a>
+    <a href="/video-qr-code-generator">Video Link QR</a>
+    <a href="/qr-code-types">Explore All 36+ Tools &rarr;</a>
    </div>
 
    <div>
@@ -717,5 +740,8 @@
   }
 })();
 </script>
+
+<script src="/scripts/print-templates.js" defer></script>
+<script src="/scripts/smart-app-banner.js" defer></script>
 </body>
 </html>
