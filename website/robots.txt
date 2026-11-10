@@ -1,11 +1,24 @@
 User-agent: *
 Allow: /
 Allow: /llms.txt
+Allow: /sitemap.xml
+Allow: /scan
 
+# Search Engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI Crawlers & LLM Search Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
@@ -15,6 +28,9 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://mylogoqr.com/sitemap.xml
