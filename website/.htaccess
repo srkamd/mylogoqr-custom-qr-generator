@@ -31,11 +31,9 @@
 
 # 1c. Cache-Control Headers (Fixes 30-day stale HTML issue)
 <IfModule mod_headers.c>
-  # HTML pages: always revalidate so Googlebot & visitors see real-time updates
+  # HTML pages: optimize for fast TTFB (<200ms) with LiteSpeed & edge caching while ensuring timely updates
   <FilesMatch "\.(html|htm)$">
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "0"
+    Header set Cache-Control "public, max-age=300, stale-while-revalidate=86400"
   </FilesMatch>
 
   # Static assets: cache for 1 year
@@ -88,7 +86,13 @@
   RewriteRule ^([a-z]{2})/([^/]+)\.html$ https://mylogoqr.com/$1/$2 [R=301,L]
 
   # 2e. Internal rewrite: serve clean URLs from physical .html files
-  # Language blog subfolders (e.g. es/blog/slug)
+  # Universal rule: if request + .html exists as a file, serve it directly (handles any folder depth)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # Fallback mappings using DOCUMENT_ROOT
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/$1/blog/$2.html -f
   RewriteRule ^([a-z]{2})/blog/([^/]+)/?$ $1/blog/$2.html [L]
