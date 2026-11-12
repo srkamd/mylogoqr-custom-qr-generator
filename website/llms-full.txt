@@ -40,3 +40,8 @@ QR codes utilize Reed-Solomon algebraic error correction to reconstruct damaged,
 - QR Size Calculator: https://mylogoqr.com/tools/qr-size-calculator
 - QR Logo Size Checker: https://mylogoqr.com/tools/qr-logo-size-checker
 - Free Comparison Benchmark: https://mylogoqr.com/free-qr-code-generator-comparison
+
+## 8. Authorship & Engineering Standards
+- **Creator & Lead Systems Architect:** Shahrukh Ahmad
+- **Technical Standards:** ISO/IEC 18004 (QR Code Standard), WCAG 2.1 (Relative Luminance 4:1)
+- **Specification Date:** November 2026
