@@ -1,0 +1,357 @@
+
+content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Is It Safe to Put Wi-Fi Password in a QR Code? | MyLogoQR</title>
+<meta name="description" content="Is it safe to put your Wi-Fi password in a QR code? Yes, with the right precautions. Learn what gets stored, what risks exist, and how to stay secure.">
+<meta name="keywords" content="is it safe to put wifi password in qr code, wifi qr code security, wifi password qr code safe, qr code wifi password risk, wifi qr code privacy">
+<link rel="canonical" href="https://mylogoqr.com/blog/is-it-safe-to-put-wifi-password-in-qr-code">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#12163A">
+<link rel="icon" type="image/jpeg" href="/app_icon.jpg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/app_icon.jpg">
+<link rel="stylesheet" href="/styles.css?v=12.0">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="google-adsense-account" content="ca-pub-9504324837751358">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
+<meta property="og:title" content="Is It Safe to Put Your Wi-Fi Password in a QR Code?">
+<meta property="og:description" content="Yes, with precautions. Learn what Wi-Fi QR codes store, the real risks, and 6 simple rules to stay secure.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://mylogoqr.com/blog/is-it-safe-to-put-wifi-password-in-qr-code">
+<meta property="og:image" content="https://mylogoqr.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Is It Safe to Put Wi-Fi Password in a QR Code?">
+<meta name="twitter:description" content="Yes, with precautions. Learn the real risks and 6 rules to stay secure.">
+<meta name="twitter:image" content="https://mylogoqr.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Is It Safe to Put Your Wi-Fi Password in a QR Code?",
+      "description": "Is it safe to put your Wi-Fi password in a QR code? Yes, with the right precautions. Learn what gets stored, what risks exist, and how to stay secure.",
+      "datePublished": "2026-11-12",
+      "dateModified": "2026-11-12",
+      "author": {
+        "@type": "Person",
+        "name": "Shahrukh Ahmad",
+        "url": "https://mylogoqr.com/author"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MyLogoQR",
+        "logo": {"@type": "ImageObject", "url": "https://mylogoqr.com/og-image.png"}
+      },
+      "image": "https://mylogoqr.com/og-image.png",
+      "mainEntityOfPage": "https://mylogoqr.com/blog/is-it-safe-to-put-wifi-password-in-qr-code"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mylogoqr.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mylogoqr.com/blog"},
+        {"@type": "ListItem", "position": 3, "name": "Is It Safe to Put Wi-Fi Password in a QR Code?", "item": "https://mylogoqr.com/blog/is-it-safe-to-put-wifi-password-in-qr-code"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is it safe to put your Wi-Fi password in a QR code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, it is generally safe for home and business guest networks. The password is stored as plain text in the QR code, so only people who can physically see or scan the code can access it. The main risk is unauthorized access if the QR code is photographed or shared publicly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can someone steal my Wi-Fi password from a QR code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anyone who scans the QR code or photographs it can read the password using a QR decoder app. Keep the QR code in a controlled location (inside your home or at a staffed reception desk), not on a public-facing window or social media."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MyLogoQR store my Wi-Fi password on its servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. MyLogoQR generates the QR code entirely in your browser. Your Wi-Fi password never leaves your device and is never stored on any server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What Wi-Fi security type should I use with a QR code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use WPA2 or WPA3 for your main network. Never share a WEP-secured network via QR code as WEP is easily cracked. For guests, create a separate guest network with WPA2 and a unique password."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header>
+ <div class="nav-wrap">
+  <a href="/" class="logo" aria-label="MyLogoQR Home">
+   <img src="/app_icon.jpg" alt="MyLogoQR logo" width="36" height="36" loading="eager">
+   <span>MyLogoQR</span>
+  </a>
+  <button class="menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav">&#9776;</button>
+  <nav id="nav" aria-label="Main navigation">
+   <a href="/">Home</a>
+   <a href="/qr-code-types">All Tools</a>
+   <a href="/qr-code-design-guide">Design Guide</a>
+   <a href="/blog/">Blog</a>
+   <a href="/faq">FAQ</a>
+   <a href="/" class="cta-nav">Generate Free QR</a>
+  </nav>
+ </div>
+</header>
+
+<main style="max-width:820px;margin:0 auto;padding:32px 20px 60px;">
+
+ <!-- Breadcrumb -->
+ <nav aria-label="Breadcrumb" style="font-size:0.85rem;color:#94A3B8;margin-bottom:24px;">
+  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:4px;align-items:center;">
+   <li><a href="/" style="color:#94A3B8;text-decoration:none;">Home</a></li>
+   <li style="color:#475569;">/</li>
+   <li><a href="/blog/" style="color:#94A3B8;text-decoration:none;">Blog</a></li>
+   <li style="color:#475569;">/</li>
+   <li style="color:#E2E8F0;">Is It Safe to Put Wi-Fi Password in a QR Code?</li>
+  </ol>
+ </nav>
+
+ <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#F1F5F9;line-height:1.2;margin-bottom:16px;">
+  Is It Safe to Put Your Wi-Fi Password in a QR Code?
+ </h1>
+ <p style="font-size:1.05rem;color:#94A3B8;margin-bottom:8px;">
+  By <a href="/author" style="color:#7C3AED;text-decoration:none;font-weight:600;">Shahrukh Ahmad</a> &mdash; Creator &amp; Lead Systems Architect &nbsp;|&nbsp; Last updated: November 2026
+ </p>
+
+ <!-- Quick Answer -->
+ <div style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(124,58,237,0.1));border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:20px 24px;margin:28px 0;">
+  <p style="font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#10B981;margin:0 0 8px;">Quick Answer</p>
+  <p style="font-size:1.05rem;color:#F1F5F9;margin:0;line-height:1.6;"><strong>Yes &mdash; with the right precautions.</strong> A Wi-Fi QR code stores your password as plain text in the WPA2/WPA3 format. Anyone who physically scans it gets access. Keep it in a controlled location, use a guest network, and never post it publicly online.</p>
+ </div>
+
+ <!-- Section 1 -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:36px 0 14px;">What Does a Wi-Fi QR Code Actually Store?</h2>
+ <p style="color:#CBD5E1;line-height:1.75;margin-bottom:16px;">A Wi-Fi QR code encodes a standard text string using the <strong>WPA/WPA2/WPA3 payload format</strong>. When a phone scans it, the OS reads this string and auto-connects without typing. Here is what the payload looks like:</p>
+ <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:14px 18px;margin-bottom:24px;font-family:monospace;color:#94A3B8;font-size:0.95rem;overflow-x:auto;">
+  WIFI:T:WPA;S:YourNetworkName;P:YourPassword;H:false;;
+ </div>
+ <p style="color:#CBD5E1;line-height:1.75;margin-bottom:16px;">As you can see, <strong>the password is stored as readable plain text</strong>. This is the same as writing your password on a sticky note &mdash; anyone who can read the QR code (by scanning it or using a QR decoder app on a photo) can see the password.</p>
+
+ <!-- Section 2 -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:36px 0 14px;">The Real Risks (and How Serious They Are)</h2>
+
+ <div style="display:grid;gap:14px;margin-bottom:28px;">
+  <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:16px 20px;">
+   <p style="font-weight:700;color:#EF4444;margin:0 0 6px;">&#128247; Risk 1: Someone Photographs Your QR Code</p>
+   <p style="color:#CBD5E1;margin:0;line-height:1.6;font-size:0.95rem;">If you display the QR code on a window, in a public post, or on social media, anyone with a QR scanner app can decode the password. <strong>Severity: High if posted publicly. Low if only inside your home.</strong></p>
+  </div>
+  <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:16px 20px;">
+   <p style="font-weight:700;color:#F59E0B;margin:0 0 6px;">&#128274; Risk 2: Connecting to Your Main Network</p>
+   <p style="color:#CBD5E1;margin:0;line-height:1.6;font-size:0.95rem;">If you share your main (not guest) Wi-Fi, devices on that network can see shared folders, smart home devices, and printers. <strong>Severity: Medium. Use a guest network instead.</strong></p>
+  </div>
+  <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px 20px;">
+   <p style="font-weight:700;color:#10B981;margin:0 0 6px;">&#128737; Risk 3: QR Generator Storing Your Password</p>
+   <p style="color:#CBD5E1;margin:0;line-height:1.6;font-size:0.95rem;">Some online QR generators send your data to their servers and store it. <strong>MyLogoQR generates everything in your browser &mdash; your password never leaves your device.</strong> Severity: Zero with MyLogoQR.</p>
+  </div>
+ </div>
+
+ <!-- Pro-Tip -->
+ <div style="background:rgba(16,185,129,0.08);border-left:4px solid #10B981;border-radius:0 10px 10px 0;padding:16px 20px;margin:28px 0;">
+  <p style="font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#10B981;margin:0 0 6px;">&#128161; Pro Tip</p>
+  <p style="color:#CBD5E1;margin:0;line-height:1.6;">Create a <strong>separate guest network</strong> on your router with a unique password, then generate a QR code for that network only. Guest networks isolate visitors from your main devices. Use our <a href="/wifi-qr-code-generator" style="color:#10B981;">Wi-Fi QR Code Generator</a> &mdash; it works 100% in your browser with zero server storage.</p>
+ </div>
+
+ <!-- Section 3 -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:36px 0 14px;">6 Rules to Keep Your Wi-Fi QR Code Safe</h2>
+ <ol style="color:#CBD5E1;line-height:1.75;padding-left:20px;margin-bottom:28px;">
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Use a guest network, not your main network.</strong> Guest networks isolate visitors from your smart home, NAS, printers, and other devices on the main LAN.</li>
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Use WPA2 or WPA3 security.</strong> Never share a WEP network via QR code &mdash; WEP can be cracked in minutes. Modern routers default to WPA2/WPA3.</li>
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Display it only in controlled locations.</strong> Inside your home, café counter, hotel reception desk &mdash; not on a public-facing window, street signage, or social media.</li>
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Do not post the QR code image online.</strong> Even in a blog post or Instagram photo &mdash; a QR decoder can extract the password from a screenshot.</li>
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Change the guest password periodically.</strong> Every 1&ndash;3 months for public-facing businesses. When you change the password, regenerate the QR code.</li>
+  <li style="margin-bottom:14px;"><strong style="color:#F1F5F9;">Use a browser-based generator (like MyLogoQR).</strong> Your password is processed locally and never sent to any server. <a href="/wifi-qr-code-generator" style="color:#7C3AED;text-decoration:none;">Generate yours free here</a>.</li>
+ </ol>
+
+ <!-- Section 4 -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:36px 0 14px;">Wi-Fi QR Code Use Cases: Safe vs. Risky</h2>
+ <div style="overflow-x:auto;margin-bottom:24px;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+   <thead>
+    <tr style="background:rgba(124,58,237,0.2);">
+     <th style="text-align:left;padding:10px 14px;color:#E2E8F0;border-bottom:1px solid rgba(255,255,255,0.1);">Use Case</th>
+     <th style="text-align:left;padding:10px 14px;color:#E2E8F0;border-bottom:1px solid rgba(255,255,255,0.1);">Safety Level</th>
+     <th style="text-align:left;padding:10px 14px;color:#E2E8F0;border-bottom:1px solid rgba(255,255,255,0.1);">Recommendation</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr style="background:rgba(255,255,255,0.03);">
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Home &mdash; guest network, displayed indoors</td>
+     <td style="padding:10px 14px;color:#10B981;border-bottom:1px solid rgba(255,255,255,0.05);">&#10003; Safe</td>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Go ahead</td>
+    </tr>
+    <tr style="background:rgba(255,255,255,0.03);">
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Café / restaurant &mdash; guest network, table card</td>
+     <td style="padding:10px 14px;color:#10B981;border-bottom:1px solid rgba(255,255,255,0.05);">&#10003; Safe</td>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Use guest network + rotate password monthly</td>
+    </tr>
+    <tr style="background:rgba(255,255,255,0.03);">
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Home &mdash; main network, displayed indoors</td>
+     <td style="padding:10px 14px;color:#F59E0B;border-bottom:1px solid rgba(255,255,255,0.05);">&#9888; Medium risk</td>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Switch to guest network</td>
+    </tr>
+    <tr style="background:rgba(255,255,255,0.03);">
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Café &mdash; posted on a street-facing window</td>
+     <td style="padding:10px 14px;color:#EF4444;border-bottom:1px solid rgba(255,255,255,0.05);">&#10007; Risky</td>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Move it inside; rotate password weekly</td>
+    </tr>
+    <tr>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Posted on social media or a public website</td>
+     <td style="padding:10px 14px;color:#EF4444;border-bottom:1px solid rgba(255,255,255,0.05);">&#10007; Very risky</td>
+     <td style="padding:10px 14px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.05);">Never do this</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <!-- Section 5 -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:36px 0 14px;">Does MyLogoQR Store My Wi-Fi Password?</h2>
+ <p style="color:#CBD5E1;line-height:1.75;margin-bottom:16px;"><strong style="color:#10B981;">No.</strong> MyLogoQR generates your QR code entirely inside your web browser using JavaScript. Your Wi-Fi network name (SSID) and password are never sent to any server, never stored in a database, and never logged. When you close the browser tab, the data is gone.</p>
+ <p style="color:#CBD5E1;line-height:1.75;margin-bottom:16px;">This is by design. The <a href="/privacy" style="color:#7C3AED;text-decoration:none;">MyLogoQR Privacy Policy</a> commits to zero data collection for QR generation. The tool even works offline once the page loads.</p>
+
+ <!-- FAQ Section -->
+ <h2 style="font-size:1.5rem;font-weight:700;color:#F1F5F9;margin:40px 0 20px;">Frequently Asked Questions</h2>
+
+ <details style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px 20px;margin-bottom:12px;">
+  <summary style="font-weight:600;color:#F1F5F9;cursor:pointer;font-size:1rem;">Is it safe to put your Wi-Fi password in a QR code?</summary>
+  <p style="color:#94A3B8;margin:12px 0 0;line-height:1.65;">Yes, with precautions. Use a guest network, display it in a controlled location, and never post it publicly online. The password is stored as plain text, so physical access = password access.</p>
+ </details>
+
+ <details style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px 20px;margin-bottom:12px;">
+  <summary style="font-weight:600;color:#F1F5F9;cursor:pointer;font-size:1rem;">Can someone steal my Wi-Fi password from a QR code?</summary>
+  <p style="color:#94A3B8;margin:12px 0 0;line-height:1.65;">Yes, if they can scan it or photograph it and use a QR decoder. Keep it in a location where only trusted people can see it. For high-traffic public use, change the guest password regularly.</p>
+ </details>
+
+ <details style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px 20px;margin-bottom:12px;">
+  <summary style="font-weight:600;color:#F1F5F9;cursor:pointer;font-size:1rem;">Does MyLogoQR store my Wi-Fi password?</summary>
+  <p style="color:#94A3B8;margin:12px 0 0;line-height:1.65;">No. All QR generation happens in your browser. Your password never touches our servers. See our <a href="/privacy" style="color:#7C3AED;">Privacy Policy</a> for details.</p>
+ </details>
+
+ <details style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px 20px;margin-bottom:24px;">
+  <summary style="font-weight:600;color:#F1F5F9;cursor:pointer;font-size:1rem;">What security type should my Wi-Fi be?</summary>
+  <p style="color:#94A3B8;margin:12px 0 0;line-height:1.65;">Use WPA2 or WPA3. Never share WEP networks &mdash; WEP is obsolete and easily cracked. Most modern routers default to WPA2/WPA3. Check your router admin panel (usually at 192.168.1.1).</p>
+ </details>
+
+ <!-- CTA -->
+ <div style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(16,185,129,0.15));border:1px solid rgba(124,58,237,0.3);border-radius:14px;padding:28px 24px;text-align:center;margin:36px 0;">
+  <h3 style="font-size:1.3rem;font-weight:700;color:#F1F5F9;margin:0 0 10px;">Generate Your Wi-Fi QR Code &mdash; Privately</h3>
+  <p style="color:#94A3B8;margin:0 0 20px;line-height:1.6;">100% browser-based. Your password never leaves your device. Add your logo for free.</p>
+  <a href="/wifi-qr-code-generator" style="background:#7C3AED;color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.95rem;">&#128246; Create Wi-Fi QR Code Free</a>
+ </div>
+
+ <!-- Related -->
+ <h2 style="font-size:1.3rem;font-weight:700;color:#F1F5F9;margin:40px 0 16px;">Related Guides</h2>
+ <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:40px;">
+  <a href="/wifi-qr-code-generator" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-decoration:none;display:block;">
+   <span style="font-size:1.3rem;">&#128246;</span>
+   <p style="color:#F1F5F9;font-weight:600;margin:8px 0 4px;font-size:0.95rem;">Wi-Fi QR Code Generator</p>
+   <p style="color:#94A3B8;font-size:0.82rem;margin:0;">Create WPA2/WPA3 QR in seconds</p>
+  </a>
+  <a href="/qr-code-design-guide" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-decoration:none;display:block;">
+   <span style="font-size:1.3rem;">&#127912;</span>
+   <p style="color:#F1F5F9;font-weight:600;margin:8px 0 4px;font-size:0.95rem;">QR Code Design Guide</p>
+   <p style="color:#94A3B8;font-size:0.82rem;margin:0;">Colors, frames &amp; best practices</p>
+  </a>
+  <a href="/static-vs-dynamic-qr-codes" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-decoration:none;display:block;">
+   <span style="font-size:1.3rem;">&#128257;</span>
+   <p style="color:#F1F5F9;font-weight:600;margin:8px 0 4px;font-size:0.95rem;">Static vs Dynamic QR Codes</p>
+   <p style="color:#94A3B8;font-size:0.82rem;margin:0;">Which type is right for you?</p>
+  </a>
+  <a href="/blog/how-much-logo-can-a-qr-code-have" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-decoration:none;display:block;">
+   <span style="font-size:1.3rem;">&#128270;</span>
+   <p style="color:#F1F5F9;font-weight:600;margin:8px 0 4px;font-size:0.95rem;">Logo Size Guide</p>
+   <p style="color:#94A3B8;font-size:0.82rem;margin:0;">How big can a logo be in a QR code?</p>
+  </a>
+ </div>
+
+</main>
+
+<footer>
+ <div class="footer-inner">
+  <div class="footer-brand">
+   <a href="/" class="logo" aria-label="MyLogoQR Home">
+    <img src="/app_icon.jpg" alt="MyLogoQR" width="32" height="32" loading="lazy">
+    <span>MyLogoQR</span>
+   </a>
+   <p>Free QR code generator with logo. No sign-up. No watermark. Private by design.</p>
+   <p style="font-size:0.82rem;color:#64748B;margin-top:8px;">Author: <a href="/author" style="color:#7C3AED;text-decoration:none;">Shahrukh Ahmad</a> &mdash; Creator &amp; Lead Systems Architect</p>
+  </div>
+  <div class="footer-links">
+   <div>
+    <h3 style="font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:12px;"><span>&#128279;</span> Popular Generators</h3>
+    <a href="/url-qr-code-generator">URL &amp; Website QR</a>
+    <a href="/wifi-qr-code-generator">Wi-Fi Password QR</a>
+    <a href="/vcard-qr-code-generator">vCard Contact QR</a>
+    <a href="/whatsapp-qr-code-generator">WhatsApp QR</a>
+    <a href="/qr-code-types">Explore All 38 Tools &rarr;</a>
+   </div>
+   <div>
+    <h3 style="font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:12px;"><span>&#128218;</span> Guides &amp; Tools</h3>
+    <a href="/qr-code-error-correction">Error Correction Guide</a>
+    <a href="/qr-code-design-guide">Design Guide</a>
+    <a href="/static-vs-dynamic-qr-codes">Static vs Dynamic QR</a>
+    <a href="/tools/qr-contrast-checker">Contrast Checker</a>
+    <a href="/tools/qr-logo-size-checker">Logo Size Checker</a>
+   </div>
+   <div>
+    <h3 style="font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:12px;"><span>&#128737;&#65039;</span> Company &amp; Legal</h3>
+    <a href="/blog/">Guides &amp; Blog Hub</a>
+    <a href="/about">About MyLogoQR</a>
+    <a href="/faq">FAQs &amp; Help</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/contact">Contact Support</a>
+   </div>
+  </div>
+  <div class="lang-bar" style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;font-size:0.86rem;color:#94A3B8">
+   <span style="color:#CBD5E1;font-weight:600;margin-right:8px;">&#127758; International Versions:</span>
+   <a href="/" style="color:#FFFFFF;font-weight:700;padding:0 6px;text-decoration:none;">English</a> &bull;
+   <a href="/es/" style="color:#94A3B8;padding:0 6px;text-decoration:none;">Espa&ntilde;ol</a> &bull;
+   <a href="/pt/" style="color:#94A3B8;padding:0 6px;text-decoration:none;">Portugu&ecirc;s</a>
+  </div>
+  <div class="copy" style="margin-top:14px;text-align:center;font-size:0.86rem;color:#64748B">&copy; 2026 MyLogoQR &mdash; Free, Private QR Code Generator. All rights reserved.</div>
+ </div>
+</footer>
+<script>
+(function(){
+  var m = document.querySelector('.menu'), n = document.getElementById('nav');
+  if (m && n) {
+    m.onclick = function() { var open = n.classList.toggle('open'); m.setAttribute('aria-expanded', open ? 'true' : 'false'); };
+    n.onclick = function(e) { if (e.target.tagName === 'A') n.classList.remove('open'); };
+  }
+})();
+</script>
+</body>
+</html>'''
+
+with open(r'D:\\Projects\\mylogoqr\\website\\blog\\is-it-safe-to-put-wifi-password-in-qr-code.html', 'w', encoding='utf-8') as f:
+    f.write(content)
+print("Blog post 2 created: is-it-safe-to-put-wifi-password-in-qr-code.html")
