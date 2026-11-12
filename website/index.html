@@ -202,7 +202,223 @@
 }</script>
 
 <style>
-:root{--ink:#0A0F1D;--ink2:#1E293B;--ink3:#475569;--bg:#F8FAFC;--card:#fff;--line:#E2E8F0;--p:#4F46E5;--t:#0D9488;--a:#F59E0B;--r:18px;--g:linear-gradient(135deg,#4F46E5,#06B6D4);--h:'Bricolage Grotesque',system-ui,sans-serif;--b:'Inter',system-ui,sans-serif}
+
+/* Modern 3D & Micro-Interactions (100% Lightweight Pure CSS - Zero JS penalty) */
+@keyframes float3D {
+ 0%, 100% { transform: translateY(0px); }
+ 50% { transform: translateY(-5px); }
+}
+@keyframes pulseGlow {
+ 0%, 100% { opacity: 0.35; transform: scale(1); }
+ 50% { opacity: 0.55; transform: scale(1.06); }
+}
+@keyframes shimmerLine {
+ 0% { background-position: -200% 0; }
+ 100% { background-position: 200% 0; }
+}
+
+:root {
+ --ink: #0A0F1D;
+ --ink2: #1E293B;
+ --ink3: #475569;
+ --m: #64748B;
+ --bg: #F8FAFC;
+ --card: #FFFFFF;
+ --line: #E2E8F0;
+ --line-hover: #C7D2FE;
+ --p: #4F46E5;
+ --t: #0D9488;
+ --a: #F59E0B;
+ --r: 20px;
+ --g: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
+ --shadow-sm: 0 2px 6px rgba(15,23,42,0.03);
+ --shadow-md: 0 10px 25px -5px rgba(15,23,42,0.06), 0 4px 10px -4px rgba(15,23,42,0.04);
+ --shadow-3d: 0 24px 50px -12px rgba(79,70,229,0.16), 0 8px 20px -6px rgba(15,23,42,0.08);
+ --h: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+ --b: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.hero {
+ position: relative;
+ overflow: hidden;
+ background: radial-gradient(circle at 50% 20%, #161D38 0%, #0B0F19 85%);
+ padding: 64px 0 120px;
+ text-align: center;
+ perspective: 1000px;
+}
+.hero:before {
+ content: "";
+ position: absolute;
+ width: 500px;
+ height: 500px;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba(79,70,229,0.38) 0%, transparent 70%);
+ filter: blur(90px);
+ left: -100px;
+ top: -140px;
+ animation: pulseGlow 8s ease-in-out infinite alternate;
+ pointer-events: none;
+}
+.hero:after {
+ content: "";
+ position: absolute;
+ width: 460px;
+ height: 460px;
+ border-radius: 50%;
+ background: radial-gradient(circle, rgba(6,182,212,0.32) 0%, transparent 70%);
+ filter: blur(90px);
+ right: -100px;
+ bottom: -160px;
+ animation: pulseGlow 10s ease-in-out infinite alternate-reverse;
+ pointer-events: none;
+}
+
+.tool {
+ margin-top: -85px;
+ background: var(--card);
+ border: 1px solid rgba(226,232,240,0.95);
+ border-radius: 28px;
+ box-shadow: 0 30px 70px -15px rgba(11,15,25,0.12), 0 10px 25px -8px rgba(79,70,229,0.1), 0 0 0 1px rgba(255,255,255,0.9) inset;
+ overflow: hidden;
+ position: relative;
+ z-index: 2;
+ transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+}
+
+.tabs {
+ display: flex;
+ gap: 6px;
+ padding: 12px 18px;
+ overflow-x: auto;
+ background: #F8FAFC;
+ border-bottom: 1px solid var(--line);
+ scrollbar-width: thin;
+}
+.tabs button {
+ flex: none;
+ border: 1px solid transparent;
+ background: transparent;
+ padding: 10px 20px;
+ border-radius: 12px;
+ font: 600 .94rem var(--b);
+ color: var(--ink2);
+ cursor: pointer;
+ transition: all 0.18s ease;
+}
+.tabs button:hover {
+ background: #FFFFFF;
+ color: var(--ink);
+ border-color: #E2E8F0;
+ box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.tabs button[aria-selected=true] {
+ background: var(--g);
+ color: #fff;
+ border-color: transparent;
+ box-shadow: 0 6px 18px rgba(79,70,229,.3);
+ transform: translateY(-1px);
+}
+
+.qrbox {
+ background: #FFFFFF;
+ border-radius: 24px;
+ padding: 20px;
+ display: grid;
+ place-items: center;
+ min-height: 320px;
+ aspect-ratio: 1/1;
+ box-shadow: 0 16px 36px -8px rgba(79,70,229,0.12), 0 2px 8px rgba(0,0,0,0.04);
+ border: 1px solid #E2E8F0;
+ position: relative;
+ transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+}
+.qrbox:hover {
+ transform: translateY(-4px) perspective(800px) rotateX(1.5deg);
+ box-shadow: 0 24px 50px -10px rgba(79,70,229,0.22), 0 0 0 2px rgba(79,70,229,0.15);
+}
+
+.partner-pill {
+ padding: 9px 20px;
+ border: 1px solid #E2E8F0;
+ border-radius: 99px;
+ font-weight: 700;
+ font-size: 0.88rem;
+ color: #334155;
+ text-decoration: none;
+ background: #FFFFFF;
+ box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+ transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+}
+.partner-pill:hover {
+ transform: translateY(-2px);
+ border-color: #C7D2FE;
+ color: #4F46E5;
+ box-shadow: 0 8px 20px rgba(79,70,229,0.12);
+ text-decoration: none;
+}
+
+.type-card {
+ background: #FFFFFF;
+ border: 1px solid #E2E8F0;
+ border-radius: 18px;
+ padding: 18px 20px;
+ display: flex;
+ align-items: center;
+ gap: 14px;
+ text-decoration: none;
+ transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+ box-shadow: 0 3px 10px rgba(15,23,42,0.03);
+ position: relative;
+ overflow: hidden;
+}
+.type-card:hover {
+ transform: translateY(-5px) scale(1.015);
+ border-color: #A5B4FC;
+ box-shadow: var(--shadow-3d);
+ text-decoration: none;
+}
+.type-icon {
+ width: 46px;
+ height: 46px;
+ border-radius: 14px;
+ display: grid;
+ place-items: center;
+ font-size: 1.45rem;
+ flex-shrink: 0;
+ transition: transform 0.25s ease;
+}
+.type-card:hover .type-icon {
+ transform: scale(1.12) rotate(4deg);
+}
+
+.feature-card {
+ background: #FFFFFF;
+ border: 1px solid #E2E8F0;
+ border-radius: 22px;
+ padding: 32px 26px;
+ transition: all 0.28s cubic-bezier(0.16,1,0.3,1);
+ box-shadow: 0 4px 14px rgba(15,23,42,0.03);
+ position: relative;
+}
+.feature-card:hover {
+ transform: translateY(-6px);
+ border-color: #C7D2FE;
+ box-shadow: var(--shadow-3d);
+}
+.feature-icon-box {
+ width: 52px;
+ height: 52px;
+ border-radius: 16px;
+ display: grid;
+ place-items: center;
+ font-size: 1.6rem;
+ margin-bottom: 20px;
+ box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+}
+
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;height:auto}
 body{font-family:var(--b);color:var(--ink2);background:var(--bg);line-height:1.7;font-size:16px;padding-top:env(safe-area-inset-top,0px);-webkit-font-smoothing:antialiased}
@@ -453,42 +669,94 @@ footer p{color:#94A3B8;line-height:1.6}
 </div>
 </div>
 
-<section style="padding:26px 0 6px;background:#FFFFFF">
+<section style="padding:48px 0 20px;background:#FFFFFF">
  <div class="wrap" style="text-align:center">
-  <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#94A3B8;margin:0 0 14px">Featured &amp; listed on</p>
-  <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center">
-   <a href="https://www.producthunt.com/products/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">Product Hunt</a>
-   <a href="https://www.indiehackers.com/product/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">Indie Hackers</a>
-   <a href="https://www.crunchbase.com/organization/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">Crunchbase</a>
-   <a href="https://www.f6s.com/company/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">F6S</a>
-   <a href="https://alternativeto.net/software/mylogoqr/" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">AlternativeTo</a>
-   <a href="https://peerlist.io/zaibunnisa54000/project/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">Peerlist</a>
-   <a href="https://www.startupranking.com/startup/mylogoqr" target="_blank" rel="noopener" style="padding:8px 18px;border:1px solid #E2E8F0;border-radius:99px;font-weight:700;font-size:0.9rem;color:#334155;text-decoration:none;background:#F8FAFC">Startup Ranking</a>
+  <p style="font-size:0.75rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#94A3B8;margin:0 0 16px">Featured &amp; Recognized On</p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center">
+   <a href="https://www.producthunt.com/products/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>🚀</span> Product Hunt</a>
+   <a href="https://www.indiehackers.com/product/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>⚡</span> Indie Hackers</a>
+   <a href="https://www.crunchbase.com/organization/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>🌐</span> Crunchbase</a>
+   <a href="https://www.f6s.com/company/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>💼</span> F6S</a>
+   <a href="https://alternativeto.net/software/mylogoqr/" target="_blank" rel="noopener" class="partner-pill"><span>⚖️</span> AlternativeTo</a>
+   <a href="https://peerlist.io/zaibunnisa54000/project/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>🎯</span> Peerlist</a>
+   <a href="https://www.startupranking.com/startup/mylogoqr" target="_blank" rel="noopener" class="partner-pill"><span>📈</span> Startup Ranking</a>
   </div>
  </div>
 </section>
 
-<section style="padding-top:0"><div class="wrap">
- <h2>Choose the QR type you need</h2>
- <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px">
-  <a class="card" href="/url-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">🔗</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">Website Link</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">URLs &amp; Portfolios</p></div></a>
-  <a class="card" href="/wifi-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">📶</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">Wi-Fi QR Code</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">Instant connection</p></div></a>
-  <a class="card" href="/vcard-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">📇</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">vCard Contact</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">Business cards</p></div></a>
-  <a class="card" href="/google-reviews-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">⭐</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">Google Reviews QR</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">Boost 5-star ratings</p></div></a>
-  <a class="card" href="/whatsapp-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">💬</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">WhatsApp Chat</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">Pre-filled chats</p></div></a>
-  <a class="card" href="/text-qr-code-generator" style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:18px"><span style="font-size:1.6rem">📝</span><div><h4 style="margin:0;font-size:1rem;color:var(--t)">Plain Text QR Code</h4><p style="margin:0;font-size:0.8rem;color:var(--m)">Offline notes &amp; IDs</p></div></a>
+<section style="padding:68px 0;background:#F8FAFC"><div class="wrap">
+ <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:28px">
+  <div>
+   <span style="font-size:0.8rem;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:0.06em">Pre-Configured Types</span>
+   <h2 style="margin:4px 0 0;font-size:clamp(1.7rem,3.2vw,2.3rem)">Choose the QR type you need</h2>
+  </div>
+  <a href="/qr-code-types" style="color:var(--p);font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px">Explore All 38 Tools &rarr;</a>
+ </div>
+
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:16px">
+  <a class="type-card" href="/url-qr-code-generator">
+   <div class="type-icon" style="background:#EFF6FF;color:#2563EB">🔗</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">Website Link</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">URLs, portfolios &amp; links</p></div>
+  </a>
+  <a class="type-card" href="/wifi-qr-code-generator">
+   <div class="type-icon" style="background:#ECFEFF;color:#0891B2">📶</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">Wi-Fi QR Code</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Instant zero-type connect</p></div>
+  </a>
+  <a class="type-card" href="/vcard-qr-code-generator">
+   <div class="type-icon" style="background:#EEF2FF;color:#4F46E5">📇</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">vCard Contact</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Digital business cards</p></div>
+  </a>
+  <a class="type-card" href="/whatsapp-qr-code-generator">
+   <div class="type-icon" style="background:#ECFDF5;color:#059669">💬</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">WhatsApp Chat</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Pre-filled direct chats</p></div>
+  </a>
+  <a class="type-card" href="/google-reviews-qr-code-generator">
+   <div class="type-icon" style="background:#FFFBEB;color:#D97706">⭐</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">Google Reviews QR</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Boost 5-star feedback</p></div>
+  </a>
+  <a class="type-card" href="/text-qr-code-generator">
+   <div class="type-icon" style="background:#F1F5F9;color:#475569">📝</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">Plain Text QR Code</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Offline notes &amp; IDs</p></div>
+  </a>
+  <a class="type-card" href="/pdf-qr-code-generator">
+   <div class="type-icon" style="background:#FFF1F2;color:#E11D48">📄</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">PDF Document QR</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Menus, guides &amp; flyers</p></div>
+  </a>
+  <a class="type-card" href="/instagram-qr-code-generator">
+   <div class="type-icon" style="background:#FAF5FF;color:#9333EA">📸</div>
+   <div><h4 style="margin:0;font-size:1.02rem;color:var(--ink);font-weight:700">Instagram QR</h4><p style="margin:2px 0 0;font-size:0.82rem;color:var(--m)">Grow social followers</p></div>
+  </a>
  </div>
 </div></section>
-<section><div class="wrap center">
- <h2>Built for real-world use</h2>
- <div class="grid features">
-  <div class="card"><h3>Private by design</h3><p>Nothing is uploaded. The code is created inside your browser so passwords and contact details stay yours.</p></div>
-  <div class="card"><h3>Static, no expiry</h3><p>Your codes never stop working. No trials, no subscriptions, no scan counts. Once generated, it works forever.</p></div>
-  <div class="card"><h3>Vector SVG export</h3><p>Download clean, sharp SVG files that scale to billboards without pixelation, or standard high-res PNG for digital use.</p></div>
-  <div class="card"><h3>Branded with your logo</h3><p>Embed your logo, set brand gradients and custom module shapes with Level H Reed-Solomon error correction.</p></div>
+<section style="padding:72px 0;background:#FFFFFF"><div class="wrap center">
+ <span style="font-size:0.8rem;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:0.06em">Enterprise Reliability</span>
+ <h2 style="font-size:clamp(1.7rem,3.2vw,2.3rem);margin:6px 0 10px">Built for real-world use</h2>
+ <p style="color:var(--m);max-width:62ch;margin:0 auto 36px">Engineered to deliver high scan reliability, clean vector output, and absolute client-side privacy.</p>
+ 
+ <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;text-align:left">
+  <div class="feature-card">
+   <div class="feature-icon-box" style="background:#EEF2FF;color:#4F46E5">🛡️</div>
+   <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin:0 0 8px">Private by design</h3>
+   <p style="color:var(--m);font-size:0.92rem;line-height:1.65;margin:0">Nothing is uploaded to servers. All QR encoding executes in your browser so sensitive Wi-Fi keys and personal contacts stay private.</p>
+  </div>
+  <div class="feature-card">
+   <div class="feature-icon-box" style="background:#ECFEFF;color:#0891B2">♾️</div>
+   <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin:0 0 8px">Static, no expiry</h3>
+   <p style="color:var(--m);font-size:0.92rem;line-height:1.65;margin:0">Your codes never deactivate. Zero scan limits, no surprise subscriptions, and no redirect middleware. Once generated, it works permanently.</p>
+  </div>
+  <div class="feature-card">
+   <div class="feature-icon-box" style="background:#ECFDF5;color:#059669">📐</div>
+   <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin:0 0 8px">Vector SVG export</h3>
+   <p style="color:var(--m);font-size:0.92rem;line-height:1.65;margin:0">Download crystal-clear SVG vector files that scale to billboards without pixelation, alongside ultra-high-resolution 1000×1000px PNGs.</p>
+  </div>
+  <div class="feature-card">
+   <div class="feature-icon-box" style="background:#FAF5FF;color:#9333EA">🎨</div>
+   <h3 style="font-size:1.2rem;font-weight:700;color:var(--ink);margin:0 0 8px">Branded with your logo</h3>
+   <p style="color:var(--m);font-size:0.92rem;line-height:1.65;margin:0">Embed your brand logo, select custom gradients, and fine-tune module styles with automated Level H Reed-Solomon error correction.</p>
+  </div>
  </div>
 </div></section>
-on><div class="wrap">
+<section style="padding:68px 0;background:#F8FAFC"><div class="wrap">
  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:16px">
   <div>
    <h2 style="margin:0 0 4px 0">Error correction levels explained</h2>
