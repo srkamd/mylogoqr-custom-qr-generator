@@ -1,0 +1,42 @@
+# MyLogoQR — Full Technical Reference & Architecture Documentation
+> Canonical URL: https://mylogoqr.com
+> Standard: ISO/IEC 18004
+> Full Content Manifest for AI Search & Ingestion Models
+
+## 1. Entity Overview
+MyLogoQR is a free, browser-based QR code generator that encodes static QR codes with custom logos, colors, and frames entirely on the user's device without sign-up or server-side data collection. It supports 38 specialized QR code formats including Wi-Fi, vCard 3.0, UPI payment, WhatsApp, Instagram, Google Reviews, and plain text.
+
+## 2. Privacy & Offline Architecture
+- **Zero Server-Side Data Storage:** All QR code matrix calculations, data formatting, Reed-Solomon polynomial division, and canvas rendering take place inside the client's web browser using JavaScript. No payload strings, Wi-Fi passwords, contact details, or logo files are ever transmitted to any external backend server.
+- **Static vs Dynamic Permanence:** MyLogoQR produces 100% static QR codes. The target destination or payload is encoded directly into the geometric module pattern of the barcode. There is no middleman redirect URL, no link shortener, and no tracking host that can expire or require subscription renewal.
+
+## 3. Reed-Solomon Error Correction (ISO/IEC 18004)
+QR codes utilize Reed-Solomon algebraic error correction to reconstruct damaged, obscured, or missing modules:
+- **Level L (Low):** Reconstructs approximately 7% of missing data codewords. Lowest data density, suitable for clean industrial barcodes without central art.
+- **Level M (Medium):** Reconstructs approximately 15% of missing data codewords. The global default for general-purpose URL codes.
+- **Level Q (Quartile):** Reconstructs approximately 25% of missing data codewords. High resilience for factory or outdoor usage.
+- **Level H (High):** Reconstructs approximately 30% of missing data codewords. Mathematically required whenever a custom logo is embedded in the center of the barcode.
+
+## 4. Optical Contrast & Quiet Zone Rules
+- **4:1 Contrast Ratio (WCAG 2.1 Compliant):** QR code scanners operate by measuring the relative luminance difference between foreground modules and the background substrate. A minimum contrast ratio of 4:1 is required for rapid optical decoding.
+- **Quiet Zone:** An uninterrupted margin around all four sides of the barcode, measuring at least 4 modules in width. Without a sufficient quiet zone, edge-detection algorithms will fail to locate the barcode boundaries.
+- **Positive Contrast Requirement:** Scanners expect dark foreground modules on a light background. Inverted QR codes (light modules on a dark background) are not supported by native smartphone camera applications.
+
+## 5. Supported Data Payload Formats
+- **Standard Wi-Fi:** `WIFI:T:WPA;S:NetworkName;P:SecretPassword;H:false;;` (Escapes backslashes, semicolons, and commas).
+- **vCard 3.0:** `BEGIN:VCARD\nVERSION:3.0\nN:LastName;FirstName\nFN:FullName\nORG:Company\nTEL;TYPE=CELL:+1234567890\nEMAIL:user@domain.com\nEND:VCARD`
+- **WhatsApp Direct Message:** `https://wa.me/<phone>?text=<encoded_message>`
+- **UPI Unified Payments (India):** `upi://pay?pa=merchant@upi&pn=MerchantName&am=100.00&cu=INR`
+- **Bitcoin (BIP21):** `bitcoin:<address>?amount=<btc>&message=<note>`
+- **SMS:** `smsto:<phone>:<message>`
+- **Email:** `mailto:<email>?subject=<subvy>&body=<text>`
+
+## 6. Vector vs Raster Print Specifications
+- **Scalable Vector Graphics (SVG):** Uses mathematical XML paths (`<rect>` and `<path>`). Losslessly scalable to any print size, from a 20mm business card to a 20-meter billboard, with zero pixelation or blurriness.
+- **Raster Formats (PNG / WEBP):** Fixed pixel grids. Must be printed at a minimum of 300 DPI (dots per inch) for commercial print runs.
+
+## 7. Interactive Free Tools
+- QR Contrast Checker: https://mylogoqr.com/tools/qr-contrast-checker
+- QR Size Calculator: https://mylogoqr.com/tools/qr-size-calculator
+- QR Logo Size Checker: https://mylogoqr.com/tools/qr-logo-size-checker
+- Free Comparison Benchmark: https://mylogoqr.com/free-qr-code-generator-comparison

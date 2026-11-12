@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /llms.txt
+Allow: /llms-full.txt
 Allow: /sitemap.xml
 Allow: /scan
 
@@ -12,6 +13,9 @@ User-agent: Bingbot
 Allow: /
 
 User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
 Allow: /
 
 # AI Crawlers & LLM Search Agents
@@ -28,6 +32,12 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
 Allow: /
 
 User-agent: Google-Extended
