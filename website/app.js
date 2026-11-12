@@ -1,3 +1,12 @@
+
+function escapeWifi(str) {
+  if (!str) return '';
+  return str.replace(/\\/g, '\\\\')
+            .replace(/;/g, '\\;')
+            .replace(/,/g, '\\,')
+            .replace(/:/g, '\\:')
+            .replace(/"/g, '\\"');
+}
 // Register PWA Service Worker for offline capabilities
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -440,10 +449,15 @@ function compileData() {
       const ssid = document.getElementById('wifi-ssid').value.trim() || 'WiFi-SSID';
       const pass = document.getElementById('wifi-pass').value.trim();
       const enc = document.getElementById('wifi-enc').value;
+      const hiddenElem = document.getElementById('wifi-hidden');
+      const isHidden = hiddenElem && hiddenElem.checked;
+      const escSsid = escapeWifi(ssid);
+      const escPass = escapeWifi(pass);
+      const hParam = isHidden ? 'H:true;' : '';
       if (enc === 'nopass') {
-        return `WIFI:S:${ssid};T:nopass;;`;
+        return `WIFI:T:nopass;S:${escSsid};${hParam};`;
       }
-      return `WIFI:S:${ssid};T:${enc};P:${pass};;`;
+      return `WIFI:T:${enc};S:${escSsid};P:${escPass};${hParam};`;
     
     case 'text':
       return document.getElementById('text-input').value || 'Hello, craft your QR code!';

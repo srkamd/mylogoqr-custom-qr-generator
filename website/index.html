@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Free QR Code Generator with Logo & Colors | MyLogoQR</title>
+<title>QR Code Generator with Logo – Free, No Sign-Up | MyLogoQR</title>
 <meta name="description" content="Create free custom QR codes with your logo, colors, and styles. Generate Link, WhatsApp, WiFi, Text, and Contact QR codes. Download PNG or SVG instantly.">
 <link rel="canonical" href="https://mylogoqr.com/">
 <link rel="icon" type="image/jpeg" href="/app_icon.jpg">
@@ -18,7 +18,7 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mylogoqr.com/">
-<meta property="og:title" content="Free QR Code Generator with Logo, Colors & Shapes | MyLogoQR">
+<meta property="og:title" content="QR Code Generator with Logo – Free, No Sign-Up | MyLogoQR">
 <meta property="og:description" content="Create QR codes for links, WhatsApp, Wi-Fi, text and contacts. Add your logo, gradients and custom shapes. Runs in your browser, nothing is uploaded.">
 <meta property="og:image" content="https://mylogoqr.com/app_icon.jpg">
 <meta property="og:site_name" content="MyLogoQR">
@@ -27,7 +27,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://mylogoqr.com/">
-<meta name="twitter:title" content="Free QR Code Generator with Logo, Colors & Shapes | MyLogoQR">
+<meta name="twitter:title" content="QR Code Generator with Logo – Free, No Sign-Up | MyLogoQR">
 <meta name="twitter:description" content="Create QR codes for links, WhatsApp, Wi-Fi, text and contacts. Add your logo, gradients and custom shapes. Runs in your browser, nothing is uploaded.">
 <meta name="twitter:image" content="https://mylogoqr.com/app_icon.jpg">
 
@@ -108,7 +108,7 @@
           "name": "Is my data or Wi-Fi password stored on an external server?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All cryptographic encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Nothing touches an external server, database, or analytics tracker. See our Privacy Policy for full architecture verification."
+            "text": "No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Your QR content is generated in your browser and is never uploaded. This website uses cookies for advertising and basic analytics, described in our Cookie Policy."
           }
         },
         {
@@ -132,7 +132,7 @@
           "name": "How do Wi-Fi QR codes connect guest devices automatically?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our Wi-Fi tool structures network credentials into the standardized MECARD format (WIFI:T:WPA;S:NetworkName;P:Password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking \"Join [Network Name]?\". Tapping Join automatically authenticates the device without typing passwords manually."
+            "text": "Our Wi-Fi tool structures network credentials into the standard Wi-Fi QR format (WIFI:T:WPA;S:name;P:password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking \"Join [Network Name]?\". Tapping Join automatically authenticates the device without typing passwords manually."
           }
         },
         {
@@ -148,17 +148,10 @@
           "name": "How does Reed-Solomon Error Correction work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects up to 7% of missing data, Level M corrects up to 15%, Level Q corrects up to 25%, and Level H corrects up to 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is mathematically necessary to restore readability."
+            "text": "Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects about 7% of missing data, Level M about 15%, Level Q about 25%, and Level H about 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is recommended to restore readability."
           }
         },
-        {
-          "@type": "Question",
-          "name": "How does MyLogoQR comply with Google AdSense and web quality standards?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MyLogoQR complies with Google AdSense Program Policies, Google Webmaster Quality Guidelines, GDPR, and CCPA standards. We deliver original engineering utility, transparent authorship by a verified Systems Architect, zero malware or tracking bloatware, comprehensive educational documentation, and full cookie disclosure policies."
-          }
-        }
+        
       ]
     },
     {
@@ -591,19 +584,19 @@ footer p{color:#94A3B8;line-height:1.6}
 
  <details><summary>What logo size and contrast ratio is safe to prevent scan failures?</summary><p>We recommend keeping your logo size slider between 20% and 25% of the total matrix area while selecting Error Correction Level Q (25% recovery) or Level H (30% recovery). Always ensure your logo has a clean outline or border that separates it from the surrounding QR dots, and test scan the live on-screen preview with both iOS and Android cameras before submitting files to physical print.</p></details>
 
- <details><summary>Is my data or Wi-Fi password stored on an external server?</summary><p>No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All cryptographic encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Nothing touches an external server, database, or analytics tracker. See our <a href="/privacy" style="color:var(--p);text-decoration:underline">Privacy Policy</a> for full architecture verification.</p></details>
+ <details><summary>Is my data or Wi-Fi password stored on an external server?</summary><p>No. MyLogoQR operates under a strict zero-knowledge, client-side architecture. All encoding, matrix generation, logo compositing, and vector rendering execute entirely within your device browser using in-memory JavaScript Canvas and SVG APIs. Your QR content is generated in your browser and is never uploaded. This website uses cookies for advertising and basic analytics, described in our <a href="/cookie-policy" style="color:var(--p);text-decoration:underline">Cookie Policy</a>.</p></details>
 
  <details><summary>What is the new "Label under QR" feature for brands and restaurants?</summary><p>Our optional Label under QR feature allows hospitality venues, fast food chains, retail stores, and corporate brands to add a clean, readable text label (such as "SCAN ME", "MENU", "CONNECT WI-FI", "ORDER HERE", or "PAY HERE") directly beneath the QR code. You can choose between a modern rounded Pill badge, clean typography with letter tracking, or a solid rectangular banner. When downloaded, the badge is seamlessly embedded into your high-resolution PNG or vector SVG export.</p></details>
 
  <details><summary>Can I use these QR codes for commercial products and business marketing?</summary><p>Yes, 100%. All QR codes, vector SVG graphics, and high-resolution PNG files generated on MyLogoQR are completely free for commercial, retail, educational, and personal use without copyright royalties, licensing fees, or attribution requirements.</p></details>
 
- <details><summary>How do Wi-Fi QR codes connect guest devices automatically?</summary><p>Our Wi-Fi tool structures network credentials into the standardized MECARD format (WIFI:T:WPA;S:NetworkName;P:Password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking "Join [Network Name]?". Tapping Join automatically authenticates the device without typing passwords manually.</p></details>
+ <details><summary>How do Wi-Fi QR codes connect guest devices automatically?</summary><p>Our Wi-Fi tool structures network credentials into the standard Wi-Fi QR format (WIFI:T:WPA;S:name;P:password;;). When scanned with an iPhone or Android camera, the operating system decodes the protocol and displays a native prompt asking "Join [Network Name]?". Tapping Join automatically authenticates the device without typing passwords manually.</p></details>
 
  <details><summary>Which download format should I choose: PNG or SVG?</summary><p>Use PNG (1000 x 1000 px) for digital presentations, social media, email signatures, website graphics, and standard office desktop printers. Choose SVG (Scalable Vector Graphics) for professional print shops, commercial packaging, restaurant acrylic stands, signage, and vector software like Adobe Illustrator or Figma.</p></details>
 
- <details><summary>How does Reed-Solomon Error Correction work?</summary><p>Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects up to 7% of missing data, Level M corrects up to 15%, Level Q corrects up to 25%, and Level H corrects up to 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is mathematically necessary to restore readability.</p></details>
+ <details><summary>How does Reed-Solomon Error Correction work?</summary><p>Reed-Solomon error correction adds redundant parity data blocks across the matrix. Level L corrects about 7% of missing data, Level M about 15%, Level Q about 25%, and Level H about 30%. When you add a center logo, the logo physically occludes center modules, so Level Q or H is recommended to restore readability.</p></details>
 
- <details><summary>How does MyLogoQR comply with Google AdSense and web quality standards?</summary><p>MyLogoQR complies with Google AdSense Program Policies, Google Webmaster Quality Guidelines, GDPR, and CCPA standards. We deliver original engineering utility, transparent authorship by a verified Systems Architect, zero malware or tracking bloatware, comprehensive educational documentation, and full cookie disclosure policies.</p></details>
+ 
 </div></section>
 
 <div class="wrap"><div class="band">
@@ -677,7 +670,7 @@ footer p{color:#94A3B8;line-height:1.6}
       <span style="font-size:0.7rem;font-weight:700;color:#0891B2;background:#ECFEFF;padding:3px 9px;border-radius:6px;text-transform:uppercase;letter-spacing:0.04em">Tech Guide</span>
      </div>
      <h3 style="font-size:1.02rem;font-weight:700;color:#0F172A;line-height:1.4;margin-bottom:8px">Wi-Fi QR code setup guide</h3>
-     <p style="font-size:0.86rem;color:#64748B;line-height:1.5;margin:0">MECARD Wi-Fi security protocols for instant guest smartphone login with zero password typing.</p>
+     <p style="font-size:0.86rem;color:#64748B;line-height:1.5;margin:0">Standard Wi-Fi QR protocols for instant guest smartphone login with zero password typing.</p>
     </div>
     <div style="margin-top:16px;display:flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:700;color:#0891B2">
      <span>Read guide</span>
@@ -949,19 +942,19 @@ footer p{color:#94A3B8;line-height:1.6}
   <div class="ask-ai-widget" style="margin-top:36px;margin-bottom:14px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);text-align:center;">
     <p style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#94A3B8;margin-bottom:12px;">Ask AI about MyLogoQR</p>
     <div style="display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;">
-      <a href="https://chatgpt.com/?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+      <a href="https://chatgpt.com/?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Details%3A%20https%3A//mylogoqr.com/llms.txt" target="_blank" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 10.37a5.53 5.53 0 0 0-.46-4.42 5.6 5.6 0 0 0-5.83-2.67 5.54 5.54 0 0 0-4.14-1.85 5.62 5.62 0 0 0-5.32 3.86 5.54 5.54 0 0 0-3.6 2.61 5.6 5.6 0 0 0 .74 6.36 5.53 5.53 0 0 0 .46 4.42 5.6 5.6 0 0 0 5.83 2.67 5.54 5.54 0 0 0 4.14 1.85 5.62 5.62 0 0 0 5.32-3.86 5.54 5.54 0 0 0 3.6-2.61 5.6 5.6 0 0 0-.74-6.37zM13 20.23a4.13 4.13 0 0 1-2.48-.82l.13-.07 4.1-2.37a.74.74 0 0 0 .37-.64v-5.78l1.73 1a.7.7 0 0 1 .37.6v4.75a4.15 4.15 0 0 1-4.22 3.33zm-7.6-3.4a4.13 4.13 0 0 1-.54-2.56 4.15 4.15 0 0 1 1.4-3.15l.1.06 4.1 2.37a.73.73 0 0 0 .74 0l5-2.89v2a.73.73 0 0 1-.37.64l-4.11 2.37a4.16 4.16 0 0 1-6.32 1.16zm-1.1-9.42a4.14 4.14 0 0 1 1.94-1.74 4.15 4.15 0 0 1 3.44.25l-.1.08-4.1 2.37a.73.73 0 0 0-.37.64v5.78l-1.73-1a.73.73 0 0 1-.37-.64v-4.74a4.14 4.14 0 0 1 1.29-1zm14.73 3.65l-5 2.89v-2a.73.73 0 0 1 .37-.64l4.11-2.37a4.16 4.16 0 0 1 6.32-1.16 4.13 4.13 0 0 1 .54 2.56 4.15 4.15 0 0 1-1.4 3.15l-.1-.06-4.1-2.37a.73.73 0 0 0-.74 0zm2.2 4.4a4.15 4.15 0 0 1-1.94 1.74 4.15 4.15 0 0 1-3.44-.25l.1-.08 4.1-2.37a.74.74 0 0 0 .37-.64v-5.78l1.73 1a.74.74 0 0 1 .37.64v4.74zm-9.36-2.58l-2-1.16 2-1.15 2 1.15z"/></svg>
         <span>Ask ChatGPT</span>
       </a>
-      <a href="https://claude.ai/new?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+      <a href="https://claude.ai/new?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Details%3A%20https%3A//mylogoqr.com/llms.txt" target="_blank" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="#D97706"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" stroke="#FFF" stroke-width="2"/></svg>
         <span>Ask Claude</span>
       </a>
-      <a href="https://www.perplexity.ai/search?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+      <a href="https://www.perplexity.ai/search?q=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Details%3A%20https%3A//mylogoqr.com/llms.txt" target="_blank" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#20B2AA" stroke-width="2"><path d="M12 2v20M2 12h20M5 5l14 14M5 19L19 5"/></svg>
         <span>Ask Perplexity</span>
       </a>
-      <a href="https://x.com/i/grok?text=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Explain%20its%20key%20capabilities%20%28100%25%20client-side%20privacy%2C%20vector%20SVG%20downloads%2C%20no%20expiring%20trials%20or%20subscriptions%2C%2022%2B%20specialized%20tools%20including%20Wi-Fi%2C%20WhatsApp%2C%20and%20vCard%29%2C%20how%20it%20compares%20to%20predatory%20QR%20platforms%2C%20and%20check%20https%3A//mylogoqr.com/llms.txt%20for%20up-to-date%20architecture%20details.%20Keep%20it%20practical%20and%20objective." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
+      <a href="https://x.com/i/grok?text=What%20is%20MyLogoQR%20%28https%3A//mylogoqr.com%29%20and%20how%20does%20it%20work%3F%20Details%3A%20https%3A//mylogoqr.com/llms.txt" target="_blank" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);color:#E2E8F0;border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:6px 14px;font-size:0.78rem;font-weight:500;text-decoration:none;transition:all 0.15s ease;" onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         <span>Ask Grok</span>
       </a>
