@@ -102,6 +102,11 @@
   RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
   RewriteRule ^([a-z]{2})/([^/]+)/?$ $1/$2.html [L]
 
+  # Tools subfolder
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/tools/$1.html -f
+  RewriteRule ^tools/([^/]+)/?$ tools/$1.html [L]
+
   # Blog subfolder
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
