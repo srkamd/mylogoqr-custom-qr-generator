@@ -18,6 +18,9 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+User-agent: Yeti
+Allow: /
+
 # AI Crawlers & LLM Search Agents
 User-agent: GPTBot
 Allow: /
