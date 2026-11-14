@@ -398,12 +398,12 @@
       overlay.classList.add('open');
     };
 
-    // Attach to any element with id "open-print-templates-btn" or class "trigger-print-template"
+    // Robust click listener on elements
     document.querySelectorAll('#open-print-templates-btn, .trigger-print-template').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.onclick = function(e) {
         e.preventDefault();
         window.openPrintTemplateModal();
-      });
+      };
     });
   }
 
@@ -412,4 +412,21 @@
   } else {
     initPrintModal();
   }
+
+  // Global event delegation so any dynamically rendered button works 100% of the time
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('#open-print-templates-btn, .trigger-print-template');
+    if (btn) {
+      e.preventDefault();
+      if (typeof window.openPrintTemplateModal === 'function') {
+        window.openPrintTemplateModal();
+      } else {
+        initPrintModal();
+        if (typeof window.openPrintTemplateModal === 'function') {
+          window.openPrintTemplateModal();
+        }
+      }
+    }
+  });
+
 })();
