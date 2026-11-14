@@ -55,4 +55,18 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# SEO Audit & Monitoring Tools (Rate-limit Prevention)
+User-agent: OpenSEO-Audit
+Allow: /
+Crawl-delay: 1
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
 Sitemap: https://mylogoqr.com/sitemap.xml
