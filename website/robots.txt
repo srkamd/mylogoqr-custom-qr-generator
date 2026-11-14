@@ -5,11 +5,14 @@ Allow: /llms-full.txt
 Allow: /sitemap.xml
 Allow: /scan
 
-# Search Engines
+# Global Search Engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Applebot
@@ -19,6 +22,12 @@ User-agent: YandexBot
 Allow: /
 
 User-agent: Yeti
+Allow: /
+
+User-agent: Bravebot
+Allow: /
+
+User-agent: SeznamBot
 Allow: /
 
 # AI Crawlers & LLM Search Agents
