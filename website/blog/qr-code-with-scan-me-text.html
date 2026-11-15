@@ -111,23 +111,27 @@
 </script>
 </head>
 <body>
-<header>
- <div class="nav-wrap">
-  <a href="/" class="logo" aria-label="MyLogoQR Home">
-   <img src="/app_icon.jpg" alt="MyLogoQR logo" width="36" height="36" loading="eager">
-   <span>MyLogoQR</span>
-  </a>
-  <button class="menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav">&#9776;</button>
-  <nav id="nav" aria-label="Main navigation">
-   <a href="/">Home</a>
-   <a href="/qr-code-types">All Tools</a>
-   <a href="/qr-code-design-guide">Design Guide</a>
-   <a href="/blog/">Blog</a>
-   <a href="/faq">FAQ</a>
-   <a href="/" class="cta-nav">Generate Free QR</a>
-  </nav>
- </div>
-</header>
+<header><div class="wrap bar">
+ <a class="logo" href="/"><i aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></i>MyLogoQR</a>
+ <button class="menu" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">Menu</button>
+ <nav id="nav" aria-label="Main"><ul>
+  <li><a href="/qr-code-types" style="color:var(--p);font-weight:600">Tools</a></li>
+  <li><a href="/how-to-use">How to Use</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/scan" style="font-weight:600;color:var(--p)">📷 Scan QR</a></li>
+  <li><a href="/contact">Contact</a></li>
+  <li class="lang-item" style="margin-left:6px;"><div class="lang-picker" style="display:inline-flex;align-items:center;"><select id="lang-switcher" onchange="translatePage(this.value);" style="background:#F1F5F9;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:0.84rem;font-weight:600;cursor:pointer;outline:none;" aria-label="Select Language">
+<option value="en">🌐 English</option>
+<option value="es">Español (ES)</option>
+<option value="pt">Português (PT)</option>
+<option value="ru">Русский (RU)</option>
+<option value="it">Italiano (IT)</option>
+<option value="ur">اردو (Urdu)</option>
+<option value="ar">العربية (Arabic)</option>
+<option value="fr">Français (FR)</option>
+<option value="de">Deutsch (DE)</option>
+</select></div></li></ul></nav>
+</div></header>
 
 <nav class="breadcrumb-nav wrap" aria-label="Breadcrumb" style="padding:14px 20px 0;font-size:0.86rem;color:var(--m)">
   <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;list-style:none;margin:0;padding:0">
