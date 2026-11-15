@@ -518,3 +518,39 @@ a:hover .blog-card-img { opacity: 0.94; }
   border-radius: 16px !important;
   overflow: hidden !important;
 }
+
+
+/* --- Clickable Tool Cards Grid (Type Cards) --- */
+.type-card {
+ background: #FFFFFF;
+ border: 1px solid #E2E8F0;
+ border-radius: 18px;
+ padding: 18px 20px;
+ display: flex;
+ align-items: center;
+ gap: 14px;
+ text-decoration: none;
+ transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+ box-shadow: 0 3px 10px rgba(15,23,42,0.03);
+ position: relative;
+ overflow: hidden;
+}
+.type-card:hover {
+ transform: translateY(-5px) scale(1.015);
+ border-color: #A5B4FC;
+ box-shadow: 0 24px 50px -12px rgba(79,70,229,.16),0 8px 20px -6px rgba(15,23,42,.08);
+ text-decoration: none;
+}
+.type-card:hover .type-icon {
+ transform: scale(1.12) rotate(4deg);
+}
+.type-icon {
+ width: 46px;
+ height: 46px;
+ border-radius: 14px;
+ display: grid;
+ place-items: center;
+ font-size: 1.45rem;
+ flex-shrink: 0;
+ transition: transform 0.25s ease;
+}

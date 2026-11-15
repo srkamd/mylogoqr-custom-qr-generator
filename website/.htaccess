@@ -89,6 +89,9 @@
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /blog/([^/]+)\.html\ HTTP/
   RewriteRule ^blog/([^/]+)\.html$ https://mylogoqr.com/blog/$1 [R=301,L]
 
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /tools/([^/]+)\.html\ HTTP/
+  RewriteRule ^tools/([^/]+)\.html$ https://mylogoqr.com/tools/$1 [R=301,L]
+
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([a-z]{2})/blog/([^/]+)\.html\ HTTP/
   RewriteRule ^([a-z]{2})/blog/([^/]+)\.html$ https://mylogoqr.com/$1/blog/$2 [R=301,L]
 

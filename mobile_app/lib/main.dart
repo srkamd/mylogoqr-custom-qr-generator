@@ -1,3 +1,4 @@
+import 'print_studio.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui' as ui;
@@ -195,7 +196,46 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
     }
   }
 
-  Future<void> _exportAndShare() async {
+  
+  Future<Uint8List?> _captureQRImageBytes() async {
+    try {
+      final boundary = _qrRepaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) return null;
+      final image = await boundary.toImage(pixelRatio: 4.0);
+      final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      return byteData?.buffer.asUint8List();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void _openPrintStudio() async {
+    final qrBytes = await _captureQRImageBytes();
+    if (qrBytes == null) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please wait, generating QR code...')));
+      }
+      return;
+    }
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PrintStudioScreen(
+          qrBytes: qrBytes,
+          currentType: _selectedType,
+          initialHeadline: _selectedType == 'Wi-Fi' 
+              ? 'Free Guest Wi-Fi' 
+              : (_selectedType == 'vCard' ? 'Digital Business Card' : 'Scan To Connect'),
+          initialSubtext: _selectedType == 'Wi-Fi' 
+              ? 'Scan to connect automatically' 
+              : 'Point camera to scan instantly',
+        ),
+      ),
+    );
+  }
+
+Future<void> _exportAndShare() async {
     try {
       final boundary = _qrRepaintKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
       if (boundary == null) return;
@@ -540,6 +580,27 @@ class _QRGeneratorScreenState extends State<QRGeneratorScreen> {
                 onPressed: _exportAndShare,
                 icon: const Icon(Icons.share_rounded, size: 20),
                 label: const Text('Export & Share High-Res QR', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1E1B4B),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFF6366F1), width: 1.5),
+              ),
+              child: ElevatedButton.icon(
+                onPressed: _openPrintStudio,
+                icon: const Icon(Icons.print_rounded, size: 20, color: Color(0xFF818CF8)),
+                label: const Text('📄 Print & PDF Studio', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
