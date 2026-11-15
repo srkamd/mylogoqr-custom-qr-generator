@@ -57,7 +57,7 @@
 
   # AI Agent Visibility & Discovery (Hostinger / aivisibilityfactors.com Standard)
   Header always set Content-Signal "search=yes, ai-input=yes, ai-train=yes"
-  Header always set Link "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </.well-known/mcp.json>; rel=\"service-desc\"; type=\"application/json\""
+  Header always set Link "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </.well-known/mcp/server-card.json>; rel=\"service-desc\"; type=\"application/json\", </.well-known/mcp.json>; rel=\"service-desc\"; type=\"application/json\""
 
   # Open CORS for Machine-Readable AI & Discovery Endpoints
   <FilesMatch "\.(json|txt|xml|md)$">

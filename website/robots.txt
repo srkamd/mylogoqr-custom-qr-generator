@@ -11,6 +11,7 @@ Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /sitemap.xml
 Allow: /scan
+Allow: /.well-known/mcp/server-card.json
 Allow: /.well-known/mcp.json
 Allow: /.well-known/ai-catalog.json
 Allow: /.well-known/ai-plugin.json
