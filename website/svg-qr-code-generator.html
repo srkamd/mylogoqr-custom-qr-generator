@@ -238,6 +238,7 @@
      <button onclick="downloadFormat('png')" style="background:#2563EB;color:#FFFFFF;border:none;padding:10px 14px;border-radius:8px;font-weight:700;font-size:0.88rem;cursor:pointer">Download PNG</button>
      <button onclick="downloadFormat('svg')" style="background:#0F172A;color:#FFFFFF;border:none;padding:10px 14px;border-radius:8px;font-weight:700;font-size:0.88rem;cursor:pointer">Download SVG</button>
      <button id="btn-download-pdf" onclick="downloadQRCodePDF()" style="background:#DC2626;color:#FFFFFF;border:none;padding:10px 14px;border-radius:8px;font-weight:700;font-size:0.88rem;cursor:pointer">📄 Download PDF</button>
+     <button type="button" id="open-print-templates-btn" style="background:#4F46E5;color:#FFFFFF;border:none;padding:10px 14px;border-radius:8px;font-weight:700;font-size:0.88rem;cursor:pointer">🖨️ Print Studio</button>
      <a href="/tools/qr-size-calculator" style="background:#FFFFFF;color:var(--ink);border:1px solid var(--line);padding:10px 14px;border-radius:8px;font-weight:700;font-size:0.88rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center">🖨️ Size Calculator</a>
     </div>
     <div style="font-size:0.78rem;color:var(--m);margin-top:12px">Free vector &amp; 1000px high-resolution export. No watermark.</div>
@@ -664,5 +665,7 @@ function downloadFormat(fmt) {
 
 window.addEventListener('DOMContentLoaded', initQRCode);
 </script>
+
+<script src="/scripts/print-templates.js" defer></script>
 </body>
 </html>
