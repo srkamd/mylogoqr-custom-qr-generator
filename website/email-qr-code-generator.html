@@ -883,11 +883,21 @@ if(m && n){
   n.onclick=function(e){if(e.target.tagName==='A')n.classList.remove('open')};
 }
 var T={
- url:{n:'🔗 Link',f:[['u','Email Address or Mailto Link (mailto:user@domain.com)','url','mailto:support@yourdomain.com?subject=Inquiry']]},
- wa:{n:'💬 WhatsApp',f:[['p','Phone with country code','tel','923001234567'],['m','Message (optional)','text','Hello!']]},
- wifi:{n:'📶 Wi-Fi',f:[['s','Network name','text','MyHomeWiFi'],['w','Password','text','SecretPass123'],['t','Security','sel',['WPA','WEP','nopass']]]},
- text:{n:'📝 Text',f:[['x','Text','text','']]},
- vc:{n:'👤 Contact',f:[['fn','First name','text','John'],['ln','Last name','text','Doe'],['ph','Phone','tel','+1234567890'],['em','Email','email','john@example.com'],['co','Company','text','Acme Inc'],['jt','Job title','text','Director'],['ws','Website','url','https://example.com'],['ad','Address','text','New York, USA']]}
+ url:{n:'LINK',hash:'link',f:[['u','Email Address or Mailto Link (mailto:user@domain.com)','url','mailto:support@yourdomain.com?subject=Inquiry']]},
+ wa:{n:'WHATSAPP',hash:'whatsapp',f:[['p','Phone with country code','tel','+15551234567'],['m','Pre-filled message (optional)','text','Hello!']]},
+ wifi:{n:'WI-FI',hash:'wifi',f:[['s','Network Name (SSID)','text','MyHomeWiFi'],['w','Password','text','SecretPass123'],['t','Encryption','sel',['WPA','WEP','nopass']]]},
+ text:{n:'TEXT',hash:'text',f:[['x','Plain Text Content','text','Hello world!']]},
+ vc:{n:'CONTACT',hash:'contact',f:[['fn','First Name','text',''],['ln','Last Name','text',''],['ph','Phone','tel',''],['em','Email','email',''],['co','Company','text',''],['jt','Job Title','text',''],['ws','Website','url',''],['ad','Address','text','']]},
+ email:{n:'EMAIL',hash:'email',f:[['em_to','Your Email Address','email','name@example.com'],['em_sub','Subject','text','Hello from MyLogoQR'],['em_body','Message Body','text','Your message here...']]},
+ phone:{n:'PHONE',hash:'phone',f:[['tel','Phone Number (with country code)','tel','+15551234567']]},
+ sms:{n:'SMS',hash:'sms',f:[['sms_num','Phone Number','tel','+15551234567'],['sms_msg','Message','text','Hello!']]},
+ mecard:{n:'MECARD',hash:'mecard',f:[['m_n','Name','text','John Doe'],['m_p','Phone','tel','+15551234567'],['m_e','Email','email','john@example.com'],['m_u','Website','url','https://example.com'],['m_a','Address','text','New York, USA']]},
+ loc:{n:'LOCATION',hash:'location',f:[['loc_lat','Latitude','text','40.7128'],['loc_lng','Longitude','text','-74.0060'],['loc_q','Query / Google Maps Link','text','https://maps.google.com/?q=']]},
+ fb:{n:'FACEBOOK',hash:'facebook',f:[['fb_u','Facebook Profile or Page URL','url','https://facebook.com/yourbrand']]},
+ tw:{n:'TWITTER',hash:'twitter',f:[['tw_u','Twitter / X Profile or Tweet URL','url','https://x.com/yourhandle']]},
+ yt:{n:'YOUTUBE',hash:'youtube',f:[['yt_u','YouTube Video or Channel URL','url','https://youtube.com/@yourchannel']]},
+ ev:{n:'EVENT',hash:'event',f:[['ev_t','Event Title','text','Tech Conference 2026'],['ev_loc','Location','text','Convention Center'],['ev_s','Start (YYYYMMDDTHHmmss)','text','20261201T090000'],['ev_e','End (YYYYMMDDTHHmmss)','text','20261201T170000']]},
+ btc:{n:'BITCOIN',hash:'bitcoin',f:[['btc_a','Bitcoin Address','text','1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'],['btc_amt','Amount (BTC optional)','text','0.005']]}
 };
 var P=[
  {f:'linear',a:'#4F46E5',b:'#3730A3',d:'rounded',o:'extra-rounded',i:'dot'},
@@ -897,31 +907,76 @@ var P=[
  {f:'linear',a:'#11998E',b:'#38EF7D',d:'extra-rounded',o:'extra-rounded',i:'dot'},
  {f:'solid',a:'#000000',b:'#000000',d:'square',o:'square',i:'square'}
 ];
-var cur='url',logo=null;
+var cur='email',logo=null;
 function esc(s){return String(s).replace(/([\\;,:"])/g,'\\$1')}
 function v(i){var e=$('f_'+i);return e?e.value.trim():''}
 function data(){
  if(cur==='url')return v('u')||'mailto:hello@example.com';
- if(cur==='wa'){var p=v('p').replace(/\D/g,'');return p?'https://wa.me/'+p+(v('m')?'?text='+encodeURIComponent(v('m')):''):'https://wa.me/'}
+ if(cur==='wa'){var p=v('p').replace(/\D/g,'');return p?'https://wa.me/'+p+(v('m')?'?text='+encodeURIComponent(v('m')):''):'https://wa.me/';}
  if(cur==='wifi')return 'WIFI:T:'+v('t')+';S:'+esc(v('s'))+';P:'+esc(v('w'))+';;';
  if(cur==='text')return v('x')||'MyLogoQR';
- return 'BEGIN:VCARD\nVERSION:3.0\nN:'+v('ln')+';'+v('fn')+';;;\nFN:'+(v('fn')+' '+v('ln')).trim()+'\nORG:'+v('co')+'\nTITLE:'+v('jt')+'\nTEL:'+v('ph')+'\nEMAIL:'+v('em')+'\nURL:'+v('ws')+'\nADR:;;'+v('ad')+';;;;\nEND:VCARD';
+ if(cur==='vc')return 'BEGIN:VCARD\nVERSION:3.0\nN:'+v('ln')+';'+v('fn')+';;;\nFN:'+(v('fn')+' '+v('ln')).trim()+'\nORG:'+v('co')+'\nTITLE:'+v('jt')+'\nTEL:'+v('ph')+'\nEMAIL:'+v('em')+'\nURL:'+v('ws')+'\nADR:;;'+v('ad')+';;;;\nEND:VCARD';
+ if(cur==='email')return 'mailto:'+v('em_to')+(v('em_sub')||v('em_body')?'?subject='+encodeURIComponent(v('em_sub'))+'&body='+encodeURIComponent(v('em_body')):'');
+ if(cur==='phone')return 'tel:'+v('tel').replace(/\s+/g,'');
+ if(cur==='sms')return 'smsto:'+v('sms_num')+':'+v('sms_msg');
+ if(cur==='mecard')return 'MECARD:N:'+v('m_n')+';TEL:'+v('m_p')+';EMAIL:'+v('m_e')+';URL:'+v('m_u')+';ADR:'+v('m_a')+';;';
+ if(cur==='loc')return v('loc_q')||('geo:'+v('loc_lat')+','+v('loc_lng'));
+ if(cur==='fb')return v('fb_u')||'https://facebook.com';
+ if(cur==='tw')return v('tw_u')||'https://x.com';
+ if(cur==='yt')return v('yt_u')||'https://youtube.com';
+ if(cur==='ev')return 'BEGIN:VEVENT\nSUMMARY:'+v('ev_t')+'\nLOCATION:'+v('ev_loc')+'\nDTSTART:'+v('ev_s').replace(/-/g,'')+'\nDTEND:'+v('ev_e').replace(/-/g,'')+'\nEND:VEVENT';
+ if(cur==='btc')return 'bitcoin:'+v('btc_a')+(v('btc_amt')?'?amount='+v('btc_amt'):'');
+ return 'https://mylogoqr.com';
 }
 function build(){
  $('tabs').innerHTML='';$('fields').innerHTML='';
  Object.keys(T).forEach(function(k){
   var b=document.createElement('button');b.type='button';b.textContent=T[k].n;b.setAttribute('role','tab');b.setAttribute('aria-selected',k===cur);
-  b.onclick=function(){cur=k;build();draw()};$('tabs').appendChild(b)});
+  b.onclick=function(){
+   cur=k;
+   if(history.pushState){history.pushState(null, '', '#' + (T[k].hash || k));}
+   build();
+   draw();
+  };
+  $('tabs').appendChild(b);
+ });
+ var moreDiv=document.createElement('div');moreDiv.className='tabs-more';
+ moreDiv.innerHTML='<button type="button" class="tabs-more-btn" aria-haspopup="true" aria-expanded="false">MORE ▾</button>';
+ $('tabs').appendChild(moreDiv);
+ var moreMenu=document.getElementById('tabsMoreDropdown');
+ if(!moreMenu){
+  moreMenu=document.createElement('div');moreMenu.id='tabsMoreDropdown';moreMenu.className='tabs-more-menu';
+  moreMenu.innerHTML='<a href="/pdf-qr-code-generator">📄 PDF DOCUMENT</a>'+
+   '<a href="/image-qr-code-generator">🖼️ IMAGE GALLERY</a>'+
+   '<a href="/google-review-qr-code-generator">⭐ GOOGLE REVIEW</a>'+
+   '<a href="/restaurant-menu-qr-code-generator">🍽️ RESTAURANT MENU</a>'+
+   '<a href="/paypal-qr-code-generator">💳 PAYPAL</a>'+
+   '<a href="/upi-qr-code-generator">⚡ UPI PAYMENT</a>'+
+   '<a href="/stripe-qr-code-generator">💳 STRIPE</a>'+
+   '<a href="/solana-qr-code-generator">🟣 SOLANA</a>'+
+   '<a href="/bulk-qr-code-generator">📦 BULK QR (ZIP)</a>'+
+   '<a href="/qr-code-types" style="color:var(--p);font-weight:700">EXPLORE ALL 40+ &rarr;</a>';
+  document.body.appendChild(moreMenu);
+  moreMenu.onmouseleave=function(){moreMenu.style.display='none';};
+ }
+ var moreBtn=moreDiv.querySelector('.tabs-more-btn');
+ function posMenu(){
+  var r=moreBtn.getBoundingClientRect();
+  moreMenu.style.top=(r.bottom+6)+'px';
+  moreMenu.style.left=Math.max(10,(r.right-230))+'px';
+ }
+ moreDiv.onmouseenter=function(){posMenu();moreMenu.style.display='flex';};
+ moreDiv.onmouseleave=function(){setTimeout(function(){if(!moreMenu.matches(':hover')&&!moreDiv.matches(':hover'))moreMenu.style.display='none';},120);};
+ moreBtn.onclick=function(e){e.stopPropagation();posMenu();moreMenu.style.display=moreMenu.style.display==='flex'?'none':'flex';};
+
  T[cur].f.forEach(function(f){
   var l=document.createElement('label');l.textContent=f[1];var e;
   if(f[2]==='sel'){e=document.createElement('select');f[3].forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o==='nopass'?'None':o;e.appendChild(op)})}
-  else{e=document.createElement('input');e.type=f[2];e.placeholder=f[3];if(kActiveDefault(f[0]))e.value=kActiveDefault(f[0])}
-  e.id='f_'+f[0];e.oninput=draw;l.appendChild(e);$('fields').appendChild(l)});
+  else{e=document.createElement('input');e.type=f[2];e.placeholder=f[3];e.setAttribute('aria-label',f[1]);e.setAttribute('title',f[1]);l.htmlFor='f_'+f[0]}
+  e.id='f_'+f[0];e.oninput=draw;l.appendChild(e);$('fields').appendChild(l);
+ });
  $('fields').style.gridTemplateColumns=T[cur].f.length===1?'1fr':'';
-}
-function kActiveDefault(id){
- if(cur==='url'&&id==='u')return 'mailto:hello@example.com';
- return '';
+ if(typeof updateCTA==='function')updateCTA();
 }
 P.forEach(function(s,k){
  var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Style '+(k+1));
