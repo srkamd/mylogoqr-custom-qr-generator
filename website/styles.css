@@ -554,3 +554,205 @@ a:hover .blog-card-img { opacity: 0.94; }
  flex-shrink: 0;
  transition: transform 0.25s ease;
 }
+
+/* ==========================================================================
+   Sitewide Component Enhancements: Eco-Hub, Breadcrumbs, Language, & Panes
+   ========================================================================== */
+
+/* Skip Link Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: var(--p, #2563EB);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 99999;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Breadcrumbs Sitewide */
+.breadcrumb-nav {
+  padding: 14px 0 10px;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #64748B;
+}
+.breadcrumb-nav ol, .breadcrumb-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb-nav li, .breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748B;
+}
+.breadcrumb-nav a {
+  color: #475569;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+.breadcrumb-nav a:hover {
+  color: var(--p, #2563EB);
+}
+.breadcrumb-nav li[aria-current="page"] {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+/* Eco-Hub Connected Ecosystem */
+.eco-hub-section {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 56px 0 60px;
+  margin-top: 60px;
+}
+.eco-hub-section a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.eco-hub-section a:hover {
+  color: #60A5FA;
+  padding-left: 2px;
+}
+.eco-hub-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.eco-hub-card:hover {
+  border-color: rgba(96, 165, 250, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Generator Split Panes Layout */
+.panes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+.c-pane, .p-pane {
+  min-width: 0;
+}
+
+/* Language Switcher Bar */
+.lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lang-item {
+  display: inline-flex;
+  align-items: center;
+}
+.lang-picker select {
+  background: #F1F5F9;
+  color: var(--ink, #0F172A);
+  border: 1px solid var(--line, #E2E8F0);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.lang-picker select:focus {
+  border-color: var(--p, #2563EB);
+}
+
+/* Legal Footer & Policies */
+.sub-footer-legal {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #94A3B8;
+}
+.policy-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  background: #EFF6FF;
+  color: #2563EB;
+}
+.card-content {
+  color: var(--ink2, #334155);
+  line-height: 1.7;
+}
+
+/* Utilities */
+.white-s {
+  background: #FFFFFF !important;
+}
+.partner-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.partner-pill:hover {
+  background: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1D4ED8;
+  transform: translateY(-1px);
+}
+
+/* Presets & Row */
+.ctap { cursor: pointer; transition: all 0.15s ease; }
+.row { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* Hubs & Guides Utilities */
+.tool-card:hover { transform: translateY(-4px); border-color: #93C5FD !important; box-shadow: 0 16px 28px -6px rgba(37,99,235,0.12), 0 4px 10px -2px rgba(15,23,42,0.04) !important; }
+.cat-group { margin-bottom: 48px; }
+.tool-banner { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 16px 20px; margin: 24px 0; }
+.guide-section { margin-bottom: 36px; }
+.sub { color: var(--m, #64748B); font-size: 0.95rem; }
