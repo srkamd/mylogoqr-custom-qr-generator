@@ -1,0 +1,11 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/ai-catalog.schema.json",
+  "version": "1.0.0",
+  "servers": [
+    {
+      "name": "com.mylogoqr/qr-generator",
+      "card": "/.well-known/mcp.json",
+      "type": "application/mcp-server-card+json"
+    }
+  ]
+}

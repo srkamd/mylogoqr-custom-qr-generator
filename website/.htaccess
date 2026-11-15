@@ -3,15 +3,21 @@
 # ==============================================================================
 
 # ----------------------------------------------------------------------
-# 1. Core Web Vitals & Speed Optimization
+# 1. Core Web Vitals, Speed Optimization & AI Headers
 # ----------------------------------------------------------------------
 
 # 1a. Enable GZIP & Deflate Compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml image/svg+xml text/markdown
 </IfModule>
 
-# 1b. Leverage Browser Caching (Zero cache for HTML, 1 Year for Static Assets)
+# 1b. MIME Types
+<IfModule mod_mime.c>
+  AddType text/markdown .md
+  AddType application/json .json
+</IfModule>
+
+# 1c. Leverage Browser Caching (Zero cache for HTML, 1 Year for Static Assets)
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 month"
@@ -29,7 +35,7 @@
   ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# 1c. Cache-Control Headers (Fixes 30-day stale HTML issue)
+# 1d. Headers (Security, Cache-Control & AI Agent Discovery)
 <IfModule mod_headers.c>
   # HTML pages: optimize for fast TTFB (<200ms) with LiteSpeed & edge caching while ensuring timely updates
   <FilesMatch "\.(html|htm)$">
@@ -46,12 +52,22 @@
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # AI Agent Visibility & Discovery (Hostinger / aivisibilityfactors.com Standard)
+  Header always set Content-Signal "search=yes, ai-input=yes, ai-train=yes"
+  Header always set Link "</llms.txt>; rel=\"describedby\"; type=\"text/plain\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </.well-known/mcp.json>; rel=\"service-desc\"; type=\"application/json\""
+
+  # Open CORS for Machine-Readable AI & Discovery Endpoints
+  <FilesMatch "\.(json|txt|xml|md)$">
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, OPTIONS"
+  </FilesMatch>
 </IfModule>
 
 # ----------------------------------------------------------------------
-# 2. Canonicalization, HTTPS & Clean URL Routing
+# 2. Canonicalization, HTTPS, AI Content Negotiation & Clean URLs
 # ----------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -82,7 +98,13 @@
   RewriteCond %{REQUEST_URI} (.+)/$
   RewriteRule ^ %1 [L,R=301]
 
-  # 2d. Redirect explicit .html URLs to clean URLs (prevents duplicate content)
+  # 2d. Agent-Native Content Negotiation: Serves Markdown when an agent asks for it via Accept header
+  RewriteCond %{HTTP:Accept} text/(markdown|x-markdown) [NC]
+  RewriteCond %{REQUEST_URI} ^/?$ [OR]
+  RewriteCond %{REQUEST_URI} ^/index(\.html)?$
+  RewriteRule .* /llms.txt [T=text/markdown,L]
+
+  # 2e. Redirect explicit .html URLs to clean URLs (prevents duplicate content)
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+)\.html\ HTTP/
   RewriteRule ^([^/]+)\.html$ https://mylogoqr.com/$1 [R=301,L]
 
@@ -98,7 +120,7 @@
   RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([a-z]{2})/([^/]+)\.html\ HTTP/
   RewriteRule ^([a-z]{2})/([^/]+)\.html$ https://mylogoqr.com/$1/$2 [R=301,L]
 
-  # 2e. Internal rewrite: serve clean URLs from physical .html files
+  # 2f. Internal rewrite: serve clean URLs from physical .html files
   # Universal rule: if request + .html exists as a file, serve it directly (handles any folder depth)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "mylogoqr",
+  "name_for_human": "MyLogoQR Free QR Code Generator",
+  "description_for_model": "Generate custom branded QR codes with embedded logos, vector SVG rendering, and 100% client-side privacy. Supports Wi-Fi, vCard, WhatsApp, URL, and payment QR codes.",
+  "description_for_human": "Free custom QR code generator with logo, custom vector modules, and no scan limits.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://mylogoqr.com/.well-known/mcp.json"
+  },
+  "logo_url": "https://mylogoqr.com/app_icon.jpg",
+  "contact_email": "support@mylogoqr.com",
+  "legal_info_url": "https://mylogoqr.com/terms"
+}

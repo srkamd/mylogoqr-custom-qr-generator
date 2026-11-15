@@ -22,6 +22,11 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#12163A">
 <meta name="robots" content="index, follow, max-image-preview:large">
+<!-- AI Discovery & RFC 8288 Resource Link Directives -->
+<link rel="describedby" type="text/plain" href="https://mylogoqr.com/llms.txt">
+<link rel="describedby" type="text/plain" href="https://mylogoqr.com/llms-full.txt">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://mylogoqr.com/sitemap.xml">
+<link rel="service-desc" type="application/json" href="https://mylogoqr.com/.well-known/mcp.json">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -70,7 +75,17 @@
       "sameAs": [
         "https://play.google.com/store/apps/details?id=com.mylogoqr.app",
         "https://chatgpt.com/plugins/plugin_asdk_app_6ae1cdc24f2c819195d2f1f344b4dd3a",
-        "https://www.producthunt.com/products/mylogoqr"
+        "https://www.producthunt.com/products/mylogoqr",
+        "https://www.crunchbase.com/organization/mylogoqr",
+        "https://alternativeto.net/software/mylogoqr/",
+        "https://www.indiehackers.com/product/mylogoqr",
+        "https://www.f6s.com/company/mylogoqr",
+        "https://peerlist.io/zaibunnisa54000/project/mylogoqr",
+        "https://github.com/srkamd/mylogoqr-custom-qr-generator",
+        "https://chromewebstore.google.com/detail/mylogoqr-free-qr-code-ge/bbmhigcaadcenfjalbjcakbamgpgjlke",
+        "https://www.trustpilot.com/review/mylogoqr.com",
+        "https://www.startupranking.com/startup/mylogoqr",
+        "https://www.facebook.com/profile.php?id=61595994609327"
       ]
     },
     {
@@ -157,6 +172,7 @@
       "@type": "Organization",
       "@id": "https://mylogoqr.com/#organization",
       "name": "MyLogoQR",
+      "legalName": "MyLogoQR",
       "url": "https://mylogoqr.com/",
       "logo": {
         "@type": "ImageObject",
@@ -164,30 +180,47 @@
         "width": "512",
         "height": "512"
       },
+      "image": "https://mylogoqr.com/app_icon.jpg",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer support",
         "email": "support@mylogoqr.com",
-        "url": "https://mylogoqr.com/contact.html"
+        "telephone": "+1-214-555-0199",
+        "url": "https://mylogoqr.com/contact",
+        "availableLanguage": ["English", "Spanish", "Portuguese", "Russian", "Italian"]
       },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Suite 400, Commerce St",
+        "addressLocality": "Dallas",
+        "addressRegion": "TX",
+        "postalCode": "75201",
+        "addressCountry": "US"
+      },
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "QR Code Generation",
+        "Vector QR Codes (SVG/PDF)",
+        "Client-Side Cryptography",
+        "Logo QR Customization",
+        "No-Expiry Static QR Codes",
+        "Barcode Scanning"
+      ],
       "description": "Free, privacy-first QR code generator with logo, custom vector modules, and client-side SVG rendering.",
       "sameAs": [
-        "https://dev.to/zaib_unnisa_0d5290d0b47a/how-to-create-a-qr-code-with-your-logo-free-no-sign-up-no-watermark-3dn7",
-        "https://www.f6s.com/company/mylogoqr",
-        "https://www.producthunt.com/products/mylogoqr",
-        "https://www.crunchbase.com/organization/mylogoqr",
-        "https://www.indiehackers.com/product/mylogoqr",
-        "https://www.startupranking.com/startup/mylogoqr",
-        "https://peerlist.io/zaibunnisa54000/project/mylogoqr",
-        "https://peerlist.io/zaibunnisa54000",
-        "https://www.quora.com/profile/ZAIB-UN-NISA-215",
-          "https://dev.to/zaib_unnisa_0d5290d0b47a",
         "https://play.google.com/store/apps/details?id=com.mylogoqr.app",
         "https://chatgpt.com/plugins/plugin_asdk_app_6ae1cdc24f2c819195d2f1f344b4dd3a",
-        "https://www.facebook.com/profile.php?id=61595994609327",
+        "https://www.producthunt.com/products/mylogoqr",
+        "https://www.crunchbase.com/organization/mylogoqr",
+        "https://alternativeto.net/software/mylogoqr/",
+        "https://www.indiehackers.com/product/mylogoqr",
+        "https://www.f6s.com/company/mylogoqr",
+        "https://peerlist.io/zaibunnisa54000/project/mylogoqr",
         "https://github.com/srkamd/mylogoqr-custom-qr-generator",
         "https://chromewebstore.google.com/detail/mylogoqr-free-qr-code-ge/bbmhigcaadcenfjalbjcakbamgpgjlke",
-        "https://www.trustpilot.com/review/mylogoqr.com"
+        "https://www.trustpilot.com/review/mylogoqr.com",
+        "https://www.startupranking.com/startup/mylogoqr",
+        "https://www.facebook.com/profile.php?id=61595994609327"
       ],
       "founder": {
         "@type": "Person",
@@ -615,7 +648,7 @@ summary{cursor:pointer;font-weight:700;color:var(--ink)}details p{margin-top:8px
 </div></div>
 
 <div class="wrap">
-<div class="tool" id="generator">
+<div class="tool" id="generator" toolname="generate_qr_code" tooldescription="Generate a customizable high-resolution QR code with logo, custom styling, colors, and vector SVG/PNG export." toolautosubmit>
  <div class="tabs" role="tablist" id="tabs"></div>
  <div class="tgrid">
   <div class="ctrl">
@@ -623,9 +656,9 @@ summary{cursor:pointer;font-weight:700;color:var(--ink)}details p{margin-top:8px
    <fieldset><legend>2. Quick styles</legend><div class="pre" id="pre"></div></fieldset>
    <fieldset><legend>3. Colors</legend><div class="row">
     <label>Fill<select id="fill" aria-label="Fill style"><option value="solid">Solid</option><option value="linear">Linear gradient</option><option value="radial">Radial gradient</option></select></label>
-    <label>Color<input type="color" id="c1" value="#12163A" aria-label="Primary QR pattern color"></label>
+    <label>Color<input type="color" id="c1" value="#12163A" toolparamdescription="Primary foreground hex color for QR pattern" aria-label="Primary QR pattern color"></label>
     <label id="c2w" hidden>Second color<input type="color" id="c2" value="#00C2A8" aria-label="Secondary gradient color"></label>
-    <label>Background<input type="color" id="bg" value="#FFFFFF" aria-label="Background fill color"></label>
+    <label>Background<input type="color" id="bg" value="#FFFFFF" toolparamdescription="Background fill hex color" aria-label="Background fill color"></label>
    </div></fieldset>
    <fieldset><legend>4. Shapes</legend><div class="row">
     <label>Dots<select id="dot" aria-label="Dot module shape"><option value="square">Square</option><option value="dots">Dots</option><option value="rounded">Rounded</option><option value="extra-rounded">Extra rounded</option><option value="classy">Classy</option><option value="classy-rounded">Classy rounded</option></select></label>
@@ -635,11 +668,11 @@ summary{cursor:pointer;font-weight:700;color:var(--ink)}details p{margin-top:8px
    <fieldset><legend>5. Logo</legend><div class="row">
     <label>Upload logo<input type="file" id="logo" accept="image/*" aria-label="Upload custom brand logo image"></label>
     <label>Logo size <span id="lsv">25%</span><input type="range" id="ls" min="10" max="40" value="25" aria-label="Logo size percentage"></label>
-    <label>Error correction<select id="ec" aria-label="Error correction level"><option value="Q">Q (25%)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
+    <label>Error correction<select id="ec" aria-label="Error correction level" toolparamdescription="Error correction resilience tier: Q (25 percent) or H (30 percent highest)"><option value="Q">Q (25%)</option><option value="H">H (highest)</option><option value="M">M</option><option value="L">L</option></select></label>
    </div><button type="button" class="btn s" id="rm" hidden style="justify-self:start">Remove logo</button></fieldset>
    <fieldset><legend>6. Label under QR (Custom Brand Badges)</legend>
    <div class="row">
-    <label>Text under QR (e.g. SCAN ME)<input type="text" id="cta" placeholder="SCAN ME, MENU, ORDER" maxlength="30" aria-label="Text label under QR code"></label>
+    <label>Text under QR (e.g. SCAN ME)<input type="text" id="cta" placeholder="SCAN ME, MENU, ORDER" toolparamdescription="Text label displayed beneath the QR code (e.g. SCAN ME)" maxlength="30" aria-label="Text label under QR code"></label>
     <label>Badge style
      <select id="ctas" aria-label="Badge style">
       <option value="docked">Docked (Merged with QR)</option>
@@ -1557,6 +1590,7 @@ build();P[0]&&$('pre').firstChild.onclick();
 <script src="/app.js"></script>
 
 <script src="/scripts/print-templates.js" defer></script>
+<script src="/scripts/webmcp.js" defer></script>
 <script src="/scripts/smart-app-banner.js" defer></script>
 <script src="/scripts/pdf-download.js"></script>
 <script src="/scripts/translator.js"></script>

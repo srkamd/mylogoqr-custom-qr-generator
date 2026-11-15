@@ -1,0 +1,107 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "com.mylogoqr/qr-generator",
+  "version": "1.0.0",
+  "title": "MyLogoQR Free QR Code Generator",
+  "description": "Enterprise-grade, 100% client-side QR code generator and diagnostic suite with custom logo embedding, gradient styling, vector SVG/PDF export, and offline camera barcode scanner.",
+  "homepage": "https://mylogoqr.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srkamd/mylogoqr-custom-qr-generator"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mylogoqr.com/api/mcp",
+      "supportedProtocolVersions": [
+        "2026-07-28"
+      ]
+    }
+  ],
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "generate_qr_code",
+      "description": "Generate a custom high-resolution QR code with embedded logo, vector SVG/PNG output, custom colors, and error correction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The destination URL, Wi-Fi configuration, vCard, or text content to encode."
+          },
+          "format": {
+            "type": "string",
+            "enum": ["svg", "png", "webp", "pdf"],
+            "default": "svg",
+            "description": "Target output graphic format (vector SVG or high-res raster PNG/WebP)."
+          },
+          "errorCorrectionLevel": {
+            "type": "string",
+            "enum": ["L", "M", "Q", "H"],
+            "default": "H",
+            "description": "Reed-Solomon error correction tier. 'H' (30% recovery) allows central logo placement without read failure."
+          },
+          "foregroundColor": {
+            "type": "string",
+            "default": "#000000",
+            "description": "Hexadecimal color code for the QR code body modules."
+          },
+          "backgroundColor": {
+            "type": "string",
+            "default": "#FFFFFF",
+            "description": "Hexadecimal color code for the background canvas."
+          },
+          "logoUrl": {
+            "type": "string",
+            "description": "Optional direct image URL for central logo placement."
+          }
+        },
+        "required": ["text"]
+      }
+    },
+    {
+      "name": "scan_qr_code",
+      "description": "Decode and parse a QR code image file or camera stream client-side without sending data to servers.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "imageUrl": {
+            "type": "string",
+            "description": "URL or base64 data URI of the QR code image to decode."
+          }
+        },
+        "required": ["imageUrl"]
+      }
+    },
+    {
+      "name": "check_contrast",
+      "description": "Calculate the WCAG 2.1 contrast ratio between foreground and background colors to verify scanning reliability.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "foregroundColor": {
+            "type": "string",
+            "description": "Hex color code for modules"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "description": "Hex color code for background"
+          }
+        },
+        "required": ["foregroundColor", "backgroundColor"]
+      }
+    }
+  ]
+}

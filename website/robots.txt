@@ -1,9 +1,19 @@
+# ==============================================================================
+# MyLogoQR Robots & AI Agent Permissions Configuration
+# ==============================================================================
+
+# Content Signals Policy (RFC / Cloudflare Standard for AI Search & Ingestion)
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
 User-agent: *
 Allow: /
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /sitemap.xml
 Allow: /scan
+Allow: /.well-known/mcp.json
+Allow: /.well-known/ai-catalog.json
+Allow: /.well-known/ai-plugin.json
 
 # Global Search Engines
 User-agent: Googlebot
