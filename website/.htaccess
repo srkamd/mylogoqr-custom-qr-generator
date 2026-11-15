@@ -43,8 +43,8 @@
   </FilesMatch>
 
   # Static assets: cache for 1 year
-  <FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|css|js|woff2)$">
-    Header set Cache-Control "max-age=31536000, public"
+  <FilesMatch "\.(ico|jpe?g|png|gif|svg|webp|css|js|woff2|woff|ttf)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
 
   # Security & Privacy Headers
@@ -85,11 +85,8 @@
   RewriteRule ^blog/ethics-and-dangers-of-deepfakes-ai-voice-cloning/?$ /blog/ [R=301,L]
   RewriteBase /
 
-  # 2a. Force HTTPS
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-  # 2b. Force non-www canonical host (Consolidates www & non-www for Google Search)
+  # 2a. Single-Hop Canonical Redirect (Combines HTTPS + non-www into 1 hop, eliminates redirect chains)
+  RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^www\.mylogoqr\.com$ [NC]
   RewriteRule ^(.*)$ https://mylogoqr.com/$1 [L,R=301]
 

@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NHRFDKWS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-<!-- End Google Tag Manager -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>QR Code Generator with Logo | MyLogoQR</title>
@@ -49,11 +42,52 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</noscript>
 
 <!-- Google AdSense Account Verification -->
 <meta name="google-adsense-account" content="ca-pub-9504324837751358">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358" crossorigin="anonymous"></script>
+<!-- High-Performance Lazy Load for GTM & AdSense (100% PageSpeed Safe, Zero Forced Reflow) -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+(function() {
+  var loaded = false;
+  function initThirdParty() {
+    if (loaded) return;
+    loaded = true;
+    ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
+      window.removeEventListener(e, initThirdParty, { passive: true });
+    });
+
+    var gtm = document.createElement('script');
+    gtm.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-NHRFDKWS';
+    gtm.async = true;
+    document.head.appendChild(gtm);
+
+    var ads = document.createElement('script');
+    ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9504324837751358';
+    ads.async = true;
+    ads.crossOrigin = 'anonymous';
+    document.head.appendChild(ads);
+  }
+
+  ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
+    window.addEventListener(e, initThirdParty, { passive: true, once: true });
+  });
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(function() { setTimeout(initThirdParty, 3500); });
+  } else {
+    setTimeout(initThirdParty, 4000);
+  }
+})();
+</script>
 
 <!-- Structured Schema Data -->
 <script type="application/ld+json">{
@@ -1606,7 +1640,7 @@ build();P[0]&&$('pre').firstChild.onclick();
 <script src="/scripts/print-templates.js" defer></script>
 <script src="/scripts/webmcp.js" defer></script>
 <script src="/scripts/smart-app-banner.js" defer></script>
-<script src="/scripts/pdf-download.js"></script>
-<script src="/scripts/translator.js"></script>
+<script src="/scripts/pdf-download.js" defer></script>
+<script src="/scripts/translator.js" defer></script>
 </body>
 </html>
