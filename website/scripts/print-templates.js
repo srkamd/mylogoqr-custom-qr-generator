@@ -596,7 +596,7 @@
         bFoot.style.marginTop = '12px';
         bFoot.style.fontSize = '0.68rem';
         bFoot.style.color = '#94A3B8';
-        bFoot.textContent = 'Instant Scan &bull; Direct Save';
+        bFoot.textContent = 'Instant Scan • Direct Save';
 
         leftDiv.appendChild(bTitle);
         leftDiv.appendChild(bSub);
@@ -626,7 +626,7 @@
 
       if (preset === 'wifi') badge.textContent = '📶 HIGH-SPEED GUEST WI-FI';
       else if (preset === 'review') badge.textContent = '★ ★ ★ ★ ★ FIVE STAR REVIEWS';
-      else if (preset === 'tabletent') badge.textContent = 'TABLE TENT &bull; DINE IN MENU';
+      else if (preset === 'tabletent') badge.textContent = 'TABLE TENT • DINE IN MENU';
       else if (preset === 'flyer') badge.textContent = 'OFFICIAL QR CODE NOTICE';
       else badge.textContent = 'TABLE / COUNTER DISPLAY';
 
@@ -654,7 +654,7 @@
       foot.style.color = '#94A3B8';
       foot.style.fontWeight = '600';
       foot.style.letterSpacing = '0.04em';
-      foot.textContent = 'Free & Private Barcode &bull; Powered by MyLogoQR.com';
+      foot.textContent = 'Free & Private Barcode • Powered by MyLogoQR.com';
 
       liveSheet.appendChild(badge);
       liveSheet.appendChild(h2);
